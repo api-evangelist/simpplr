@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/* on Simpplr hosts
+notes: >-
+  Only simpplr.com (and its www alias) serve a real RFC 9116 security.txt. The
+  app.simpplr.com and api.ec/api.simpplr.com hosts return the SPA HTML shell (200)
+  or empty JSON bodies for /.well-known/* paths, so those 200s are not genuine
+  discovery documents and are recorded as such.
+hosts:
+- host: https://simpplr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: simpplr-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://app.simpplr.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: returns SPA HTML shell, not a real security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: returns SPA HTML shell, not OIDC discovery JSON
+- host: https://api.simpplr.com
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    note: content-length 0 (empty body); not a real API catalog

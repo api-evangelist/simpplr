@@ -1,0 +1,47 @@
+﻿Contact: mailto:security@simpplr.com
+
+Expires: 2027-03-31T19:00:00.000Z
+
+Preferred-Languages: en
+
+Canonical: https://simpplr.com/.well-known/security.txt
+
+Policy: https://simpplr.com/vulnerability-disclosure-policy
+
+Hiring: https://www.simpplr.com/about/careers/
+
+Encryption:
+email: security@simpplr.com
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBGcWr4cBCAC3MIg2cMnz/IJsBV//zsKqheqWTjSujJxH+TlHWAkN+D3w
+dtKG13Qyb7A6+1dKKSGok2KM84GnaGFN8kOeWWuerf+wHXxJbblfEjcgHGHb
++YmfydKJkQqwlmcl9CTeV/F8136Tdbjdj6KANFqap8FF5U+9E6i5B/A/P+cz
+MQwiIQF+x7PjglgRJIsDz6uZxf0aiuiHlYFkqFMtnzEB4EfGYOu2jfT4Vo5k
+KFj0cwwNL05lND7Gij48SsUhd1RRxPxCRE76bYiwrTHZTqLx6YLNKN80yKSq
+hLrmD1SZoHye7mDqyKWzjAucmryAUPKxdknfLhbwfpYHT5+76TkdSXUxABEB
+AAHNJ1NpbXBwbHIgU2VjdXJpdHkgPHNlY3VyaXR5QHNpbXBwbHIuY29tPsLA
+kAQQAQgARAWCZxavhwWJAe5igAQLCQcICZAjuV9y8sKJ1wMVCAoEFgACAQIZ
+AQKbAwIeARYhBHhRFSJRjqS9pc9G2yO5X3LywonXAAAoKggAkwbwYPGkE3sL
+Ly33Ec8/ST2lGJ8xDFdbld/gKJlV5GjPGUvILfJQ03QFQoh24NEQF+TigZYU
+vnY7lk0yfAGIaSjTndq+drCCar2bDgQDil2AeH5vkxdEaoiGxoSe6qTADWQQ
+z8eF7fP7/rUTsVojV4uYL9VQQPknQBZHtSe6xqlx9l+gqy+qv6SUucK8oEof
+F5aIMXOMN2K4vxZzH4wseZQcSW+4pTkwl1phqp2twHGyx1P0iC5UVccFtLek
+S5DqElcxllazYVOMPdZHNdQLQpUWkU1CSMpAPE1Xi5SKt6+6vqeWzEthGsNn
+Bs4qECOcYiI1rgX5EEf95RsZ5FwzPs7ATQRnFq+HAQgAmGPGksoLckWlQE5r
+CBDbnV8ty/DOFNoxvrNp3GPLkytUB643WD8kkZYOR4LC1HW+Dj6cMIjwH1CN
+IBekeWhBgMZENud7I9Ii8NtetQ8FZ4jJbzqu4Bqdyun6GqLU6CwYysw0Idvi
+RlwEtO75LqcwQYR+g4n+AzbA+fMzjd7350SFEc82ed/ZwEZqjjnkud9PSuZh
++iU8zfScpuKAmxCt/BcBAgt66COoSVuPLAPFcwDye3HGPnOYm8UAZdFUz0D5
+u4NOtcBslLhjCyQkC3O23nNptw/T40PUJDt2C/b5ZFiRfOzHdL/036hfP9L8
+JCzyg/GTC4Mhk2By6GnxFmMWHQARAQABwsB8BBgBCAAwBYJnFq+HBYkB7mKA
+CZAjuV9y8sKJ1wKbDBYhBHhRFSJRjqS9pc9G2yO5X3LywonXAAAUngf7BkRA
+W1LX0dvukL9LzMtfG/bF5KWA0+s+cunqeiQu+ZMnNK0eFrED/e4hXJ4d/2BI
+rxPfVWc8VFxqfK88JuPS6kg72/VIgagOJnmSwigvsLGQwA+yYgJDwd7Nwtt9
+KcNSPpQ+fYVvIIuQdMcJa+UgemwIeLChzNGUi3DHurZZLGvwOrr4L+KZfTfY
+8JGTIj/6w8124q+9t1z8Y+ooqcccSxQ7fVV8Z3IM2bb7/Hoa0oesNb6Arucb
+n7fsmn/nAYIk7FdGIzcBA+tlE0GQpzDGR1mDmp4TfIK0AqNUBqGcksSj9JsE
+AWn36GlMaWSxshRdrksdpRUfqunrco0KY0WKog==
+=Y0pf
+-----END PGP PUBLIC KEY BLOCK-----

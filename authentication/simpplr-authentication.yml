@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.simpplr.com/reference/authenticating-via-an-external-application
+docs: https://developer.simpplr.com/reference/authenticating-via-an-external-application
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+  token_type: bearer
+  platform: salesforce-connected-app
+schemes:
+- name: OAuth2
+  type: oauth2
+  description: >-
+    The Simpplr Extensibility Center API authenticates external applications with
+    OAuth 2.0 bearer tokens. Simpplr is built on the Salesforce platform, so access
+    is granted by creating and configuring a Salesforce connected app for the
+    Simpplr org; the connected app's client credentials are exchanged for an OAuth
+    access token that is then sent as an Authorization: Bearer <token> header on
+    every API request. The OpenAPI security scheme exposed in the reference is an
+    oauth2 scheme (sec0).
+  server: https://api.ec.simpplr.com/api
+  sources:
+  - developer.simpplr.com reference (sec0 oauth2 security scheme)
+setup_docs:
+- title: Authenticating via an external application
+  url: https://developer.simpplr.com/reference/authenticating-via-an-external-application
+- title: Creating & configuring a connected app in Salesforce
+  url: https://developer.simpplr.com/reference/creating-configuring-a-connected-app-in-salesforce
+notes: >-
+  Exact authorization/token URLs are not published verbatim in the OpenAPI (the
+  reference shows placeholder flow URLs); tokens are minted through the Salesforce
+  connected-app OAuth flow documented in the setup pages above.

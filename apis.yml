@@ -1,28 +1,126 @@
 aid: simpplr
 name: Simpplr
-description: 'Simpplr is a company surfaced as a portfolio company of norwest-venture-partners, sapphire-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Simpplr is an AI-powered employee experience platform (modern intranet, employee
+  communications, recognition, and virtual assistant) used by enterprises to inform,
+  engage, and connect their workforce. Built on the Salesforce platform, Simpplr
+  publishes a REST "Extensibility Center" API at developer.simpplr.com that lets
+  developers programmatically manage sites, pages, blogs, events, alerts,
+  notifications, people/audiences, content, search, media, and adoption/engagement
+  analytics. Authentication is OAuth 2.0 (bearer token) via a connected app on the
+  Salesforce platform. Simpplr was founded in 2014, is headquartered in Redwood City,
+  California, and is backed by venture investors including Norwest Venture Partners and
+  Sapphire Ventures. This profile was added to the API Evangelist network from the VC
+  portfolio pipeline and enriched from Simpplr's public developer surface.
 url: https://raw.githubusercontent.com/api-evangelist/simpplr/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
 - sapphire-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1
+image: https://www.simpplr.com/wp-content/uploads/2023/01/simpplr-logo.png
 tags:
 - Company
-- Unknown
-apis: []
+- Employee Experience
+- Intranet
+- Employee Communications
+- Digital Workplace
+- Internal Communications
+- HR
+- Collaboration
+- Enterprise Software
+- Salesforce
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Simpplr Extensibility Center API
+  description: >-
+    Simpplr's REST API for managing intranet content and community — sites,
+    pages, blogs, events, alerts, notifications, people and audiences, content
+    approval/engagement, search, media uploads, and adoption/engagement analytics.
+    OAuth 2.0 bearer authentication via a Salesforce connected app.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  properties:
+  - type: DeveloperPortal
+    url: https://developer.simpplr.com/
+  - type: APIReference
+    url: https://developer.simpplr.com/reference/introduction
+  - type: GettingStarted
+    url: https://developer.simpplr.com/reference/introduction
+  - type: Authentication
+    url: authentication/simpplr-authentication.yml
+  - type: MCPServer
+    url: mcp/simpplr-mcp.yml
 common:
+- type: DomainSecurity
+  url: security/simpplr-domain-security.yml
 - type: Website
   url: https://simpplr.com
+- type: DeveloperPortal
+  url: https://developer.simpplr.com/
+- type: Documentation
+  url: https://developer.simpplr.com/reference/introduction
+- type: APIReference
+  url: https://developer.simpplr.com/reference/introduction
+- type: GettingStarted
+  url: https://developer.simpplr.com/reference/authenticating-via-an-external-application
+- type: Integrations
+  url: https://www.simpplr.com/integrations-apis/
+- type: Support
+  url: https://help.simpplr.com/
+- type: HelpCenter
+  url: https://help.simpplr.com/
+- type: Blog
+  url: https://www.simpplr.com/blog/
+- type: Pricing
+  url: https://www.simpplr.com/pricing/
+- type: SignUp
+  url: https://app.simpplr.com/
+- type: PrivacyPolicy
+  url: https://www.simpplr.com/privacy/
+- type: Compliance
+  url: https://www.simpplr.com/security-compliance/
+- type: TrustCenter
+  url: https://www.simpplr.com/security-compliance/
+- type: Security
+  url: https://simpplr.com/vulnerability-disclosure-policy
+- type: SecurityTxt
+  url: well-known/simpplr-security.txt
+- type: WellKnown
+  url: well-known/simpplr-well-known.yml
+- type: VulnerabilityDisclosure
+  url: security/simpplr-vulnerability-disclosure.yml
+- type: Authentication
+  url: authentication/simpplr-authentication.yml
+- type: MCPServer
+  url: mcp/simpplr-mcp.yml
+- type: LLMsTxt
+  url: llms/simpplr-llms.txt
+- type: Conventions
+  url: conventions/simpplr-conventions.yml

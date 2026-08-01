@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.simpplr.com/reference/
+scope: >-
+  Cross-cutting request/response semantics for the Simpplr Extensibility Center
+  REST API. Only conventions verified from the live developer portal are recorded;
+  fields the provider does not publicly document (idempotency contract, pagination
+  envelope, rate-limit signaling) are intentionally omitted rather than guessed.
+base_url: https://api.ec.simpplr.com/api
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    OAuth 2.0 bearer token obtained through a Salesforce connected app; sent as an
+    Authorization: Bearer <token> header.
+  see: authentication/simpplr-authentication.yml
+versioning:
+  scheme: unversioned-path
+  detail: >-
+    No version segment observed in the API paths (e.g. /sites, /blogs/{content-id});
+    the API is served under the /api base path on api.ec.simpplr.com.
+resource_identity:
+  detail: >-
+    Content resources are addressed by a content-id path parameter
+    (e.g. /blogs/{content-id}); sites, events, pages, alerts, people and audiences
+    each expose id-addressed retrieve/update/delete operations.
+cross_links:
+  authentication: authentication/simpplr-authentication.yml
+  security: security/simpplr-vulnerability-disclosure.yml

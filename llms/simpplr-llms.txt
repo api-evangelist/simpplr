@@ -1,0 +1,37 @@
+# Simpplr
+
+> Simpplr is an AI-powered employee experience platform (modern intranet, employee communications, recognition, and virtual assistant) built on the Salesforce platform. Its REST "Extensibility Center" API lets developers manage sites, pages, blogs, events, alerts, notifications, people/audiences, content, search, media, and adoption/engagement analytics. Authentication is OAuth 2.0 (bearer token) via a Salesforce connected app.
+
+## API
+
+- [Simpplr Extensibility Center API — Introduction](https://developer.simpplr.com/reference/introduction): REST API overview and getting started.
+- Base URL: `https://api.ec.simpplr.com/api`
+- [Authenticating via an external application](https://developer.simpplr.com/reference/authenticating-via-an-external-application): OAuth 2.0 bearer setup.
+- [Creating & configuring a connected app in Salesforce](https://developer.simpplr.com/reference/creating-configuring-a-connected-app-in-salesforce): connected-app auth setup.
+
+## Resource areas
+
+- [Sites](https://developer.simpplr.com/reference/search-for-sites): create/update sites, manage members and followers.
+- [Blogs](https://developer.simpplr.com/reference/get-blog-by-id): create, read, update, delete blog content.
+- [Pages](https://developer.simpplr.com/reference/create-page): create/update/delete pages and page categories.
+- [Events](https://developer.simpplr.com/reference/get-all-events): create/update/list/delete events.
+- [Alerts](https://developer.simpplr.com/reference/search-for-alerts): create/update/expire/delete alerts.
+- [Notifications](https://developer.simpplr.com/reference/search-for-notifications): create/update/search notifications.
+- [People & Audiences](https://developer.simpplr.com/reference/search-for-people): search/update people, manage audiences.
+- [Content](https://developer.simpplr.com/reference/search-for-contents): approval, validation, must-read, carousel, newsletters, campaigns.
+- [Search](https://developer.simpplr.com/reference/searches): search, autocomplete, section/feed search.
+- [Media](https://developer.simpplr.com/reference/upload-and-attach-media): upload media, manage album images, video metadata.
+- [Analytics](https://developer.simpplr.com/reference/app-adoption): adoption, page views, engagement, site popularity, people performance.
+
+## Docs
+
+- [Developer portal (Extensibility Center)](https://developer.simpplr.com/)
+- [Integrations & APIs](https://www.simpplr.com/integrations-apis/)
+- [Help center](https://help.simpplr.com/)
+- [Blog](https://www.simpplr.com/blog/)
+
+## Security
+
+- [Security & Compliance (SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS, CCPA)](https://www.simpplr.com/security-compliance/)
+- [Vulnerability disclosure policy](https://simpplr.com/vulnerability-disclosure-policy)
+- [security.txt](https://simpplr.com/.well-known/security.txt)
