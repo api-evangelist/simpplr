@@ -1,10 +1,8 @@
 generated: '2026-07-21'
 method: derived
 status: candidate
-source: >-
-  Derived from the Simpplr Extensibility Center REST API operation catalog
-  published at https://developer.simpplr.com/reference/. No official hosted MCP
-  server was found; this is a candidate tool surface mapping each documented REST
+source: Derived from the Simpplr Extensibility Center REST API operation catalog published at https://developer.simpplr.com/reference/.
+  No official hosted MCP server was found; this is a candidate tool surface mapping each documented REST
   operation to an MCP tool. HTTP method/path shown only where verified live.
 server:
   name: simpplr
@@ -14,100 +12,181 @@ server:
 tool_groups:
 - group: Sites
   tools:
-  - {name: search_for_sites, verified: true, method: get, path: /sites, ref: https://developer.simpplr.com/reference/search-for-sites}
-  - {name: search_for_site_by_id, ref: https://developer.simpplr.com/reference/search-for-site-by-id}
-  - {name: get_site_by_id, ref: https://developer.simpplr.com/reference/get-site-by-id}
-  - {name: create_a_site, ref: https://developer.simpplr.com/reference/create-a-site}
-  - {name: update_a_site, ref: https://developer.simpplr.com/reference/update-a-site}
-  - {name: update_site_as_active, ref: https://developer.simpplr.com/reference/update-site-as-active}
-  - {name: add_a_member_to_a_site, ref: https://developer.simpplr.com/reference/add-a-member-to-a-site}
-  - {name: remove_a_member_from_a_site, ref: https://developer.simpplr.com/reference/remove-a-member-from-a-site}
-  - {name: add_a_follower_to_a_site, ref: https://developer.simpplr.com/reference/add-a-follower-to-a-site}
-  - {name: remove_a_follower_from_a_site, ref: https://developer.simpplr.com/reference/remove-a-follower-from-a-site}
+  - name: search_for_sites
+    verified: true
+    method: get
+    path: /sites
+    ref: https://developer.simpplr.com/reference/search-for-sites
+  - name: search_for_site_by_id
+    ref: https://developer.simpplr.com/reference/search-for-site-by-id
+  - name: get_site_by_id
+    ref: https://developer.simpplr.com/reference/get-site-by-id
+  - name: create_a_site
+    ref: https://developer.simpplr.com/reference/create-a-site
+  - name: update_a_site
+    ref: https://developer.simpplr.com/reference/update-a-site
+  - name: update_site_as_active
+    ref: https://developer.simpplr.com/reference/update-site-as-active
+  - name: add_a_member_to_a_site
+    ref: https://developer.simpplr.com/reference/add-a-member-to-a-site
+  - name: remove_a_member_from_a_site
+    ref: https://developer.simpplr.com/reference/remove-a-member-from-a-site
+  - name: add_a_follower_to_a_site
+    ref: https://developer.simpplr.com/reference/add-a-follower-to-a-site
+  - name: remove_a_follower_from_a_site
+    ref: https://developer.simpplr.com/reference/remove-a-follower-from-a-site
 - group: Blogs
   tools:
-  - {name: create_a_blog, ref: https://developer.simpplr.com/reference/create-a-blog}
-  - {name: get_blog_by_id, verified: true, method: get, path: '/blogs/{content-id}', ref: https://developer.simpplr.com/reference/get-blog-by-id}
-  - {name: update_a_blog, ref: https://developer.simpplr.com/reference/update-a-blog}
-  - {name: delete_a_blog, ref: https://developer.simpplr.com/reference/delete-a-blog}
+  - name: create_a_blog
+    ref: https://developer.simpplr.com/reference/create-a-blog
+  - name: get_blog_by_id
+    verified: true
+    method: get
+    path: /blogs/{content-id}
+    ref: https://developer.simpplr.com/reference/get-blog-by-id
+  - name: update_a_blog
+    ref: https://developer.simpplr.com/reference/update-a-blog
+  - name: delete_a_blog
+    ref: https://developer.simpplr.com/reference/delete-a-blog
 - group: Pages
   tools:
-  - {name: create_page, ref: https://developer.simpplr.com/reference/create-page}
-  - {name: update_a_page, ref: https://developer.simpplr.com/reference/update-a-page}
-  - {name: delete_a_page_by_id, ref: https://developer.simpplr.com/reference/delete-a-page-by-id}
-  - {name: search_for_a_page_by_id, ref: https://developer.simpplr.com/reference/search-for-a-page-by-id}
-  - {name: search_page_categories, ref: https://developer.simpplr.com/reference/search-page-categories}
+  - name: create_page
+    ref: https://developer.simpplr.com/reference/create-page
+  - name: update_a_page
+    ref: https://developer.simpplr.com/reference/update-a-page
+  - name: delete_a_page_by_id
+    ref: https://developer.simpplr.com/reference/delete-a-page-by-id
+  - name: search_for_a_page_by_id
+    ref: https://developer.simpplr.com/reference/search-for-a-page-by-id
+  - name: search_page_categories
+    ref: https://developer.simpplr.com/reference/search-page-categories
 - group: Events
   tools:
-  - {name: create_an_event, ref: https://developer.simpplr.com/reference/create-an-event}
-  - {name: update_an_event, ref: https://developer.simpplr.com/reference/update-an-event}
-  - {name: get_all_events, ref: https://developer.simpplr.com/reference/get-all-events}
-  - {name: search_for_an_event_by_id, ref: https://developer.simpplr.com/reference/search-for-an-event-by-id}
-  - {name: delete_an_event_by_id, ref: https://developer.simpplr.com/reference/delete-an-event-by-id}
+  - name: create_an_event
+    ref: https://developer.simpplr.com/reference/create-an-event
+  - name: update_an_event
+    ref: https://developer.simpplr.com/reference/update-an-event
+  - name: get_all_events
+    ref: https://developer.simpplr.com/reference/get-all-events
+  - name: search_for_an_event_by_id
+    ref: https://developer.simpplr.com/reference/search-for-an-event-by-id
+  - name: delete_an_event_by_id
+    ref: https://developer.simpplr.com/reference/delete-an-event-by-id
 - group: Alerts
   tools:
-  - {name: create_a_new_alert, ref: https://developer.simpplr.com/reference/create-a-new-alert}
-  - {name: update_an_alert, ref: https://developer.simpplr.com/reference/update-an-alert}
-  - {name: search_for_alerts, ref: https://developer.simpplr.com/reference/search-for-alerts}
-  - {name: expire_an_alert, ref: https://developer.simpplr.com/reference/expire-an-alert}
-  - {name: delete_an_alert, ref: https://developer.simpplr.com/reference/delete-an-alert}
+  - name: create_a_new_alert
+    ref: https://developer.simpplr.com/reference/create-a-new-alert
+  - name: update_an_alert
+    ref: https://developer.simpplr.com/reference/update-an-alert
+  - name: search_for_alerts
+    ref: https://developer.simpplr.com/reference/search-for-alerts
+  - name: expire_an_alert
+    ref: https://developer.simpplr.com/reference/expire-an-alert
+  - name: delete_an_alert
+    ref: https://developer.simpplr.com/reference/delete-an-alert
 - group: Notifications
   tools:
-  - {name: create_a_notification, ref: https://developer.simpplr.com/reference/create-a-notification}
-  - {name: update_a_notification, ref: https://developer.simpplr.com/reference/update-a-notification}
-  - {name: search_for_notifications, ref: https://developer.simpplr.com/reference/search-for-notifications}
+  - name: create_a_notification
+    ref: https://developer.simpplr.com/reference/create-a-notification
+  - name: update_a_notification
+    ref: https://developer.simpplr.com/reference/update-a-notification
+  - name: search_for_notifications
+    ref: https://developer.simpplr.com/reference/search-for-notifications
 - group: People & Audiences
   tools:
-  - {name: search_for_people, ref: https://developer.simpplr.com/reference/search-for-people}
-  - {name: search_for_people_by_people_id, ref: https://developer.simpplr.com/reference/search-for-people-by-people-id}
-  - {name: update_people, ref: https://developer.simpplr.com/reference/update-people}
-  - {name: add_audience, ref: https://developer.simpplr.com/reference/add-audience}
-  - {name: update_audience, ref: https://developer.simpplr.com/reference/update-audience}
-  - {name: delete_audience, ref: https://developer.simpplr.com/reference/delete-audience}
+  - name: search_for_people
+    ref: https://developer.simpplr.com/reference/search-for-people
+  - name: search_for_people_by_people_id
+    ref: https://developer.simpplr.com/reference/search-for-people-by-people-id
+  - name: update_people
+    ref: https://developer.simpplr.com/reference/update-people
+  - name: add_audience
+    ref: https://developer.simpplr.com/reference/add-audience
+  - name: update_audience
+    ref: https://developer.simpplr.com/reference/update-audience
+  - name: delete_audience
+    ref: https://developer.simpplr.com/reference/delete-audience
 - group: Content
   tools:
-  - {name: search_for_contents, ref: https://developer.simpplr.com/reference/search-for-contents}
-  - {name: content_approval, ref: https://developer.simpplr.com/reference/content-approval}
-  - {name: fetch_all_content_for_approval, ref: https://developer.simpplr.com/reference/fetch-all-content-for-approval}
-  - {name: validate_a_content, ref: https://developer.simpplr.com/reference/validate-a-content}
-  - {name: get_must_read_content, ref: https://developer.simpplr.com/reference/get-must-read-content}
-  - {name: get_carousel_data, ref: https://developer.simpplr.com/reference/get-carousel-data}
-  - {name: news_letters, ref: https://developer.simpplr.com/reference/news-letters}
-  - {name: campaigns, ref: https://developer.simpplr.com/reference/campaigns}
+  - name: search_for_contents
+    ref: https://developer.simpplr.com/reference/search-for-contents
+  - name: content_approval
+    ref: https://developer.simpplr.com/reference/content-approval
+  - name: fetch_all_content_for_approval
+    ref: https://developer.simpplr.com/reference/fetch-all-content-for-approval
+  - name: validate_a_content
+    ref: https://developer.simpplr.com/reference/validate-a-content
+  - name: get_must_read_content
+    ref: https://developer.simpplr.com/reference/get-must-read-content
+  - name: get_carousel_data
+    ref: https://developer.simpplr.com/reference/get-carousel-data
+  - name: news_letters
+    ref: https://developer.simpplr.com/reference/news-letters
+  - name: campaigns
+    ref: https://developer.simpplr.com/reference/campaigns
 - group: Search
   tools:
-  - {name: searches, ref: https://developer.simpplr.com/reference/searches}
-  - {name: search_list, ref: https://developer.simpplr.com/reference/search-list}
-  - {name: search_within_a_section, ref: https://developer.simpplr.com/reference/search-within-a-section}
-  - {name: search_within_feed, ref: https://developer.simpplr.com/reference/search-within-feed}
-  - {name: autocomplete, ref: https://developer.simpplr.com/reference/autocomplete}
+  - name: searches
+    ref: https://developer.simpplr.com/reference/searches
+  - name: search_list
+    ref: https://developer.simpplr.com/reference/search-list
+  - name: search_within_a_section
+    ref: https://developer.simpplr.com/reference/search-within-a-section
+  - name: search_within_feed
+    ref: https://developer.simpplr.com/reference/search-within-feed
+  - name: autocomplete
+    ref: https://developer.simpplr.com/reference/autocomplete
 - group: Media
   tools:
-  - {name: upload_and_attach_media, ref: https://developer.simpplr.com/reference/upload-and-attach-media}
-  - {name: delete_album_images_by_ids, ref: https://developer.simpplr.com/reference/delete-album-images-by-ids}
-  - {name: fetch_video_metadata, ref: https://developer.simpplr.com/reference/fetch-video-metadata}
+  - name: upload_and_attach_media
+    ref: https://developer.simpplr.com/reference/upload-and-attach-media
+  - name: delete_album_images_by_ids
+    ref: https://developer.simpplr.com/reference/delete-album-images-by-ids
+  - name: fetch_video_metadata
+    ref: https://developer.simpplr.com/reference/fetch-video-metadata
 - group: Analytics
   tools:
-  - {name: app_adoption, ref: https://developer.simpplr.com/reference/app-adoption}
-  - {name: app_adoption_average, ref: https://developer.simpplr.com/reference/app-adoption-average}
-  - {name: app_page_views, ref: https://developer.simpplr.com/reference/app-page-views}
-  - {name: content_engagement, ref: https://developer.simpplr.com/reference/content-engagement}
-  - {name: content_publications, ref: https://developer.simpplr.com/reference/content-publications}
-  - {name: content_referral_sources, ref: https://developer.simpplr.com/reference/content-referral-sources}
-  - {name: content_views_by_type, ref: https://developer.simpplr.com/reference/content-views-by-type}
-  - {name: content_views_list, ref: https://developer.simpplr.com/reference/content-views-list}
-  - {name: social_engagement, ref: https://developer.simpplr.com/reference/social-engagement}
-  - {name: social_engagement_list, ref: https://developer.simpplr.com/reference/social-engagement-list}
-  - {name: site_count, ref: https://developer.simpplr.com/reference/site-count}
-  - {name: site_popularity, ref: https://developer.simpplr.com/reference/site-popularity}
-  - {name: site_publications, ref: https://developer.simpplr.com/reference/site-publications}
-  - {name: low_activity_sites, ref: https://developer.simpplr.com/reference/low-activity-sites}
-  - {name: people_count, ref: https://developer.simpplr.com/reference/people-count}
-  - {name: people_performance, ref: https://developer.simpplr.com/reference/people-performance}
-  - {name: people_profile_completeness, ref: https://developer.simpplr.com/reference/people-profile-completeness}
-  - {name: knowledge_page_stats, ref: https://developer.simpplr.com/reference/knowledge-page-stats}
-notes: >-
-  75 operations enumerated from the live developer.simpplr.com reference navigation
-  on 2026-07-21. Two operations were verified live (search_for_sites = GET /sites,
-  get_blog_by_id = GET /blogs/{content-id}); method/path for the remainder are
-  documented at each ref URL but were not asserted here to avoid fabrication.
+  - name: app_adoption
+    ref: https://developer.simpplr.com/reference/app-adoption
+  - name: app_adoption_average
+    ref: https://developer.simpplr.com/reference/app-adoption-average
+  - name: app_page_views
+    ref: https://developer.simpplr.com/reference/app-page-views
+  - name: content_engagement
+    ref: https://developer.simpplr.com/reference/content-engagement
+  - name: content_publications
+    ref: https://developer.simpplr.com/reference/content-publications
+  - name: content_referral_sources
+    ref: https://developer.simpplr.com/reference/content-referral-sources
+  - name: content_views_by_type
+    ref: https://developer.simpplr.com/reference/content-views-by-type
+  - name: content_views_list
+    ref: https://developer.simpplr.com/reference/content-views-list
+  - name: social_engagement
+    ref: https://developer.simpplr.com/reference/social-engagement
+  - name: social_engagement_list
+    ref: https://developer.simpplr.com/reference/social-engagement-list
+  - name: site_count
+    ref: https://developer.simpplr.com/reference/site-count
+  - name: site_popularity
+    ref: https://developer.simpplr.com/reference/site-popularity
+  - name: site_publications
+    ref: https://developer.simpplr.com/reference/site-publications
+  - name: low_activity_sites
+    ref: https://developer.simpplr.com/reference/low-activity-sites
+  - name: people_count
+    ref: https://developer.simpplr.com/reference/people-count
+  - name: people_performance
+    ref: https://developer.simpplr.com/reference/people-performance
+  - name: people_profile_completeness
+    ref: https://developer.simpplr.com/reference/people-profile-completeness
+  - name: knowledge_page_stats
+    ref: https://developer.simpplr.com/reference/knowledge-page-stats
+notes: 75 operations enumerated from the live developer.simpplr.com reference navigation on 2026-07-21.
+  Two operations were verified live (search_for_sites = GET /sites, get_blog_by_id = GET /blogs/{content-id});
+  method/path for the remainder are documented at each ref URL but were not asserted here to avoid fabrication.
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census
