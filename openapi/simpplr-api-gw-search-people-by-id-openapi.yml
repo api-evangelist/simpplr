@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: simpplr-api-gw-search-people-by-id
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api/people
+security:
+- sec0: []
+x-readme-fauxas: true
+paths:
+  /?:
+    get:
+      summary: Search for People by ID
+      description: Use this API to search for People by their PeopleId or Salesforce user id.
+      operationId: search-for-people-by-people-id
+      parameters:
+      - name: search-param
+        in: query
+        description: PeopleID or SfUserID
+        required: true
+        schema:
+          type: string
+          enum:
+          - PeopleID
+          - SfUserID
+          default: PeopleID
+      - name: people-id
+        in: query
+        description: PeopleId to search by
+        schema:
+          type: string
+          default: a115e000000abUDAAY
+      - name: sf-user-id
+        in: query
+        description: Salesforce user id to search by
+        schema:
+          type: string
+          default: 0055e000006FlqjAAC
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"videoCallProvider\": \"zoom\",\n        \"url\": \"https://xxxxx.visualforce.com/apex/app?u=/people/a115e000000abxxxxx\",\n        \"timezoneOffset\": 19800000,\n        \"timezoneName\": \"India Standard Time\",\n        \"timezoneIso\": \"Asia/Kolkata\",\n        \"sfUserId\": \"0055e000006Flqxxxx\",\n        \"permissions\": {\n            \"isUnlistedAdmin\": true,\n            \"isSiteManager\": true,\n            \"isSegmentManager\": false,\n            \"isAppManager\": true,\n            \"canSendNewsletterToAll\": true,\n            \"canSendNewsletter\": true,\n            \"canSendAlertsToAll\": true,\n            \"canSendAlerts\": true,\n            \"canManageHomeDashboard\": true,\n            \"canManageCampaigns\": true,\n            \"canCreateSite\": true,\n            \"canCreateBlogPost\": false,\n            \"canAccessAnalytics\": true,\n            \"canAccessAllPrivateSites\"\
+                    : true\n        },\n        \"peopleId\": \"a115e000000abUxxxxx\",\n        \"nickname\": \"User16279616049595498821\",\n        \"name\": \"Ajay Hada\",\n        \"location\": \"\",\n        \"lastName\": \"Hada\",\n        \"language\": \"en-US\",\n        \"isFollowing\": false,\n        \"isFavorited\": false,\n        \"isActive\": true,\n        \"id\": \"a115e000000abUxxxx\",\n        \"hasConnectedTwitterAccount\": false,\n        \"hasConnectedSlackAccount\": false,\n        \"hasConnectedSharePointAccount\": false,\n        \"hasConnectedOneDriveAccount\": false,\n        \"hasConnectedLinkedInAccount\": false,\n        \"hasConnectedGoogleDriveAccount\": true,\n        \"hasConnectedGoogleCalendarAccount\": false,\n        \"hasConnectedFacebookAccount\": false,\n        \"hasConnectedDropboxAccount\": false,\n        \"firstName\": \"Ajay\",\n        \"feedSort\": \"news\",\n        \"email\": \"xxxxx@simpplr.com\",\n        \"canFollow\": true\n    },\n \
+                    \   \"responseTimeStamp\": \"1631628068335\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      videoCallProvider:
+                        type: string
+                        example: zoom
+                      url:
+                        type: string
+                        example: https://xxxxx.visualforce.com/apex/app?u=/people/a115e000000abxxxxx
+                      timezoneOffset:
+                        type: integer
+                        example: 19800000
+                        default: 0
+                      timezoneName:
+                        type: string
+                        example: India Standard Time
+                      timezoneIso:
+                        type: string
+                        example: Asia/Kolkata
+                      sfUserId:
+                        type: string
+                        example: 0055e000006Flqxxxx
+                      permissions:
+                        type: object
+                        properties:
+                          isUnlistedAdmin:
+                            type: boolean
+                            example: true
+                            default: true
+                          isSiteManager:
+                            type: boolean
+                            example: true
+                            default: true
+                          isSegmentManager:
+                            type: boolean
+                            example: false
+                            default: true
+                          isAppManager:
+                            type: boolean
+                            example: true
+                            default: true
+                          canSendNewsletterToAll:
+                            type: boolean
+                            example: true
+                            default: true
+                          canSendNewsletter:
+                            type: boolean
+                            example: true
+                            default: true
+                          canSendAlertsToAll:
+                            type: boolean
+                            example: true
+                            default: true
+                          canSendAlerts:
+                            type: boolean
+                            example: true
+                            default: true
+                          canManageHomeDashboard:
+                            type: boolean
+                            example: true
+                            default: true
+                          canManageCampaigns:
+                            type: boolean
+                            example: true
+                            default: true
+                          canCreateSite:
+                            type: boolean
+                            example: true
+                            default: true
+                          canCreateBlogPost:
+                            type: boolean
+                            example: false
+                            default: true
+                          canAccessAnalytics:
+                            type: boolean
+                            example: true
+                            default: true
+                          canAccessAllPrivateSites:
+                            type: boolean
+                            example: true
+                            default: true
+                      peopleId:
+                        type: string
+                        example: a115e000000abUxxxxx
+                      nickname:
+                        type: string
+                        example: User16279616049595498821
+                      name:
+                        type: string
+                        example: Ajay Hada
+                      location:
+                        type: string
+                        example: ''
+                      lastName:
+                        type: string
+                        example: Hada
+                      language:
+                        type: string
+                        example: en-US
+                      isFollowing:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      id:
+                        type: string
+                        example: a115e000000abUxxxx
+                      hasConnectedTwitterAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedSlackAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedSharePointAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedOneDriveAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedLinkedInAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedGoogleDriveAccount:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasConnectedGoogleCalendarAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedFacebookAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasConnectedDropboxAccount:
+                        type: boolean
+                        example: false
+                        default: true
+                      firstName:
+                        type: string
+                        example: Ajay
+                      feedSort:
+                        type: string
+                        example: news
+                      email:
+                        type: string
+                        example: xxxxx@simpplr.com
+                      canFollow:
+                        type: boolean
+                        example: true
+                        default: true
+                  responseTimeStamp:
+                    type: string
+                    example: '1631628068335'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/search-for-people-by-people-id.md
+  merge:
+    pages: 1
+    deduped: 0
+    conflicts_kept_first: 0

@@ -1,0 +1,16 @@
+generated: '2026-10-14'
+method: none
+source:
+- https://zapier.com/apps/simpplr/integrations
+- https://n8n.io/integrations/simpplr/
+- https://composio.dev/toolkits/simpplr
+- https://monid.ai/tools/simpplr
+checked:
+- https://composio.dev/toolkits/simpplr
+- https://monid.ai/tools/simpplr
+- https://n8n.io/integrations/simpplr/
+- https://zapier.com/apps/simpplr/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []

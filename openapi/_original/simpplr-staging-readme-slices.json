@@ -1,0 +1,758 @@
+[
+ {
+  "page": "https://developer.simpplr.com/reference/content-approval.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "staging",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/contents/site/{site_id}/content/{content_id}/approval": {
+     "post": {
+      "summary": "Content Approval",
+      "description": "Use this API to approve or reject newly created content",
+      "operationId": "content-approval",
+      "parameters": [
+       {
+        "name": "site_id",
+        "in": "path",
+        "description": "The site id to which the content belongs",
+        "schema": {
+         "type": "string"
+        },
+        "required": true
+       },
+       {
+        "name": "content_id",
+        "in": "path",
+        "description": "The id of the content",
+        "schema": {
+         "type": "string"
+        },
+        "required": true
+       },
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email used to login in salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "required": [
+           "action"
+          ],
+          "properties": {
+           "action": {
+            "type": "string",
+            "description": "The action you want to take on the content",
+            "default": "publish",
+            "enum": [
+             "publish",
+             "unpublish"
+            ]
+           }
+          }
+         }
+        }
+       }
+      },
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       },
+       "400": {
+        "description": "400",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ },
+ {
+  "page": "https://developer.simpplr.com/reference/validate-a-content.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "staging",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/contents/content/{content_id}/validate": {
+     "post": {
+      "summary": "Validate a content",
+      "description": "Use this API to validate the content and republish",
+      "operationId": "validate-a-content",
+      "parameters": [
+       {
+        "name": "content_id",
+        "in": "path",
+        "description": "The id of the content to be Validated",
+        "schema": {
+         "type": "string"
+        },
+        "required": true
+       },
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email used to login in salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       },
+       "400": {
+        "description": "400",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ },
+ {
+  "page": "https://developer.simpplr.com/reference/fetch-video-metadata.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "staging",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/contents/video": {
+     "get": {
+      "summary": "Fetch video Metadata",
+      "description": "Use this API to fetch meta-data of videos",
+      "operationId": "fetch-video-metadata",
+      "parameters": [
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email to login into Salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "site-id",
+        "in": "query",
+        "description": "Id of the site",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "size",
+        "in": "query",
+        "description": "Maximum number of results to return",
+        "schema": {
+         "type": "integer",
+         "format": "int32",
+         "default": 10
+        }
+       },
+       {
+        "name": "sort-by",
+        "in": "query",
+        "description": "Technique for sorting results",
+        "schema": {
+         "type": "string",
+         "enum": [
+          "createdNewest",
+          "createdOldest",
+          "modifiedNewest",
+          "modifiedOldest",
+          "alphabetical"
+         ],
+         "default": "createdNewest"
+        }
+       },
+       {
+        "name": "directory",
+        "in": "query",
+        "description": "Id of the directory",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"message\": \"\",\n    \"videoMetaData\": [\n        {\n            \"title\": \"​﻿⁣file_example_MP4_480_1_5MG.mp4\",\n            \"owner\": {\n                \"url\": \"https://ida-qa-one--simpplr.visualforce.com/apex/Simpplr__app?u=/people/a188c000006m9cCAAQ\",\n                \"name\": \"System Admin\",\n                \"id\": \"a188c000006m9cCAAQ\"\n            },\n            \"size\": 1570024,\n            \"url\": \"https://ida-qa-one--simpplr.visualforce.com/apex/Simpplr__app?u=/video/1_wj5408l5&fileId=1_wj5408l5&provider=native_video\"\n        }\n    ]\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "status": {
+             "type": "string",
+             "example": "success"
+            },
+            "statusCode": {
+             "type": "integer",
+             "example": 200,
+             "default": 0
+            },
+            "message": {
+             "type": "string",
+             "example": ""
+            },
+            "videoMetaData": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "title": {
+                "type": "string",
+                "example": "​﻿⁣file_example_MP4_480_1_5MG.mp4"
+               },
+               "owner": {
+                "type": "object",
+                "properties": {
+                 "url": {
+                  "type": "string",
+                  "example": "https://ida-qa-one--simpplr.visualforce.com/apex/Simpplr__app?u=/people/a188c000006m9cCAAQ"
+                 },
+                 "name": {
+                  "type": "string",
+                  "example": "System Admin"
+                 },
+                 "id": {
+                  "type": "string",
+                  "example": "a188c000006m9cCAAQ"
+                 }
+                }
+               },
+               "size": {
+                "type": "integer",
+                "example": 1570024,
+                "default": 0
+               },
+               "url": {
+                "type": "string",
+                "example": "https://ida-qa-one--simpplr.visualforce.com/apex/Simpplr__app?u=/video/1_wj5408l5&fileId=1_wj5408l5&provider=native_video"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "401": {
+        "description": "401",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "status": {
+             "type": "string",
+             "example": "error"
+            },
+            "message": {
+             "type": "string",
+             "example": "SESSION_TIMEOUT"
+            },
+            "i18nmessage": {
+             "type": "string",
+             "example": "SESSION_TIMEOUT"
+            }
+           }
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ },
+ {
+  "page": "https://developer.simpplr.com/reference/fetch-all-content-for-approval.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "staging",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/contents/approval": {
+     "get": {
+      "summary": "Fetch all content for approval",
+      "description": "Use API to fetch all the content from all sites that needs approval",
+      "operationId": "fetch-all-content-for-approval",
+      "parameters": [
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email used to login in salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       },
+       "400": {
+        "description": "400",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {}
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ },
+ {
+  "page": "https://developer.simpplr.com/reference/app-adoption-2.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "staging",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/analytics/views": {
+     "get": {
+      "summary": "Get Views List",
+      "description": "Use this API to get Views List",
+      "operationId": "app-adoption-2",
+      "parameters": [
+       {
+        "name": "from",
+        "in": "query",
+        "description": "Time from which the Views List need to be selected",
+        "required": true,
+        "schema": {
+         "type": "string",
+         "default": "2020-12-27"
+        }
+       },
+       {
+        "name": "to",
+        "in": "query",
+        "description": "Time till which the Views List need to be selected",
+        "required": true,
+        "schema": {
+         "type": "string",
+         "default": "2022-01-26"
+        }
+       },
+       {
+        "name": "group-by",
+        "in": "query",
+        "description": "Group the Result according to group-by value",
+        "schema": {
+         "type": "string",
+         "enum": [
+          "day",
+          "week",
+          "month"
+         ],
+         "default": "day"
+        }
+       },
+       {
+        "name": "order-by",
+        "in": "query",
+        "description": "Order by which result need to be selected",
+        "required": true,
+        "schema": {
+         "type": "string",
+         "enum": [
+          "top",
+          "bottom"
+         ],
+         "default": "top"
+        }
+       },
+       {
+        "name": "result-type",
+        "in": "query",
+        "description": "Type by which result need to be selected",
+        "required": true,
+        "schema": {
+         "type": "string",
+         "enum": [
+          "department",
+          "location"
+         ],
+         "default": "department"
+        }
+       },
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email to login into Salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "filter-by",
+        "in": "query",
+        "description": "Filter to apply to results",
+        "required": true,
+        "schema": {
+         "type": "string",
+         "enum": [
+          null,
+          "department",
+          "location"
+         ],
+         "default": null
+        }
+       },
+       {
+        "name": "filter-value",
+        "in": "query",
+        "description": "Value by which result has to filter.",
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US\",\n                \"uniqueViews\": 0,\n                \"label\": \"US\"\n            },\n            {\n                \"value\": 53,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+India\",\n                \"uniqueViews\": 0,\n                \"label\": \"India\"\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getViewsList&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=bottom\"\n    }\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "statusCode": {
+             "type": "integer",
+             "example": 200,
+             "default": 0
+            },
+            "status": {
+             "type": "string",
+             "example": "success"
+            },
+            "message": {
+             "type": "string",
+             "example": ""
+            },
+            "data": {
+             "type": "object",
+             "properties": {
+              "data": {
+               "type": "array",
+               "items": {
+                "type": "object",
+                "properties": {
+                 "value": {
+                  "type": "integer",
+                  "example": 1,
+                  "default": 0
+                 },
+                 "url": {
+                  "type": "string",
+                  "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US"
+                 },
+                 "uniqueViews": {
+                  "type": "integer",
+                  "example": 0,
+                  "default": 0
+                 },
+                 "label": {
+                  "type": "string",
+                  "example": "US"
+                 }
+                }
+               }
+              },
+              "csvUrl": {
+               "type": "string",
+               "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getViewsList&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=bottom"
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "401": {
+        "description": "401",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "statusCode": {
+             "type": "integer",
+             "example": 401,
+             "default": 0
+            },
+            "status": {
+             "type": "string",
+             "example": "error"
+            },
+            "message": {
+             "type": "string",
+             "example": "SESSION_TIMEOUT"
+            },
+            "data": {
+             "type": "object",
+             "properties": {}
+            }
+           }
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ }
+]

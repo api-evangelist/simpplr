@@ -1,0 +1,576 @@
+[
+ {
+  "page": "https://developer.simpplr.com/reference/create-page.md",
+  "definition": {
+   "openapi": "3.1.0",
+   "info": {
+    "title": "simpplr-api-gw-file-upload",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.ec.simpplr.com/api"
+    }
+   ],
+   "components": {
+    "securitySchemes": {
+     "sec0": {
+      "type": "oauth2",
+      "flows": {}
+     }
+    }
+   },
+   "security": [
+    {
+     "sec0": []
+    }
+   ],
+   "paths": {
+    "/contents/site/{site-id}/page": {
+     "post": {
+      "summary": "Create a Page",
+      "description": "Use this API to create a new Page",
+      "operationId": "create-page",
+      "parameters": [
+       {
+        "name": "site-id",
+        "in": "path",
+        "description": "ID of the Site under which this Page has to be created",
+        "schema": {
+         "type": "string",
+         "default": "a1A5e000001wQdXEAU"
+        },
+        "required": true
+       },
+       {
+        "name": "x-user-email",
+        "in": "header",
+        "description": "User's email to login into Salesforce",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "requestBody": {
+       "content": {
+        "application/x-www-form-urlencoded": {
+         "schema": {
+          "type": "object",
+          "required": [
+           "content-sub-type",
+           "body",
+           "title",
+           "category-name",
+           "publishing-status"
+          ],
+          "properties": {
+           "content-sub-type": {
+            "type": "string",
+            "default": "news",
+            "enum": [
+             "news",
+             "knowledge"
+            ]
+           },
+           "publish-at": {
+            "type": "string",
+            "description": "Date time at which this Content should be published",
+            "default": "2022-02-12T00:00:00+05:30"
+           },
+           "body": {
+            "type": "string",
+            "description": "Content body",
+            "default": "<p>This is the basic description text.</p>"
+           },
+           "summary": {
+            "type": "string",
+            "description": "The summary of the Content",
+            "default": "This is a custom summary text."
+           },
+           "title": {
+            "type": "string",
+            "description": "Title for this Content",
+            "default": "Page created from API Portal"
+           },
+           "is-feed-enabled": {
+            "type": "boolean",
+            "description": "Is feed enabled for this Content?",
+            "default": true
+           },
+           "category-name": {
+            "type": "string",
+            "description": "The category assigned to this content ( Only applies to Pages )",
+            "default": "News"
+           },
+           "publishing-status": {
+            "type": "string",
+            "description": "When should this Page be published",
+            "default": "immediate",
+            "enum": [
+             "immediate",
+             "schedule"
+            ]
+           }
+          }
+         }
+        }
+       }
+      },
+      "responses": {
+       "200": {
+        "description": "200",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"versionId\": 1,\n        \"usefulContent\": {\n            \"hasUserRated\": false,\n            \"canViewHistory\": true\n        },\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FQWOAA4\",\n        \"type\": \"page\",\n        \"title\": \"API Demo Page Test\",\n        \"summary\": \"This is custom summary text.\",\n        \"status\": \"published\",\n        \"site\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/dashboard\",\n            \"siteId\": \"a1A5e000001wQdXEAU\",\n            \"name\": \"Test API Site arun\",\n            \"isPublic\": true,\n            \"isPrivate\": false,\n            \"isMember\": true,\n            \"isManager\": true,\n            \"isListed\": true,\n            \"isFollower\": false,\n            \"isContentManager\": false,\n            \"isActive\": true,\n            \"chatterGroupId\": \"0F95e00000068XECAY\",\n            \"access\": \"Public\"\n        },\n        \"recentViewCount\": 0,\n        \"publishAt\": \"2020-02-12T00:00:00.000+0530\",\n        \"postCount\": 0,\n        \"modifiedAt\": \"2021-09-14T23:16:03.000+0530\",\n        \"listOfTopics\": [],\n        \"listOfTopAlbumImages\": [],\n        \"listOfInlineVideos\": [],\n        \"listOfInlineImages\": [],\n        \"listOfFiles\": [],\n        \"likeCount\": 0,\n        \"lastModifiedDateTimeStamp\": 1631641563000,\n        \"isScheduled\": false,\n        \"isPublished\": true,\n        \"isOpenToNotification\": true,\n        \"isMustRead\": false,\n        \"isMaximumWidth\": false,\n        \"isLiked\": false,\n        \"isLatest\": true,\n        \"isInSiteCarousel\": false,\n        \"isInHomeCarousel\": false,\n        \"isFeedEnabled\": true,\n        \"isFavorited\": false,\n        \"id\": \"a185e000000FQWOAA4\",\n        \"hasRead\": false,\n        \"firstPublishedAt\": \"2021-09-14T23:16:03.000+0530\",\n        \"favoriteContext\": \"Page\",\n        \"expiresAt\": \"2021-02-12T00:00:00.000+0530\",\n        \"excerpt\": \"This is custom summary text.\",\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FQWOAA4/edit\",\n        \"editedBy\": {},\n        \"createdAt\": \"2021-09-14T23:16:03.000+0530\",\n        \"contentSubType\": \"knowledge\",\n        \"contentId\": \"a185e000000FQWOAA4\",\n        \"contentBodyUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000FQWOAA4\",\n        \"category\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/content&pageCategoryId=a0u5e000000WyISAA0\",\n            \"site\": {},\n            \"name\": \"News\",\n            \"id\": \"a0u5e000000WyISAA0\",\n            \"categoryId\": \"a0u5e000000WyISAA0\",\n            \"authoredBy\": {}\n        },\n        \"canSendUpdateNotification\": true,\n        \"canPublishUnpublish\": true,\n        \"canModerate\": true,\n        \"canMakeMustRead\": true,\n        \"canEdit\": true,\n        \"canDelete\": true,\n        \"body\": \"<p>This is the basic description text.</p>\",\n        \"authoredBy\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"sfUserId\": \"0055e000006GG3JAAW\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"lastName\": \"Cherian\",\n            \"isProtectedAuthor\": false,\n            \"isFollowing\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"firstName\": \"Arun\",\n            \"email\": \"arun.cherian@simpplr.com\",\n            \"canFollow\": false\n        },\n        \"addedToSegmentCarouselList\": []\n    },\n    \"responseTimeStamp\": \"1631641564756\",\n    \"message\": \"\"\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "status": {
+             "type": "string",
+             "example": "success"
+            },
+            "result": {
+             "type": "object",
+             "properties": {
+              "versionId": {
+               "type": "integer",
+               "example": 1,
+               "default": 0
+              },
+              "usefulContent": {
+               "type": "object",
+               "properties": {
+                "hasUserRated": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "canViewHistory": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                }
+               }
+              },
+              "url": {
+               "type": "string",
+               "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FQWOAA4"
+              },
+              "type": {
+               "type": "string",
+               "example": "page"
+              },
+              "title": {
+               "type": "string",
+               "example": "API Demo Page Test"
+              },
+              "summary": {
+               "type": "string",
+               "example": "This is custom summary text."
+              },
+              "status": {
+               "type": "string",
+               "example": "published"
+              },
+              "site": {
+               "type": "object",
+               "properties": {
+                "url": {
+                 "type": "string",
+                 "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/dashboard"
+                },
+                "siteId": {
+                 "type": "string",
+                 "example": "a1A5e000001wQdXEAU"
+                },
+                "name": {
+                 "type": "string",
+                 "example": "Test API Site arun"
+                },
+                "isPublic": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "isPrivate": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "isMember": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "isManager": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "isListed": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "isFollower": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "isContentManager": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "isActive": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "chatterGroupId": {
+                 "type": "string",
+                 "example": "0F95e00000068XECAY"
+                },
+                "access": {
+                 "type": "string",
+                 "example": "Public"
+                }
+               }
+              },
+              "recentViewCount": {
+               "type": "integer",
+               "example": 0,
+               "default": 0
+              },
+              "publishAt": {
+               "type": "string",
+               "example": "2020-02-12T00:00:00.000+0530"
+              },
+              "postCount": {
+               "type": "integer",
+               "example": 0,
+               "default": 0
+              },
+              "modifiedAt": {
+               "type": "string",
+               "example": "2021-09-14T23:16:03.000+0530"
+              },
+              "listOfTopics": {
+               "type": "array"
+              },
+              "listOfTopAlbumImages": {
+               "type": "array"
+              },
+              "listOfInlineVideos": {
+               "type": "array"
+              },
+              "listOfInlineImages": {
+               "type": "array"
+              },
+              "listOfFiles": {
+               "type": "array"
+              },
+              "likeCount": {
+               "type": "integer",
+               "example": 0,
+               "default": 0
+              },
+              "lastModifiedDateTimeStamp": {
+               "type": "integer",
+               "example": 1631641563000,
+               "default": 0
+              },
+              "isScheduled": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isPublished": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "isOpenToNotification": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "isMustRead": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isMaximumWidth": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isLiked": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isLatest": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "isInSiteCarousel": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isInHomeCarousel": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "isFeedEnabled": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "isFavorited": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "id": {
+               "type": "string",
+               "example": "a185e000000FQWOAA4"
+              },
+              "hasRead": {
+               "type": "boolean",
+               "example": false,
+               "default": true
+              },
+              "firstPublishedAt": {
+               "type": "string",
+               "example": "2021-09-14T23:16:03.000+0530"
+              },
+              "favoriteContext": {
+               "type": "string",
+               "example": "Page"
+              },
+              "expiresAt": {
+               "type": "string",
+               "example": "2021-02-12T00:00:00.000+0530"
+              },
+              "excerpt": {
+               "type": "string",
+               "example": "This is custom summary text."
+              },
+              "editUrl": {
+               "type": "string",
+               "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FQWOAA4/edit"
+              },
+              "editedBy": {
+               "type": "object",
+               "properties": {}
+              },
+              "createdAt": {
+               "type": "string",
+               "example": "2021-09-14T23:16:03.000+0530"
+              },
+              "contentSubType": {
+               "type": "string",
+               "example": "knowledge"
+              },
+              "contentId": {
+               "type": "string",
+               "example": "a185e000000FQWOAA4"
+              },
+              "contentBodyUrl": {
+               "type": "string",
+               "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000FQWOAA4"
+              },
+              "category": {
+               "type": "object",
+               "properties": {
+                "url": {
+                 "type": "string",
+                 "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/content&pageCategoryId=a0u5e000000WyISAA0"
+                },
+                "site": {
+                 "type": "object",
+                 "properties": {}
+                },
+                "name": {
+                 "type": "string",
+                 "example": "News"
+                },
+                "id": {
+                 "type": "string",
+                 "example": "a0u5e000000WyISAA0"
+                },
+                "categoryId": {
+                 "type": "string",
+                 "example": "a0u5e000000WyISAA0"
+                },
+                "authoredBy": {
+                 "type": "object",
+                 "properties": {}
+                }
+               }
+              },
+              "canSendUpdateNotification": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "canPublishUnpublish": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "canModerate": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "canMakeMustRead": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "canEdit": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "canDelete": {
+               "type": "boolean",
+               "example": true,
+               "default": true
+              },
+              "body": {
+               "type": "string",
+               "example": "<p>This is the basic description text.</p>"
+              },
+              "authoredBy": {
+               "type": "object",
+               "properties": {
+                "url": {
+                 "type": "string",
+                 "example": "https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG"
+                },
+                "sfUserId": {
+                 "type": "string",
+                 "example": "0055e000006GG3JAAW"
+                },
+                "peopleId": {
+                 "type": "string",
+                 "example": "a115e000002FFncAAG"
+                },
+                "name": {
+                 "type": "string",
+                 "example": "Arun Cherian"
+                },
+                "location": {
+                 "type": "string",
+                 "example": ""
+                },
+                "lastName": {
+                 "type": "string",
+                 "example": "Cherian"
+                },
+                "isProtectedAuthor": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "isFollowing": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                },
+                "isActive": {
+                 "type": "boolean",
+                 "example": true,
+                 "default": true
+                },
+                "id": {
+                 "type": "string",
+                 "example": "a115e000002FFncAAG"
+                },
+                "firstName": {
+                 "type": "string",
+                 "example": "Arun"
+                },
+                "email": {
+                 "type": "string",
+                 "example": "arun.cherian@simpplr.com"
+                },
+                "canFollow": {
+                 "type": "boolean",
+                 "example": false,
+                 "default": true
+                }
+               }
+              },
+              "addedToSegmentCarouselList": {
+               "type": "array"
+              }
+             }
+            },
+            "responseTimeStamp": {
+             "type": "string",
+             "example": "1631641564756"
+            },
+            "message": {
+             "type": "string",
+             "example": ""
+            }
+           }
+          }
+         }
+        }
+       },
+       "401": {
+        "description": "401",
+        "content": {
+         "application/json": {
+          "examples": {
+           "Result": {
+            "value": "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+           }
+          },
+          "schema": {
+           "type": "object",
+           "properties": {
+            "status": {
+             "type": "string",
+             "example": "error"
+            },
+            "message": {
+             "type": "string",
+             "example": "SESSION_TIMEOUT"
+            },
+            "i18nmessage": {
+             "type": "string",
+             "example": "SESSION_TIMEOUT"
+            }
+           }
+          }
+         }
+        }
+       }
+      },
+      "deprecated": false
+     }
+    }
+   },
+   "x-readme": {
+    "headers": [],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "x-readme-fauxas": true
+  }
+ }
+]

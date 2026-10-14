@@ -1,25 +1,29 @@
 aid: simpplr
+
 name: Simpplr
-description: >-
-  Simpplr is an AI-powered employee experience platform (modern intranet, employee
-  communications, recognition, and virtual assistant) used by enterprises to inform,
-  engage, and connect their workforce. Built on the Salesforce platform, Simpplr
-  publishes a REST "Extensibility Center" API at developer.simpplr.com that lets
-  developers programmatically manage sites, pages, blogs, events, alerts,
-  notifications, people/audiences, content, search, media, and adoption/engagement
-  analytics. Authentication is OAuth 2.0 (bearer token) via a connected app on the
-  Salesforce platform. Simpplr was founded in 2014, is headquartered in Redwood City,
-  California, and is backed by venture investors including Norwest Venture Partners and
-  Sapphire Ventures. This profile was added to the API Evangelist network from the VC
-  portfolio pipeline and enriched from Simpplr's public developer surface.
+
+description: Simpplr is an AI-powered employee experience platform (modern intranet, employee communications, recognition, and virtual assistant)
+  used by enterprises to inform, engage, and connect their workforce. Built on the Salesforce platform, Simpplr publishes a REST "Extensibility
+  Center" API at developer.simpplr.com that lets developers programmatically manage sites, pages, blogs, events, alerts, notifications, people/audiences,
+  content, search, media, and adoption/engagement analytics. Authentication is OAuth 2.0 (bearer token) via a connected app on the Salesforce
+  platform. Simpplr was founded in 2014, is headquartered in Redwood City, California, and is backed by venture investors including Norwest Venture
+  Partners and Sapphire Ventures. This profile was added to the API Evangelist network from the VC portfolio pipeline and enriched from Simpplr's
+  public developer surface.
+
 url: https://raw.githubusercontent.com/api-evangelist/simpplr/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - norwest-venture-partners
 - sapphire-ventures
+
 x-tier: enriched
+
 x-tier-reason: has-public-api
+
 deliveryModel:
   model: saas
   open_source: false
@@ -31,6 +35,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -43,15 +48,21 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-10-06'
+
 x-enrichment:
   date: '2026-07-21'
   status: enriched
   artifacts_added: 9
   pass: local-v1
+
 image: https://www.simpplr.com/wp-content/uploads/2023/01/simpplr-logo.png
+
 tags:
 - Company
 - Employee Experience
@@ -63,6 +74,7 @@ tags:
 - Collaboration
 - Enterprise Software
 - Salesforce
+
 tags_raw:
 - Company
 - Employee Experience
@@ -74,33 +86,34 @@ tags_raw:
 - Collaboration
 - Enterprise Software
 - Salesforce
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-apis:
-- name: Simpplr Extensibility Center API
-  description: >-
-    Simpplr's REST API for managing intranet content and community — sites,
-    pages, blogs, events, alerts, notifications, people and audiences, content
-    approval/engagement, search, media uploads, and adoption/engagement analytics.
-    OAuth 2.0 bearer authentication via a Salesforce connected app.
-  humanURL: https://developer.simpplr.com/reference/introduction
-  baseURL: https://api.ec.simpplr.com/api
-  properties:
-  - type: DeveloperPortal
-    url: https://developer.simpplr.com/
-  - type: APIReference
-    url: https://developer.simpplr.com/reference/introduction
-  - type: GettingStarted
-    url: https://developer.simpplr.com/reference/introduction
-  - type: Authentication
-    url: authentication/simpplr-authentication.yml
-  - type: X-MCPServerCandidate
-    url: mcp/simpplr-mcp.yml
-    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+
 common:
+- type: AgenticAccess
+  url: agentic-access/simpplr-agentic-access.yml
+- type: Spectral
+  url: rules/simpplr-rules.yml
+- type: TrustCenter
+  url: security/simpplr-trust-center.yml
+- type: ErrorCatalog
+  url: errors/simpplr-problem-types.yml
+- type: Conformance
+  url: conformance/simpplr-conformance.yml
+- type: Hosts
+  url: hosts/simpplr-hosts.yml
+- type: Vendors
+  url: vendors/simpplr-vendors.yml
+- type: TermsOfService
+  url: https://www.simpplr.com/tos/
+- type: Newsroom
+  url: https://www.simpplr.com/newsroom/
+- type: OAuthScopes
+  url: scopes/simpplr-scopes.yml
 - url: https://www.simpplr.com/feed/
   type: BlogRSS
 - type: DomainSecurity
@@ -145,8 +158,79 @@ common:
   url: authentication/simpplr-authentication.yml
 - type: X-MCPServerCandidate
   url: mcp/simpplr-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+    API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+    the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/simpplr-llms.txt
 - type: Conventions
   url: conventions/simpplr-conventions.yml
+
+apis:
+- name: Simpplr Extensibility Center API
+  description: Simpplr's REST API for managing intranet content and community — sites, pages, blogs, events, alerts, notifications, people and
+    audiences, content approval/engagement, search, media uploads, and adoption/engagement analytics. OAuth 2.0 bearer authentication via a Salesforce
+    connected app.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  properties:
+  - type: DeveloperPortal
+    url: https://developer.simpplr.com/
+  - type: APIReference
+    url: https://developer.simpplr.com/reference/introduction
+  - type: GettingStarted
+    url: https://developer.simpplr.com/reference/introduction
+  - type: Authentication
+    url: authentication/simpplr-authentication.yml
+  - type: X-MCPServerCandidate
+    url: mcp/simpplr-mcp.yml
+    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+      API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+      the artifact-type surfaces with a server that does not exist.'
+  aid: simpplr:simpplr-extensibility-center-api
+- aid: simpplr:simpplr-api-gateway
+  name: Simpplr Api Gateway Openapi.Yml API
+  description: The Api Gateway Openapi.Yml API from Simpplr — 56 operation(s) for api gateway openapi.yml.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Api Gateway Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-api-gateway-openapi.yml
+- aid: simpplr:simpplr-api-gw-file-upload
+  name: Simpplr Api Gw File Upload Openapi.Yml API
+  description: The Api Gw File Upload Openapi.Yml API from Simpplr — 1 operation(s) for api gw file upload openapi.yml.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Api Gw File Upload Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-api-gw-file-upload-openapi.yml
+- aid: simpplr:simpplr-api-gw-search-people-by-id
+  name: Simpplr Api Gw Search People By Id Openapi.Yml API
+  description: The Api Gw Search People By Id Openapi.Yml API from Simpplr — 1 operation(s) for api gw search people by id openapi.yml.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Api Gw Search People By Id Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-api-gw-search-people-by-id-openapi.yml
+- aid: simpplr:simpplr-staging
+  name: Simpplr Staging Openapi.Yml API
+  description: The Staging Openapi.Yml API from Simpplr — 5 operation(s) for staging openapi.yml.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Staging Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-staging-openapi.yml
+
+x-readme-harvest:
+  date: '2026-10-14'
+  ops: 74
+  tool: harvest-readme-openapi.py
+  portal: https://developer.simpplr.com

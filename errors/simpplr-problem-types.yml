@@ -1,0 +1,39 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/simpplr-api-gateway-openapi.yml
+- openapi/simpplr-api-gw-file-upload-openapi.yml
+- openapi/simpplr-api-gw-search-people-by-id-openapi.yml
+- openapi/simpplr-staging-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: null
+coverage:
+  operations: 74
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: '400'
+  operations: 10
+  media_types:
+  - application/json
+  - text/plain
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: '401'
+  operations: 68
+  media_types:
+  - application/json
+  schema: null
+- status: 404
+  title: Not Found
+  description: '404'
+  operations: 3
+  media_types:
+  - text/plain
+  - application/json
+  schema: null

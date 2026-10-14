@@ -1,0 +1,18 @@
+generated: '2026-10-14'
+method: derived
+source: openapi/simpplr-api-gateway-openapi.yml, openapi/simpplr-api-gw-file-upload-openapi.yml,
+  openapi/simpplr-api-gw-search-people-by-id-openapi.yml, openapi/simpplr-staging-openapi.yml
+schemes:
+- name: sec0
+  source: openapi/simpplr-api-gateway-openapi.yml
+  flows: []
+- name: sec0
+  source: openapi/simpplr-api-gw-file-upload-openapi.yml
+  flows: []
+- name: sec0
+  source: openapi/simpplr-api-gw-search-people-by-id-openapi.yml
+  flows: []
+- name: sec0
+  source: openapi/simpplr-staging-openapi.yml
+  flows: []
+scopes: []
