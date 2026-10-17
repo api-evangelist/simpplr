@@ -168,9 +168,10 @@ common:
 
 apis:
 - name: Simpplr Extensibility Center API
-  description: Simpplr's REST API for managing intranet content and community — sites, pages, blogs, events, alerts, notifications, people and
-    audiences, content approval/engagement, search, media uploads, and adoption/engagement analytics. OAuth 2.0 bearer authentication via a Salesforce
-    connected app.
+  description: >-
+    Simpplr's REST API for managing intranet content and community — sites, pages, blogs, events, alerts,
+    notifications, people and audiences, content approval/engagement, search, media uploads, and adoption/engagement
+    analytics. OAuth 2.0 bearer authentication via a Salesforce connected app.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   properties:
@@ -184,51 +185,124 @@ apis:
     url: authentication/simpplr-authentication.yml
   - type: X-MCPServerCandidate
     url: mcp/simpplr-mcp.yml
-    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
-      API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
-      the artifact-type surfaces with a server that does not exist.'
+    note: >-
+      Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+      — a tool list derived from the published API contracts, not an existing server. The scorer already
+      read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+      surfaces with a server that does not exist.
   aid: simpplr:simpplr-extensibility-center-api
-- aid: simpplr:simpplr-api-gateway
-  name: Simpplr Api Gateway Openapi.Yml API
-  description: The Api Gateway Openapi.Yml API from Simpplr — 56 operation(s) for api gateway openapi.yml.
+- aid: simpplr:simpplr-alerts-api
+  name: Simpplr Alerts API
+  description: The Alerts API from Simpplr — 3 operation(s) for alerts.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
-  - Api Gateway Openapi.Yml
+  - Alerts
   properties:
   - type: OpenAPI
-    url: openapi/simpplr-api-gateway-openapi.yml
-- aid: simpplr:simpplr-api-gw-file-upload
-  name: Simpplr Api Gw File Upload Openapi.Yml API
-  description: The Api Gw File Upload Openapi.Yml API from Simpplr — 1 operation(s) for api gw file upload openapi.yml.
+    url: openapi/simpplr-alerts-api-openapi.yml
+- aid: simpplr:simpplr-analytics-api
+  name: Simpplr Analytics API
+  description: The Analytics API from Simpplr — 25 operation(s) for analytics.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
-  - Api Gw File Upload Openapi.Yml
+  - Analytics
   properties:
   - type: OpenAPI
-    url: openapi/simpplr-api-gw-file-upload-openapi.yml
-- aid: simpplr:simpplr-api-gw-search-people-by-id
-  name: Simpplr Api Gw Search People By Id Openapi.Yml API
-  description: The Api Gw Search People By Id Openapi.Yml API from Simpplr — 1 operation(s) for api gw search people by id openapi.yml.
+    url: openapi/simpplr-analytics-api-openapi.yml
+- aid: simpplr:simpplr-audience-api
+  name: Simpplr Audience API
+  description: The Audience API from Simpplr — 2 operation(s) for audience.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
-  - Api Gw Search People By Id Openapi.Yml
+  - Audience
   properties:
   - type: OpenAPI
-    url: openapi/simpplr-api-gw-search-people-by-id-openapi.yml
-- aid: simpplr:simpplr-staging
-  name: Simpplr Staging Openapi.Yml API
-  description: The Staging Openapi.Yml API from Simpplr — 5 operation(s) for staging openapi.yml.
+    url: openapi/simpplr-audience-api-openapi.yml
+- aid: simpplr:simpplr-blogs-api
+  name: Simpplr Blogs API
+  description: The Blogs API from Simpplr — 2 operation(s) for blogs.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
-  - Staging Openapi.Yml
+  - Blogs
   properties:
   - type: OpenAPI
-    url: openapi/simpplr-staging-openapi.yml
-
+    url: openapi/simpplr-blogs-api-openapi.yml
+- aid: simpplr:simpplr-carousels-api
+  name: Simpplr Carousels API
+  description: The Carousels API from Simpplr — 1 operation(s) for carousels.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Carousels
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-carousels-api-openapi.yml
+- aid: simpplr:simpplr-contents-api
+  name: Simpplr Contents API
+  description: The Contents API from Simpplr — 16 operation(s) for contents.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Contents
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-contents-api-openapi.yml
+- aid: simpplr:simpplr-notifications-api
+  name: Simpplr Notifications API
+  description: The Notifications API from Simpplr — 2 operation(s) for notifications.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-notifications-api-openapi.yml
+- aid: simpplr:simpplr-people-api
+  name: Simpplr People API
+  description: The People API from Simpplr — 2 operation(s) for people.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-people-api-openapi.yml
+- aid: simpplr:simpplr-search-api
+  name: Simpplr Search API
+  description: The Search API from Simpplr — 3 operation(s) for search.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-search-api-openapi.yml
+- aid: simpplr:simpplr-simpplr-api-gw-search-people-by-id-api
+  name: Simpplr Simpplr Api Gw Search People By Id API
+  description: >-
+    The Simpplr Api Gw Search People By Id API from Simpplr — 1 operation(s) for simpplr api gw search
+    people by id.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Simpplr Api Gw Search People By Id
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-simpplr-api-gw-search-people-by-id-api-openapi.yml
+- aid: simpplr:simpplr-sites-api
+  name: Simpplr Sites API
+  description: The Sites API from Simpplr — 6 operation(s) for sites.
+  humanURL: https://developer.simpplr.com/reference/introduction
+  baseURL: https://api.ec.simpplr.com/api
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/simpplr-sites-api-openapi.yml
 x-readme-harvest:
   date: '2026-10-14'
   ops: 74

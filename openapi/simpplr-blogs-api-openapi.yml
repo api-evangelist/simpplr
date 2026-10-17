@@ -1,0 +1,1007 @@
+openapi: 3.2.0
+info:
+  title: simpplr-api-gateway Blogs API
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Blogs
+paths:
+  /blogs:
+    post:
+      summary: Create a Blog
+      description: Use this API to create a Blog.
+      operationId: create-a-blog
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - publish-at
+              - title
+              properties:
+                publish-at:
+                  type: string
+                  description: 'Date time at which this Blog should be published(Format: YYYY-MM-DDTHH:MM:SS+05:30)'
+                title:
+                  type: string
+                  description: Title of the Blog
+                  default: My first Blog
+                body:
+                  type: string
+                  description: Body of the Blog
+                  default: <p>This is my first Blog</p>",
+                summary:
+                  type: string
+                  description: Summary of the Blog
+                  default: Hi,This is my first Blog in Simpplr
+                site-id:
+                  type: string
+                  description: Site id in which blog need to be created
+                  default: a115e000002Cs4ZAAS
+                is-feed-enabled:
+                  type: boolean
+                  description: Is feed enabled for this blog
+                  default: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"usefulContent\": {\n            \"hasUserRated\": false,\n            \"canViewHistory\": true\n        },\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GDseAAG\",\n        \"type\": \"blogpost\",\n        \"title\": \"Api Demo Shourya  1000\",\n        \"summary\": \"Hello Hi am New member .\",\n        \"status\": \"published\",\n        \"recentViewCount\": 0,\n        \"publishAt\": \"2020-02-12T00:00:00.000+0530\",\n        \"postCount\": 0,\n        \"modifiedAt\": \"2021-11-30T11:27:40.000+0530\",\n        \"listOfTopics\": [],\n        \"listOfTopAlbumImages\": [],\n        \"listOfInlineVideos\": [],\n        \"listOfInlineImages\": [],\n        \"listOfFiles\": [],\n        \"likeCount\": 0,\n        \"lastModifiedDateTimeStamp\": 1638251860000,\n        \"isScheduled\": false,\n        \"isPublished\": true,\n        \"isOpenToNotification\": true,\n        \"isMustRead\": false,\n        \"isMaximumWidth\": false,\n        \"isLiked\": false,\n        \"isInSiteCarousel\": false,\n        \"isInHomeCarousel\": false,\n        \"isFeedEnabled\": true,\n        \"isFavorited\": false,\n        \"id\": \"a185e000000GDseAAG\",\n        \"hasRead\": false,\n        \"firstPublishedAt\": \"2021-11-30T11:27:40.000+0530\",\n        \"favoriteContext\": \"BlogPost\",\n        \"excerpt\": \"Hello Hi am New member .\",\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GDseAAG/edit\",\n        \"editedBy\": {},\n        \"createdAt\": \"2021-11-30T11:27:40.000+0530\",\n        \"contentId\": \"a185e000000GDseAAG\",\n        \"contentBodyUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GDseAAG\",\n        \"canPublishUnpublish\": true,\n        \"canModerate\": true,\n        \"canMakeMustRead\": true,\n        \"canEdit\": true,\n        \"canDelete\": true,\n        \"body\": \"<p>This is first Blog</p>\",\n        \"authoredBy\": {\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"lastName\": \"Cherian\",\n            \"isProtectedAuthor\": false,\n            \"isFollowing\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"firstName\": \"Arun\",\n            \"canFollow\": false\n        },\n        \"addedToSegmentCarouselList\": []\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      usefulContent:
+                        type: object
+                        properties:
+                          hasUserRated:
+                            type: boolean
+                            example: false
+                            default: true
+                          canViewHistory:
+                            type: boolean
+                            example: true
+                            default: true
+                      url:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GDseAAG
+                      type:
+                        type: string
+                        example: blogpost
+                      title:
+                        type: string
+                        example: Api Demo Shourya  1000
+                      summary:
+                        type: string
+                        example: Hello Hi am New member .
+                      status:
+                        type: string
+                        example: published
+                      recentViewCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      publishAt:
+                        type: string
+                        example: 2020-02-12T00:00:00.000+0530
+                      postCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      modifiedAt:
+                        type: string
+                        example: 2021-11-30T11:27:40.000+0530
+                      listOfTopics:
+                        type: array
+                      listOfTopAlbumImages:
+                        type: array
+                      listOfInlineVideos:
+                        type: array
+                      listOfInlineImages:
+                        type: array
+                      listOfFiles:
+                        type: array
+                      likeCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      lastModifiedDateTimeStamp:
+                        type: integer
+                        example: 1638251860000
+                        default: 0
+                      isScheduled:
+                        type: boolean
+                        example: false
+                        default: true
+                      isPublished:
+                        type: boolean
+                        example: true
+                        default: true
+                      isOpenToNotification:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMustRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMaximumWidth:
+                        type: boolean
+                        example: false
+                        default: true
+                      isLiked:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInSiteCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInHomeCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a185e000000GDseAAG
+                      hasRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      firstPublishedAt:
+                        type: string
+                        example: 2021-11-30T11:27:40.000+0530
+                      favoriteContext:
+                        type: string
+                        example: BlogPost
+                      excerpt:
+                        type: string
+                        example: Hello Hi am New member .
+                      editUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GDseAAG/edit
+                      editedBy:
+                        type: object
+                        properties: {}
+                      createdAt:
+                        type: string
+                        example: 2021-11-30T11:27:40.000+0530
+                      contentId:
+                        type: string
+                        example: a185e000000GDseAAG
+                      contentBodyUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GDseAAG
+                      canPublishUnpublish:
+                        type: boolean
+                        example: true
+                        default: true
+                      canModerate:
+                        type: boolean
+                        example: true
+                        default: true
+                      canMakeMustRead:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canDelete:
+                        type: boolean
+                        example: true
+                        default: true
+                      body:
+                        type: string
+                        example: <p>This is first Blog</p>
+                      authoredBy:
+                        type: object
+                        properties:
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          lastName:
+                            type: string
+                            example: Cherian
+                          isProtectedAuthor:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          firstName:
+                            type: string
+                            example: Arun
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      addedToSegmentCarouselList:
+                        type: array
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Blogs
+  /blogs/{content-id}:
+    get:
+      summary: Get Blog By ID
+      description: Use this API to find a blog by content-id
+      operationId: get-blog-by-id
+      parameters:
+      - name: content-id
+        in: path
+        description: ID of Blog
+        schema:
+          type: string
+          default: a185e000000GCzKAAW
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"usefulContent\": {\n            \"hasUserRated\": false,\n            \"canViewHistory\": true\n        },\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GCzKAAW\",\n        \"type\": \"blogpost\",\n        \"title\": \"Api Demo Shourya kaushik 10\",\n        \"summary\": \"Hello Hi i am New member .\",\n        \"status\": \"published\",\n        \"recentViewCount\": 0,\n        \"publishAt\": \"2020-02-12T00:00:00.000+0530\",\n        \"postCount\": 0,\n        \"modifiedAt\": \"2021-11-25T12:46:58.000+0530\",\n        \"listOfTopics\": [],\n        \"listOfTopAlbumImages\": [],\n        \"listOfInlineVideos\": [],\n        \"listOfInlineImages\": [],\n        \"listOfFiles\": [],\n        \"likeCount\": 0,\n        \"lastModifiedDateTimeStamp\": 1637824618000,\n        \"isScheduled\": false,\n        \"isPublished\": true,\n        \"isOpenToNotification\": true,\n        \"isMustRead\": false,\n        \"isMaximumWidth\": false,\n        \"isLiked\": false,\n        \"isInSiteCarousel\": false,\n        \"isInHomeCarousel\": false,\n        \"isFeedEnabled\": true,\n        \"isFavorited\": false,\n        \"id\": \"a185e000000GCzKAAW\",\n        \"hasRead\": false,\n        \"firstPublishedAt\": \"2021-11-25T12:46:58.000+0530\",\n        \"favoriteContext\": \"BlogPost\",\n        \"excerpt\": \"Hello Hi i am New member .\",\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GCzKAAW/edit\",\n        \"editedBy\": {},\n        \"createdAt\": \"2021-11-25T12:46:58.000+0530\",\n        \"contentId\": \"a185e000000GCzKAAW\",\n        \"contentBodyUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GCzKAAW\",\n        \"canPublishUnpublish\": true,\n        \"canModerate\": true,\n        \"canMakeMustRead\": true,\n        \"canEdit\": true,\n        \"canDelete\": true,\n        \"body\": \"<p>This is first Blog</p>\",\n        \"authoredBy\": {\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"lastName\": \"Cherian\",\n            \"isProtectedAuthor\": false,\n            \"isFollowing\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"firstName\": \"Arun\",\n            \"canFollow\": false\n        },\n        \"addedToSegmentCarouselList\": []\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      usefulContent:
+                        type: object
+                        properties:
+                          hasUserRated:
+                            type: boolean
+                            example: false
+                            default: true
+                          canViewHistory:
+                            type: boolean
+                            example: true
+                            default: true
+                      url:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GCzKAAW
+                      type:
+                        type: string
+                        example: blogpost
+                      title:
+                        type: string
+                        example: Api Demo Shourya kaushik 10
+                      summary:
+                        type: string
+                        example: Hello Hi i am New member .
+                      status:
+                        type: string
+                        example: published
+                      recentViewCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      publishAt:
+                        type: string
+                        example: 2020-02-12T00:00:00.000+0530
+                      postCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      modifiedAt:
+                        type: string
+                        example: 2021-11-25T12:46:58.000+0530
+                      listOfTopics:
+                        type: array
+                      listOfTopAlbumImages:
+                        type: array
+                      listOfInlineVideos:
+                        type: array
+                      listOfInlineImages:
+                        type: array
+                      listOfFiles:
+                        type: array
+                      likeCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      lastModifiedDateTimeStamp:
+                        type: integer
+                        example: 1637824618000
+                        default: 0
+                      isScheduled:
+                        type: boolean
+                        example: false
+                        default: true
+                      isPublished:
+                        type: boolean
+                        example: true
+                        default: true
+                      isOpenToNotification:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMustRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMaximumWidth:
+                        type: boolean
+                        example: false
+                        default: true
+                      isLiked:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInSiteCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInHomeCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a185e000000GCzKAAW
+                      hasRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      firstPublishedAt:
+                        type: string
+                        example: 2021-11-25T12:46:58.000+0530
+                      favoriteContext:
+                        type: string
+                        example: BlogPost
+                      excerpt:
+                        type: string
+                        example: Hello Hi i am New member .
+                      editUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG/blog/a185e000000GCzKAAW/edit
+                      editedBy:
+                        type: object
+                        properties: {}
+                      createdAt:
+                        type: string
+                        example: 2021-11-25T12:46:58.000+0530
+                      contentId:
+                        type: string
+                        example: a185e000000GCzKAAW
+                      contentBodyUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GCzKAAW
+                      canPublishUnpublish:
+                        type: boolean
+                        example: true
+                        default: true
+                      canModerate:
+                        type: boolean
+                        example: true
+                        default: true
+                      canMakeMustRead:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canDelete:
+                        type: boolean
+                        example: true
+                        default: true
+                      body:
+                        type: string
+                        example: <p>This is first Blog</p>
+                      authoredBy:
+                        type: object
+                        properties:
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          lastName:
+                            type: string
+                            example: Cherian
+                          isProtectedAuthor:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          firstName:
+                            type: string
+                            example: Arun
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      addedToSegmentCarouselList:
+                        type: array
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Blogs
+    put:
+      summary: Update a Blog
+      description: Use this API to update a Blog.
+      operationId: update-a-blog
+      parameters:
+      - name: content-id
+        in: path
+        description: Id of the Blog
+        schema:
+          type: string
+          default: a185e000000GD53AAG
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - publish-at
+              - title
+              properties:
+                publish-at:
+                  type: string
+                  description: 'Date time at which this Blog should be published(Format: YYYY-MM-DDTHH:MM:SS+05:30)'
+                title:
+                  type: string
+                  description: Title of the Blog
+                  default: My first Blog
+                body:
+                  type: string
+                  description: Body of the Blog
+                  default: <p>This is my first Blog</p>
+                summary:
+                  type: string
+                  description: Summary of the Blog
+                  default: Hi,This is my first Blog in Simpplr
+                is-feef-enabled:
+                  type: string
+                  description: Is feed enabled for this blog
+                  default: 'true'
+                authored-by:
+                  type: string
+                  description: People id of the one user wants to transfer authorship of Blog
+                  default: a115e000002CMg7AAG
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"usefulContent\": {\n            \"hasUserRated\": false,\n            \"canViewHistory\": true\n        },\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG/blog/a185e000000GD53AAG\",\n        \"type\": \"blogpost\",\n        \"title\": \"Api Demo Shourya\",\n        \"summary\": \"Hello Hi i am Shourya Kaushik hello all.\",\n        \"status\": \"published\",\n        \"recentViewCount\": 0,\n        \"publishAt\": \"2020-02-12T00:00:00.000+0530\",\n        \"postCount\": 0,\n        \"modifiedAt\": \"2021-11-30T15:42:26.000+0530\",\n        \"listOfTopics\": [],\n        \"listOfTopAlbumImages\": [],\n        \"listOfInlineVideos\": [],\n        \"listOfInlineImages\": [],\n        \"listOfFiles\": [],\n        \"likeCount\": 0,\n        \"lastModifiedDateTimeStamp\": 1638267146000,\n        \"isScheduled\": false,\n        \"isPublished\": true,\n        \"isOpenToNotification\": true,\n        \"isMustRead\": false,\n        \"isMaximumWidth\": false,\n        \"isLiked\": false,\n        \"isInSiteCarousel\": false,\n        \"isInHomeCarousel\": false,\n        \"isFeedEnabled\": true,\n        \"isFavorited\": false,\n        \"id\": \"a185e000000GD53AAG\",\n        \"hasRead\": false,\n        \"firstPublishedAt\": \"2021-11-26T18:37:13.000+0530\",\n        \"favoriteContext\": \"BlogPost\",\n        \"excerpt\": \"Hello Hi i am Shourya Kaushik hello all.\",\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG/blog/a185e000000GD53AAG/edit\",\n        \"editedBy\": {},\n        \"createdAt\": \"2021-11-26T18:37:13.000+0530\",\n        \"contentId\": \"a185e000000GD53AAG\",\n        \"contentBodyUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GD53AAG\",\n        \"canPublishUnpublish\": true,\n        \"canModerate\": true,\n        \"canMakeMustRead\": true,\n        \"canEdit\": true,\n        \"canDelete\": true,\n        \"body\": \"<p>This is first Blog</p>\",\n        \"authoredBy\": {\n            \"userId\": \"0055e000006V0F8AAK\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG\",\n            \"peopleId\": \"a115e000002CMg7AAG\",\n            \"name\": \"Sourya Kaushik\",\n            \"location\": \"india\",\n            \"lastName\": \"Kaushik\",\n            \"isProtectedAuthor\": false,\n            \"isFollowing\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002CMg7AAG\",\n            \"firstName\": \"Sourya\",\n            \"department\": \"development\",\n            \"country\": \"india\",\n            \"canFollow\": true\n        },\n        \"addedToSegmentCarouselList\": []\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      usefulContent:
+                        type: object
+                        properties:
+                          hasUserRated:
+                            type: boolean
+                            example: false
+                            default: true
+                          canViewHistory:
+                            type: boolean
+                            example: true
+                            default: true
+                      url:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG/blog/a185e000000GD53AAG
+                      type:
+                        type: string
+                        example: blogpost
+                      title:
+                        type: string
+                        example: Api Demo Shourya
+                      summary:
+                        type: string
+                        example: Hello Hi i am Shourya Kaushik hello all.
+                      status:
+                        type: string
+                        example: published
+                      recentViewCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      publishAt:
+                        type: string
+                        example: 2020-02-12T00:00:00.000+0530
+                      postCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      modifiedAt:
+                        type: string
+                        example: 2021-11-30T15:42:26.000+0530
+                      listOfTopics:
+                        type: array
+                      listOfTopAlbumImages:
+                        type: array
+                      listOfInlineVideos:
+                        type: array
+                      listOfInlineImages:
+                        type: array
+                      listOfFiles:
+                        type: array
+                      likeCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      lastModifiedDateTimeStamp:
+                        type: integer
+                        example: 1638267146000
+                        default: 0
+                      isScheduled:
+                        type: boolean
+                        example: false
+                        default: true
+                      isPublished:
+                        type: boolean
+                        example: true
+                        default: true
+                      isOpenToNotification:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMustRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMaximumWidth:
+                        type: boolean
+                        example: false
+                        default: true
+                      isLiked:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInSiteCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isInHomeCarousel:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a185e000000GD53AAG
+                      hasRead:
+                        type: boolean
+                        example: false
+                        default: true
+                      firstPublishedAt:
+                        type: string
+                        example: 2021-11-26T18:37:13.000+0530
+                      favoriteContext:
+                        type: string
+                        example: BlogPost
+                      excerpt:
+                        type: string
+                        example: Hello Hi i am Shourya Kaushik hello all.
+                      editUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG/blog/a185e000000GD53AAG/edit
+                      editedBy:
+                        type: object
+                        properties: {}
+                      createdAt:
+                        type: string
+                        example: 2021-11-26T18:37:13.000+0530
+                      contentId:
+                        type: string
+                        example: a185e000000GD53AAG
+                      contentBodyUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/ContentBody?contentId=a185e000000GD53AAG
+                      canPublishUnpublish:
+                        type: boolean
+                        example: true
+                        default: true
+                      canModerate:
+                        type: boolean
+                        example: true
+                        default: true
+                      canMakeMustRead:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canDelete:
+                        type: boolean
+                        example: true
+                        default: true
+                      body:
+                        type: string
+                        example: <p>This is first Blog</p>
+                      authoredBy:
+                        type: object
+                        properties:
+                          userId:
+                            type: string
+                            example: 0055e000006V0F8AAK
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002CMg7AAG
+                          peopleId:
+                            type: string
+                            example: a115e000002CMg7AAG
+                          name:
+                            type: string
+                            example: Sourya Kaushik
+                          location:
+                            type: string
+                            example: india
+                          lastName:
+                            type: string
+                            example: Kaushik
+                          isProtectedAuthor:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002CMg7AAG
+                          firstName:
+                            type: string
+                            example: Sourya
+                          department:
+                            type: string
+                            example: development
+                          country:
+                            type: string
+                            example: india
+                          canFollow:
+                            type: boolean
+                            example: true
+                            default: true
+                      addedToSegmentCarouselList:
+                        type: array
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Blogs
+    delete:
+      summary: Delete a Blog
+      description: Use this API to delete a Blog
+      operationId: delete-a-blog
+      parameters:
+      - name: content-id
+        in: path
+        description: Id of Blog
+        schema:
+          type: string
+          default: a185e000000GDseAAG
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties: {}
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Blogs
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0

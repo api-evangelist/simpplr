@@ -1,0 +1,690 @@
+openapi: 3.2.0
+info:
+  title: simpplr-api-gateway Audience API
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Audience
+paths:
+  /audience:
+    post:
+      summary: Add Audience
+      description: Use this API to add Audience
+      operationId: add-audience
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - type
+              properties:
+                name:
+                  type: string
+                  description: Name of the Audience
+                type:
+                  type: string
+                  description: Audience member type
+                  default: people
+                  enum:
+                  - people
+                  - conditions
+                list-of-people:
+                  type: array
+                  description: ID of people to be added as audience(peopleId)
+                  items:
+                    type: string
+                title:
+                  type: array
+                  description: Name of Job title
+                  items:
+                    type: string
+                city:
+                  type: array
+                  description: Name of cities
+                  items:
+                    type: string
+                country:
+                  type: array
+                  description: Name of countries
+                  items:
+                    type: string
+                department:
+                  type: array
+                  description: Name of department
+                  items:
+                    type: string
+                division:
+                  type: array
+                  description: Name of division
+                  items:
+                    type: string
+                company:
+                  type: array
+                  description: Name of company
+                  items:
+                    type: string
+                state:
+                  type: array
+                  description: Name of state
+                  items:
+                    type: string
+                hire-date:
+                  type: string
+                  description: '(Format: YYYY-MM-DD)'
+                hire-date-filter:
+                  type: string
+                  description: Filter on hire-date
+                  default: null
+                  enum:
+                  - null
+                  - hireDateBefore
+                  - hireDateAfter
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"usage\": {},\n        \"type\": \"conditions\",\n        \"name\": \"Saurya audience date 29 april\",\n        \"modifiedBy\": {\n            \"videoCallProvider\": \"zoom\",\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"sfUserId\": \"0055e000006GG3JAAW\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"nickname\": \"User16281382456837619883\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isFollowing\": false,\n            \"isFavorited\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"canFollow\": false\n        },\n        \"modifiedAt\": \"2022-04-29T10:50:11.000+0530\",\n        \"listOfConditions\": [\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Bengaluru\"\n                    },\n                    {\n                        \"name\": \"Delhi\"\n                    }\n                ],\n                \"name\": \"city\",\n                \"label\": \"city\",\n                \"conditionSet\": [\n                    \"Bengaluru\",\n                    \"Delhi\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Simpplr Software India Private Limited\"\n                    }\n                ],\n                \"name\": \"company\",\n                \"label\": \"company\",\n                \"conditionSet\": [\n                    \"Simpplr Software India Private Limited\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"india\"\n                    },\n                    {\n                        \"name\": \"US\"\n                    }\n                ],\n                \"name\": \"country\",\n                \"label\": \"country\",\n                \"conditionSet\": [\n                    \"india\",\n                    \"US\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Product Management\"\n                    }\n                ],\n                \"name\": \"department\",\n                \"label\": \"department\",\n                \"conditionSet\": [\n                    \"Product Management\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Sales Development\"\n                    }\n                ],\n                \"name\": \"division\",\n                \"label\": \"division\",\n                \"conditionSet\": [\n                    \"Sales Development\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Associate Software Engineer\"\n                    }\n                ],\n                \"name\": \"title\",\n                \"label\": \"title\",\n                \"conditionSet\": [\n                    \"Associate Software Engineer\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"MA\"\n                    }\n                ],\n                \"name\": \"state\",\n                \"label\": \"state\",\n                \"conditionSet\": [\n                    \"MA\"\n                ]\n            }\n        ],\n        \"isDeleted\": false,\n        \"createdBy\": {\n            \"videoCallProvider\": \"zoom\",\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"sfUserId\": \"0055e000006GG3JAAW\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"nickname\": \"User16281382456837619883\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isFollowing\": false,\n            \"isFavorited\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"canFollow\": false\n        },\n        \"createdAt\": \"2022-04-29T10:50:11.000+0530\",\n        \"audienceId\": \"a0Q5e000002sNP0EAM\",\n        \"audienceCount\": 0\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      usage:
+                        type: object
+                        properties: {}
+                      type:
+                        type: string
+                        example: conditions
+                      name:
+                        type: string
+                        example: Saurya audience date 29 april
+                      modifiedBy:
+                        type: object
+                        properties:
+                          videoCallProvider:
+                            type: string
+                            example: zoom
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          sfUserId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          nickname:
+                            type: string
+                            example: User16281382456837619883
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFavorited:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      modifiedAt:
+                        type: string
+                        example: 2022-04-29T10:50:11.000+0530
+                      listOfConditions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            values:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                    example: Bengaluru
+                            name:
+                              type: string
+                              example: city
+                            label:
+                              type: string
+                              example: city
+                            conditionSet:
+                              type: array
+                              items:
+                                type: string
+                                example: Bengaluru
+                      isDeleted:
+                        type: boolean
+                        example: false
+                        default: true
+                      createdBy:
+                        type: object
+                        properties:
+                          videoCallProvider:
+                            type: string
+                            example: zoom
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          sfUserId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          nickname:
+                            type: string
+                            example: User16281382456837619883
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFavorited:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      createdAt:
+                        type: string
+                        example: 2022-04-29T10:50:11.000+0530
+                      audienceId:
+                        type: string
+                        example: a0Q5e000002sNP0EAM
+                      audienceCount:
+                        type: integer
+                        example: 0
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Audience
+    put:
+      summary: Update Audience
+      description: Use this API to update the audience
+      operationId: update-audience
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - type
+              - audience-id
+              properties:
+                name:
+                  type: string
+                  description: Name of the Audience
+                type:
+                  type: string
+                  description: Audience member type
+                  default: people
+                  enum:
+                  - people
+                  - conditions
+                audience-id:
+                  type: string
+                  description: Id of the audience
+                list-of-people:
+                  type: array
+                  description: ID of people to be added as audience(peopleId)
+                  items:
+                    type: string
+                title:
+                  type: array
+                  description: Name of Job title
+                  items:
+                    type: string
+                city:
+                  type: array
+                  description: Name of cities
+                  items:
+                    type: string
+                country:
+                  type: array
+                  description: Name of countries
+                  items:
+                    type: string
+                department:
+                  type: array
+                  description: Name of department
+                  items:
+                    type: string
+                division:
+                  type: array
+                  description: Name of division
+                  items:
+                    type: string
+                company:
+                  type: array
+                  description: Name of company
+                  items:
+                    type: string
+                state:
+                  type: array
+                  description: Name of state
+                  items:
+                    type: string
+                hire-date:
+                  type: string
+                  description: '(Format: YYYY-MM-DD)'
+                hire-date-filter:
+                  type: string
+                  description: Filter on hire-date
+                  default: null
+                  enum:
+                  - null
+                  - hireDateBefore
+                  - hireDateAfter
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"usage\": {},\n        \"type\": \"conditions\",\n        \"name\": \"Saurya audience date 29 april\",\n        \"modifiedBy\": {\n            \"videoCallProvider\": \"zoom\",\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"sfUserId\": \"0055e000006GG3JAAW\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"nickname\": \"User16281382456837619883\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isFollowing\": false,\n            \"isFavorited\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"canFollow\": false\n        },\n        \"modifiedAt\": \"2022-04-29T10:50:11.000+0530\",\n        \"listOfConditions\": [\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Bengaluru\"\n                    },\n                    {\n                        \"name\": \"Delhi\"\n                    }\n                ],\n                \"name\": \"city\",\n                \"label\": \"city\",\n                \"conditionSet\": [\n                    \"Bengaluru\",\n                    \"Delhi\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Simpplr Software India Private Limited\"\n                    }\n                ],\n                \"name\": \"company\",\n                \"label\": \"company\",\n                \"conditionSet\": [\n                    \"Simpplr Software India Private Limited\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"india\"\n                    },\n                    {\n                        \"name\": \"US\"\n                    }\n                ],\n                \"name\": \"country\",\n                \"label\": \"country\",\n                \"conditionSet\": [\n                    \"india\",\n                    \"US\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Product Management\"\n                    }\n                ],\n                \"name\": \"department\",\n                \"label\": \"department\",\n                \"conditionSet\": [\n                    \"Product Management\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Sales Development\"\n                    }\n                ],\n                \"name\": \"division\",\n                \"label\": \"division\",\n                \"conditionSet\": [\n                    \"Sales Development\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"Associate Software Engineer\"\n                    }\n                ],\n                \"name\": \"title\",\n                \"label\": \"title\",\n                \"conditionSet\": [\n                    \"Associate Software Engineer\"\n                ]\n            },\n            {\n                \"values\": [\n                    {\n                        \"name\": \"MA\"\n                    }\n                ],\n                \"name\": \"state\",\n                \"label\": \"state\",\n                \"conditionSet\": [\n                    \"MA\"\n                ]\n            }\n        ],\n        \"isDeleted\": false,\n        \"createdBy\": {\n            \"videoCallProvider\": \"zoom\",\n            \"userId\": \"0055e000006GG3JAAW\",\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n            \"sfUserId\": \"0055e000006GG3JAAW\",\n            \"peopleId\": \"a115e000002FFncAAG\",\n            \"nickname\": \"User16281382456837619883\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isFollowing\": false,\n            \"isFavorited\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"canFollow\": false\n        },\n        \"createdAt\": \"2022-04-29T10:50:11.000+0530\",\n        \"audienceId\": \"a0Q5e000002sNP0EAM\",\n        \"audienceCount\": 0\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      usage:
+                        type: object
+                        properties: {}
+                      type:
+                        type: string
+                        example: conditions
+                      name:
+                        type: string
+                        example: Saurya audience date 29 april
+                      modifiedBy:
+                        type: object
+                        properties:
+                          videoCallProvider:
+                            type: string
+                            example: zoom
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          sfUserId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          nickname:
+                            type: string
+                            example: User16281382456837619883
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFavorited:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      modifiedAt:
+                        type: string
+                        example: 2022-04-29T10:50:11.000+0530
+                      listOfConditions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            values:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                    example: Bengaluru
+                            name:
+                              type: string
+                              example: city
+                            label:
+                              type: string
+                              example: city
+                            conditionSet:
+                              type: array
+                              items:
+                                type: string
+                                example: Bengaluru
+                      isDeleted:
+                        type: boolean
+                        example: false
+                        default: true
+                      createdBy:
+                        type: object
+                        properties:
+                          videoCallProvider:
+                            type: string
+                            example: zoom
+                          userId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                          sfUserId:
+                            type: string
+                            example: 0055e000006GG3JAAW
+                          peopleId:
+                            type: string
+                            example: a115e000002FFncAAG
+                          nickname:
+                            type: string
+                            example: User16281382456837619883
+                          name:
+                            type: string
+                            example: Arun Cherian
+                          location:
+                            type: string
+                            example: ''
+                          isFollowing:
+                            type: boolean
+                            example: false
+                            default: true
+                          isFavorited:
+                            type: boolean
+                            example: false
+                            default: true
+                          isActive:
+                            type: boolean
+                            example: true
+                            default: true
+                          id:
+                            type: string
+                            example: a115e000002FFncAAG
+                          canFollow:
+                            type: boolean
+                            example: false
+                            default: true
+                      createdAt:
+                        type: string
+                        example: 2022-04-29T10:50:11.000+0530
+                      audienceId:
+                        type: string
+                        example: a0Q5e000002sNP0EAM
+                      audienceCount:
+                        type: integer
+                        example: 0
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Audience
+  /audience/{audience-id}:
+    delete:
+      summary: Delete Audience
+      description: Use this API to delete Audience
+      operationId: delete-audience
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: audience-id
+        in: path
+        description: Id of the audience
+        schema:
+          type: string
+          default: a0Q5e000002sMrKEAU
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Audience
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0

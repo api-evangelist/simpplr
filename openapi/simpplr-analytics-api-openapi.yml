@@ -1,0 +1,3208 @@
+openapi: 3.2.0
+info:
+  title: Simpplr Analytics API
+  version: '1.0'
+  description: 'Operations tagged Analytics across 2 of this provider''s published API definitions: simpplr-api-gateway-openapi.yml, simpplr-staging-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Analytics
+paths:
+  /analytics/adoption:
+    get:
+      summary: App Adoption Data
+      description: Use this API to get App Adoption Data
+      operationId: app-adoption
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the App Adoption Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the App Adoption Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"usersWhoViewedContent\": 1,\n            \"usersLoggedInCount\": 3,\n            \"totalUserCount\": 7,\n            \"totalUniqueUserCount\": 0,\n            \"pageViewCount\": 103,\n            \"mobileLogins\": 0,\n            \"mobileAppLogins\": 0,\n            \"loginsOverTime\": [],\n            \"loggedInPercentage\": 0,\n            \"desktopLogins\": 0,\n            \"contentViewCount\": 32,\n            \"contentPublished\": 130,\n            \"averageLoginsPerUser\": 13,\n            \"averageContentViewsPerUser\": 10.666666666666666\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAdoptionData&to=2022-01-26&from=2020-12-27&groupBy=day&filterBy=null&filterValue=null&excludeLoginsOverTime=false&excludeDeviceData=false\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          usersWhoViewedContent:
+                            type: integer
+                            example: 1
+                            default: 0
+                          usersLoggedInCount:
+                            type: integer
+                            example: 3
+                            default: 0
+                          totalUserCount:
+                            type: integer
+                            example: 7
+                            default: 0
+                          totalUniqueUserCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          pageViewCount:
+                            type: integer
+                            example: 103
+                            default: 0
+                          mobileLogins:
+                            type: integer
+                            example: 0
+                            default: 0
+                          mobileAppLogins:
+                            type: integer
+                            example: 0
+                            default: 0
+                          loginsOverTime:
+                            type: array
+                          loggedInPercentage:
+                            type: integer
+                            example: 0
+                            default: 0
+                          desktopLogins:
+                            type: integer
+                            example: 0
+                            default: 0
+                          contentViewCount:
+                            type: integer
+                            example: 32
+                            default: 0
+                          contentPublished:
+                            type: integer
+                            example: 130
+                            default: 0
+                          averageLoginsPerUser:
+                            type: integer
+                            example: 13
+                            default: 0
+                          averageContentViewsPerUser:
+                            type: number
+                            example: 10.666666666666666
+                            default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAdoptionData&to=2022-01-26&from=2020-12-27&groupBy=day&filterBy=null&filterValue=null&excludeLoginsOverTime=false&excludeDeviceData=false
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/adoption-average:
+    get:
+      summary: App Adoption Average
+      description: Use this API to get App Adoption Average
+      operationId: app-adoption-average
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the App Adoption Average Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the App Adoption Average Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"name\": \"contributors\",\n                \"count\": 1\n            },\n            {\n                \"name\": \"participants\",\n                \"count\": 0\n            },\n            {\n                \"name\": \"observers\",\n                \"count\": 2\n            },\n            {\n                \"name\": \"inactive\",\n                \"count\": 4\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAdoptionAverage&to=2022-01-26&from=2020-12-27&groupBy=day\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: contributors
+                            count:
+                              type: integer
+                              example: 1
+                              default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAdoptionAverage&to=2022-01-26&from=2020-12-27&groupBy=day
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/app-adoption:
+    get:
+      summary: App Adoption
+      description: Use this API to get App Adoption
+      operationId: app-adoption-1
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the App Adoption Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the App Adoption Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: result-type
+        in: query
+        description: Type by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - department
+          - location
+          default: department
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US\",\n                \"uniqueViews\": 0,\n                \"percentageValue\": 100,\n                \"label\": \"US\"\n            },\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+India\",\n                \"uniqueViews\": 0,\n                \"percentageValue\": 100,\n                \"label\": \"India\"\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAppAdoption&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=top\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US
+                            uniqueViews:
+                              type: integer
+                              example: 0
+                              default: 0
+                            percentageValue:
+                              type: integer
+                              example: 100
+                              default: 0
+                            label:
+                              type: string
+                              example: US
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAppAdoption&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=top
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/app-page-views:
+    get:
+      summary: App Page Views
+      description: Use this API to get App Page Views
+      operationId: app-page-views
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the App Page Views Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time from which the App Page Views Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 23.99,\n                \"totalViewsCount\": 225,\n                \"page\": \"Sites listing\"\n            },\n            {\n                \"uniqueViewsPercentage\": 75,\n                \"uniqueViewsCount\": 3,\n                \"totalViewsPercentage\": 19.62,\n                \"totalViewsCount\": 184,\n                \"page\": \"Manage app\"\n            },\n            {\n                \"uniqueViewsPercentage\": 75,\n                \"uniqueViewsCount\": 3,\n                \"totalViewsPercentage\": 8.1,\n                \"totalViewsCount\": 76,\n                \"page\": \"Home dashboard\"\n            },\n            {\n                \"uniqueViewsPercentage\": 75,\n                \"uniqueViewsCount\": 3,\n                \"totalViewsPercentage\": 8,\n                \"totalViewsCount\": 75,\n                \"page\": \"My settings\"\n            },\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 5.54,\n                \"totalViewsCount\": 52,\n                \"page\": \"Site dashboard\"\n            },\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 4.58,\n                \"totalViewsCount\": 43,\n                \"page\": \"Analytics\"\n            },\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 4.05,\n                \"totalViewsCount\": 38,\n                \"page\": \"Alerts listing\"\n            },\n            {\n                \"uniqueViewsPercentage\": 75,\n                \"uniqueViewsCount\": 3,\n                \"totalViewsPercentage\": 3.52,\n                \"totalViewsCount\": 33,\n                \"page\": \"Profile\"\n            },\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 3.3,\n                \"totalViewsCount\": 31,\n                \"page\": \"Manage sites\"\n            },\n            {\n                \"uniqueViewsPercentage\": 50,\n                \"uniqueViewsCount\": 2,\n                \"totalViewsPercentage\": 3.09,\n                \"totalViewsCount\": 29,\n                \"page\": \"Edit site\"\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAppPageViews&to=2022-01-26&from=2020-12-27\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            uniqueViewsPercentage:
+                              type: integer
+                              example: 50
+                              default: 0
+                            uniqueViewsCount:
+                              type: integer
+                              example: 2
+                              default: 0
+                            totalViewsPercentage:
+                              type: number
+                              example: 23.99
+                              default: 0
+                            totalViewsCount:
+                              type: integer
+                              example: 225
+                              default: 0
+                            page:
+                              type: string
+                              example: Sites listing
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getAppPageViews&to=2022-01-26&from=2020-12-27
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/campaigns:
+    get:
+      summary: Campaigns
+      description: Use this API to get Social Campaigns
+      operationId: campaigns
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"twitterCount\": 0,\n            \"totalCount\": 1,\n            \"linkedinCount\": 0,\n            \"facebookCount\": 0,\n            \"activeCount\": 1\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          twitterCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalCount:
+                            type: integer
+                            example: 1
+                            default: 0
+                          linkedinCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          facebookCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          activeCount:
+                            type: integer
+                            example: 1
+                            default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/content-engagement:
+    get:
+      summary: Content Engagement
+      description: Use this API to get Content Engagement Data
+      operationId: content-engagement
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Content Engagement data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the Content Engagement data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"trackingStartdate\": \"\",\n        \"data\": {\n            \"shares\": [\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-27\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-28\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-29\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-30\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-31\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-01\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-02\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-03\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-04\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-05\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-06\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-07\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-08\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-09\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-10\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-11\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-12\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-13\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-14\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-15\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-16\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-17\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-18\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-19\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-20\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-21\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-22\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-23\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-24\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-25\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-26\"\n                }\n            ],\n            \"replies\": [\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-27\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-28\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-29\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-30\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-31\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-01\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-02\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-03\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-04\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-05\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-06\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-07\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-08\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-09\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-10\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-11\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-12\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-13\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-14\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-15\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-16\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-17\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-18\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-19\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-20\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-21\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-22\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-23\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-24\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-25\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-26\"\n                }\n            ],\n            \"likes\": [\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-27\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-28\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-29\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-30\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-31\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-01\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-02\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-03\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-04\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-05\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-06\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-07\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-08\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-09\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-10\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-11\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-12\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-13\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-14\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-15\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-16\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-17\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-18\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-19\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-20\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-21\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-22\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-23\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-24\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-25\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-26\"\n                }\n            ],\n            \"favorites\": [\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-27\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-28\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-29\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-30\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-31\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-01\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-02\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-03\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-04\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-05\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-06\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-07\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-08\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-09\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-10\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-11\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-12\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-13\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-14\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-15\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-16\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-17\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-18\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-19\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-20\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-21\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-22\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-23\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-24\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-25\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-26\"\n                }\n            ],\n            \"comments\": [\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-27\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-28\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-29\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-30\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2021-12-31\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-01\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-02\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-03\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-04\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-05\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-06\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-07\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-08\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-09\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-10\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-11\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-12\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-13\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-14\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-15\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-16\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-17\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-18\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-19\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-20\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-21\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-22\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-23\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-24\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-25\"\n                },\n                {\n                    \"value\": 0,\n                    \"label\": \"2022-01-26\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentEngagementCsv&to=2022-01-26&from=2021-12-27&groupBy=day\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      trackingStartdate:
+                        type: string
+                        example: ''
+                      data:
+                        type: object
+                        properties:
+                          shares:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-12-27'
+                          replies:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-12-27'
+                          likes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-12-27'
+                          favorites:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-12-27'
+                          comments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-12-27'
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentEngagementCsv&to=2022-01-26&from=2021-12-27&groupBy=day
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/content-publications:
+    get:
+      summary: Content Publications
+      description: Use this API to get Content Publication Data
+      operationId: content-publications
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Content Publication Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the Content Publication Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: only-published
+        in: query
+        required: true
+        schema:
+          type: boolean
+          default: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"publishedLocalizedDate\": \"\",\n            \"pages\": 89,\n            \"events\": 51,\n            \"blogPosts\": 0,\n            \"averageContentAge\": 97,\n            \"albums\": 0\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentPublications&to=2022-01-26&from=2020-12-27&onlyPublished=true\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          publishedLocalizedDate:
+                            type: string
+                            example: ''
+                          pages:
+                            type: integer
+                            example: 89
+                            default: 0
+                          events:
+                            type: integer
+                            example: 51
+                            default: 0
+                          blogPosts:
+                            type: integer
+                            example: 0
+                            default: 0
+                          averageContentAge:
+                            type: integer
+                            example: 97
+                            default: 0
+                          albums:
+                            type: integer
+                            example: 0
+                            default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentPublications&to=2022-01-26&from=2020-12-27&onlyPublished=true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/content-referral-sources:
+    get:
+      summary: Content Referral Sources
+      description: Use this API to get Content Referral Source Data
+      operationId: content-referral-sources
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Content Referral Source data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the Content Referral Source data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"totalViewsCount\": 2,\n                \"referralsPerItemPercentage\": 50,\n                \"referralsPerItemCount\": 1,\n                \"referralsPercentage\": 50,\n                \"referralsCount\": 1,\n                \"label\": \"My content\",\n                \"contentItemsCount\": 1\n            },\n            {\n                \"totalViewsCount\": 2,\n                \"referralsPerItemPercentage\": 50,\n                \"referralsPerItemCount\": 1,\n                \"referralsPercentage\": 50,\n                \"referralsCount\": 1,\n                \"label\": \"Site feed\",\n                \"contentItemsCount\": 1\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentReferralSources&to=2022-01-26&from=2020-12-27\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            totalViewsCount:
+                              type: integer
+                              example: 2
+                              default: 0
+                            referralsPerItemPercentage:
+                              type: integer
+                              example: 50
+                              default: 0
+                            referralsPerItemCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            referralsPercentage:
+                              type: integer
+                              example: 50
+                              default: 0
+                            referralsCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            label:
+                              type: string
+                              example: My content
+                            contentItemsCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentReferralSources&to=2022-01-26&from=2020-12-27
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/content-views-by-type:
+    get:
+      summary: Content Views by Type
+      description: Use this API to get Content Views by Type Data
+      operationId: content-views-by-type
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Content Views by type Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the Content Views by type Data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"pageViewCount\": 25,\n            \"eventViewCount\": 7,\n            \"blogPostViewCount\": 0,\n            \"averageViewsPerPageCount\": 2,\n            \"averageViewsPerEventCount\": 1,\n            \"averageViewsPerBlogPostCount\": 0,\n            \"averageViewsPerAlbumCount\": 0,\n            \"albumViewCount\": 0\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentViewsByTypeCsv&to=2022-01-26&from=2020-12-27\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          pageViewCount:
+                            type: integer
+                            example: 25
+                            default: 0
+                          eventViewCount:
+                            type: integer
+                            example: 7
+                            default: 0
+                          blogPostViewCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          averageViewsPerPageCount:
+                            type: integer
+                            example: 2
+                            default: 0
+                          averageViewsPerEventCount:
+                            type: integer
+                            example: 1
+                            default: 0
+                          averageViewsPerBlogPostCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          averageViewsPerAlbumCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          albumViewCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentViewsByTypeCsv&to=2022-01-26&from=2020-12-27
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/content-views-list:
+    get:
+      summary: Content Views List
+      description: Use this API to get Content Views List
+      operationId: content-views-list
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Content Views List need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time from which the Content Views List need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"value\": 11,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FYxjAAG\",\n                \"type\": \"page\",\n                \"title\": \"API Demo Page Test 1\",\n                \"status\": \"unpublished\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"10 en_US.common.date.month.02 2020\",\n                \"publishedDate\": \"2020-02-10\",\n                \"pages\": 0,\n                \"label\": \"API Demo Page Test 1\",\n                \"id\": \"a185e000000FYxjAAG\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 3,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001x9b2EAA/event/a185e000000G2aVAAS\",\n                \"type\": \"event\",\n                \"title\": \"Event title11111\",\n                \"status\": \"published\",\n                \"siteName\": \"RE Test Sites create3\",\n                \"siteId\": \"a1A5e000001x9b2EAA\",\n                \"publishedLocalizedDate\": \"28 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-28\",\n                \"pages\": 0,\n                \"label\": \"Event title11111\",\n                \"id\": \"a185e000000G2aVAAS\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 3,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wJRWEA2/page/a185e000000Fe4iAAC\",\n                \"type\": \"page\",\n                \"title\": \"New Event For Content\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site 11\",\n                \"siteId\": \"a1A5e000001wJRWEA2\",\n                \"publishedLocalizedDate\": \"14 en_US.common.date.month.12 2021\",\n                \"publishedDate\": \"2021-12-14\",\n                \"pages\": 0,\n                \"label\": \"New Event For Content\",\n                \"id\": \"a185e000000Fe4iAAC\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 2,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0eoAAC\",\n                \"type\": \"page\",\n                \"title\": \"Test Page Arun\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"Test Page Arun\",\n                \"id\": \"a185e000000G0eoAAC\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0fIAAS\",\n                \"type\": \"page\",\n                \"title\": \"API Demo Page Test new\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"API Demo Page Test new\",\n                \"id\": \"a185e000000G0fIAAS\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0fSAAS\",\n                \"type\": \"page\",\n                \"title\": \"API Demo Page Test new 3\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"API Demo Page Test new 3\",\n                \"id\": \"a185e000000G0fSAAS\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0fNAAS\",\n                \"type\": \"page\",\n                \"title\": \"API Demo Page Test new 2\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"API Demo Page Test new 2\",\n                \"id\": \"a185e000000G0fNAAS\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0f8AAC\",\n                \"type\": \"page\",\n                \"title\": \"Test page 3\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"Test page 3\",\n                \"id\": \"a185e000000G0f8AAC\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0frAAC\",\n                \"type\": \"page\",\n                \"title\": \"test5\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"test5\",\n                \"id\": \"a185e000000G0frAAC\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000G0g6AAC\",\n                \"type\": \"page\",\n                \"title\": \"Test with file upload\",\n                \"status\": \"published\",\n                \"siteName\": \"Test API Site arun\",\n                \"siteId\": \"a1A5e000001wQdXEAU\",\n                \"publishedLocalizedDate\": \"26 en_US.common.date.month.10 2021\",\n                \"publishedDate\": \"2021-10-26\",\n                \"pages\": 0,\n                \"label\": \"Test with file upload\",\n                \"id\": \"a185e000000G0g6AAC\",\n                \"events\": 0,\n                \"blogPosts\": 0,\n                \"authorName\": \"null\",\n                \"albums\": 0\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentViewsList&to=2022-01-26&from=2020-12-27&orderBy=top\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 11
+                              default: 0
+                            url:
+                              type: string
+                              example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wQdXEAU/page/a185e000000FYxjAAG
+                            type:
+                              type: string
+                              example: page
+                            title:
+                              type: string
+                              example: API Demo Page Test 1
+                            status:
+                              type: string
+                              example: unpublished
+                            siteName:
+                              type: string
+                              example: Test API Site arun
+                            siteId:
+                              type: string
+                              example: a1A5e000001wQdXEAU
+                            publishedLocalizedDate:
+                              type: string
+                              example: 10 en_US.common.date.month.02 2020
+                            publishedDate:
+                              type: string
+                              example: '2020-02-10'
+                            pages:
+                              type: integer
+                              example: 0
+                              default: 0
+                            label:
+                              type: string
+                              example: API Demo Page Test 1
+                            id:
+                              type: string
+                              example: a185e000000FYxjAAG
+                            events:
+                              type: integer
+                              example: 0
+                              default: 0
+                            blogPosts:
+                              type: integer
+                              example: 0
+                              default: 0
+                            authorName:
+                              type: string
+                              example: 'null'
+                            albums:
+                              type: integer
+                              example: 0
+                              default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getContentViewsList&to=2022-01-26&from=2020-12-27&orderBy=top
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/knowledge-page-stats:
+    get:
+      summary: Knowledge Page Stats
+      description: Use this API to get Knowledge Page Stats
+      operationId: knowledge-page-stats
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the knowledge Page Stats data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the knowledge Page Stats data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"value\": 33,\n                \"label\": \"Published\"\n            },\n            {\n                \"value\": 0,\n                \"label\": \"Validated\"\n            },\n            {\n                \"value\": 33,\n                \"label\": \"Validation required\"\n            },\n            {\n                \"value\": 0,\n                \"label\": \"Validation expired\"\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getKnowledgePageCsv&to=2022-01-26&from=2020-12-27\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 33
+                              default: 0
+                            label:
+                              type: string
+                              example: Published
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getKnowledgePageCsv&to=2022-01-26&from=2020-12-27
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/low-activity-sites:
+    get:
+      summary: Low-Activity-Sites
+      description: Use this API to get low activity sites
+      operationId: low-activity-sites
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"listOfSites\": [\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCj3EAG/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"Neha Singla\",\n                \"label\": \"Neha Singla\",\n                \"id\": \"a1G5f000004FCj3EAG\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FOq1EAG/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"site for requests\",\n                \"label\": \"site for requests\",\n                \"id\": \"a1G5f000004FOq1EAG\",\n                \"hasAccess\": true,\n                \"canManage\": true,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FOqBEAW/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"standard site for requests\",\n                \"label\": \"standard site for requests\",\n                \"id\": \"a1G5f000004FOqBEAW\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FsDUEA0/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"Test site1\",\n                \"label\": \"Test site1\",\n                \"id\": \"a1G5f000004FsDUEA0\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FsDpEAK/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"testsite2\",\n                \"label\": \"testsite2\",\n                \"id\": \"a1G5f000004FsDpEAK\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004G4LWEA0/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"aalii\",\n                \"label\": \"aalii\",\n                \"id\": \"a1G5f000004G4LWEA0\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004G4mdEAC/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"audience 111 -iii\",\n                \"label\": \"audience 111 -iii\",\n                \"id\": \"a1G5f000004G4mdEAC\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004GAHEEA4/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"nnwn\",\n                \"label\": \"nnwn\",\n                \"id\": \"a1G5f000004GAHEEA4\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004GIIoEAO/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"789\",\n                \"label\": \"789\",\n                \"id\": \"a1G5f000004GIIoEAO\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            },\n            {\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004GIRmEAO/dashboard\",\n                \"totalViewCount\": 0,\n                \"name\": \"Site Google Drive\",\n                \"label\": \"Site Google Drive\",\n                \"id\": \"a1G5f000004GIRmEAO\",\n                \"hasAccess\": true,\n                \"canManage\": false,\n                \"access\": \"public\"\n            }\n        ]\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      listOfSites:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCj3EAG/dashboard
+                            totalViewCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            name:
+                              type: string
+                              example: Neha Singla
+                            label:
+                              type: string
+                              example: Neha Singla
+                            id:
+                              type: string
+                              example: a1G5f000004FCj3EAG
+                            hasAccess:
+                              type: boolean
+                              example: true
+                              default: true
+                            canManage:
+                              type: boolean
+                              example: false
+                              default: true
+                            access:
+                              type: string
+                              example: public
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/newsletter:
+    get:
+      summary: News Letters
+      description: Use this API to get News Letters
+      operationId: news-letters
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"totalRecipientCount\": 0,\n            \"sentCount\": 0,\n            \"recentlysentCount\": 0,\n            \"averageOpenPercentage\": 0,\n            \"averageClickPercentage\": 0\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          totalRecipientCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          sentCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          recentlysentCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          averageOpenPercentage:
+                            type: integer
+                            example: 0
+                            default: 0
+                          averageClickPercentage:
+                            type: integer
+                            example: 0
+                            default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/people-count:
+    get:
+      summary: People Count
+      description: Use this API to get People Count
+      operationId: people-count
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"totalUserCount\": 0,\n            \"locationCount\": 4,\n            \"departmentCount\": 2,\n            \"customCategoryCount\": 0,\n            \"activeUserCount\": 0\n        }\n    },\n}"
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/people-performance:
+    get:
+      summary: People Performance
+      description: Use this API to get People Performance
+      operationId: people-performance
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: metric
+        in: query
+        description: Type of Result
+        required: true
+        schema:
+          type: string
+          enum:
+          - contentPublished
+          - favoritesReceived
+          - likesMade
+          - likesReceived
+          - feedPosts
+          - replies
+          - repliesFrom
+          - profileViews
+          - sharesReceived
+          default: contentPublished
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"totalRecordsCount\": 10,\n        \"data\": [\n            {\n                \"value\": 8665,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WR8AAM\",\n                \"label\": \"priya shrivastava\",\n                \"isActive\": true,\n                \"email\": \"priya.shrivastava@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"Gravity battery\",\n                \"country\": \"France\",\n                \"companyName\": \"Simpplr\"\n            },\n            {\n                \"value\": 152,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WQPAA2\",\n                \"label\": \"System testing 12 Admin testing  23\",\n                \"isActive\": true,\n                \"email\": \"qa@simpplr.com\",\n                \"division\": \"div\",\n                \"department\": \"dep\",\n                \"country\": \"Dubai\",\n                \"companyName\": \"com\"\n            },\n            {\n                \"value\": 33,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WRXAA2\",\n                \"label\": \"Renisha Dias\",\n                \"isActive\": true,\n                \"email\": \"renisha.dias@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"asd\",\n                \"country\": \"Canada\"\n            },\n            {\n                \"value\": 14,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WRhAAM\",\n                \"label\": \"Bharat Madaan\",\n                \"isActive\": true,\n                \"email\": \"bharat.madaan@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"googla\",\n                \"country\": \"Canada\"\n            },\n            {\n                \"value\": 9,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WQtAAM\",\n                \"label\": \"sathiya priya k\",\n                \"isActive\": true,\n                \"email\": \"sathiya.priya@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"AA\",\n                \"country\": \"United States\"\n            },\n            {\n                \"value\": 8,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WRDAA2\",\n                \"label\": \"priya standard\",\n                \"isActive\": true,\n                \"email\": \"priya.shrivastava@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"Magnonics\",\n                \"country\": \"France\"\n            },\n            {\n                \"value\": 6,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WSfAAM\",\n                \"state\": \"Haryana\",\n                \"label\": \"Nidhi_App Manager\",\n                \"isActive\": true,\n                \"email\": \"nidhi.bakshi@simpplr.com\",\n                \"division\": \"Eng\",\n                \"department\": \"Quantum computing\",\n                \"country\": \"France\",\n                \"city\": \"Gurugram\"\n            },\n            {\n                \"value\": 6,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WSaAAM\",\n                \"label\": \"Himanshu Rana\",\n                \"isActive\": true,\n                \"email\": \"himanshu.rana@simpplr.com\",\n                \"division\": \"UI\",\n                \"department\": \"Engineering\",\n                \"country\": \"China\",\n                \"companyName\": \"Simpplr\",\n                \"city\": \"Wuhan\"\n            },\n            {\n                \"value\": 3,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WQjAAM\",\n                \"label\": \"Gargi Pawar\",\n                \"isActive\": true,\n                \"email\": \"gargi.pawar@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"IBMA\",\n                \"country\": \"France\"\n            },\n            {\n                \"value\": 1,\n                \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/people/a175f0000007WQoAAM\",\n                \"label\": \"Priyamvada Bhardwaj\",\n                \"isActive\": true,\n                \"email\": \"priyamvada.bhardwaj@simpplr.com\",\n                \"division\": \"QA\",\n                \"department\": \"ax\",\n                \"country\": \"Canada\"\n            }\n        ],\n        \"csvUrl\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getPeoplePerformance&includeName=true&to=2022-03-27&from=2022-02-25&metric=contentPublished\"\n    },\n}"
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/profile-completeness:
+    get:
+      summary: Profile Completeness
+      description: Use this API to get People Profile Completeness
+      operationId: people-profile-completeness
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"totalUserCount\": 53,\n            \"profileCompletenessList\": [\n                {\n                    \"value\": 9,\n                    \"label\": \"Profile picture\"\n                },\n                {\n                    \"value\": 7,\n                    \"label\": \"Phone number\"\n                },\n                {\n                    \"value\": 5,\n                    \"label\": \"About text\"\n                },\n                {\n                    \"value\": 5,\n                    \"label\": \"Birthday date\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getPeopleProfileCompleteness&to=null&from=null\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          totalUserCount:
+                            type: integer
+                            example: 53
+                            default: 0
+                          profileCompletenessList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 9
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: Profile picture
+                      csvUrl:
+                        type: string
+                        example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getPeopleProfileCompleteness&to=null&from=null
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/search-list:
+    get:
+      summary: Search List
+      description: Use this API to get Search List
+      operationId: search-list-1
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: type
+        in: query
+        description: Type of Result
+        required: true
+        schema:
+          type: string
+          enum:
+          - terms
+          - searchesZeroResults
+          - clickThroughTerms
+          - clickThroughTypes
+          default: terms
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"searchTotal\": 0,\n            \"searchList\": [\n                {\n                    \"value\": 4,\n                    \"label\": \"arun\"\n                },\n                {\n                    \"value\": 3,\n                    \"label\": \"ajay\"\n                },\n                {\n                    \"value\": 2,\n                    \"label\": \"te\"\n                },\n                {\n                    \"value\": 2,\n                    \"label\": \"test\"\n                },\n                {\n                    \"value\": 1,\n                    \"label\": \"simpplr\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearchList&to=2022-01-26&from=2020-12-27&orderBy=top&type=terms\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          searchTotal:
+                            type: integer
+                            example: 0
+                            default: 0
+                          searchList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 4
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: arun
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearchList&to=2022-01-26&from=2020-12-27&orderBy=top&type=terms
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/searches:
+    get:
+      summary: Searches
+      description: Use this API to get Searches
+      operationId: searches
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        required: true
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"totalCount\": 18,\n            \"searchesOverTime\": [\n                {\n                    \"value\": 11,\n                    \"label\": \"2021-08-25\"\n                },\n                {\n                    \"value\": 1,\n                    \"label\": \"2021-09-09\"\n                },\n                {\n                    \"value\": 6,\n                    \"label\": \"2021-10-29\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearches&to=2022-01-26&from=2020-12-27&groupBy=day\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          totalCount:
+                            type: integer
+                            example: 18
+                            default: 0
+                          searchesOverTime:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 11
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: '2021-08-25'
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearches&to=2022-01-26&from=2020-12-27&groupBy=day
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/searches-performed:
+    get:
+      summary: Searches Performed
+      description: Use this API to get Searches Performed
+      operationId: search-list
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: type
+        in: query
+        description: Type of Result
+        required: true
+        schema:
+          type: string
+          default: searches
+      - name: result-type
+        in: query
+        description: Type by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - department
+          - location
+          default: department
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": {\n            \"searchList\": [\n                {\n                    \"value\": 6,\n                    \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&department=development\",\n                    \"label\": \"development\"\n                }\n            ],\n            \"searchesOverTime\": []\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearchList&to=2022-01-26&from=2020-12-27&orderBy=top&type=searches&resultType=department\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          searchList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 6
+                                  default: 0
+                                url:
+                                  type: string
+                                  example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&department=development
+                                label:
+                                  type: string
+                                  example: development
+                          searchesOverTime:
+                            type: array
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getSearchList&to=2022-01-26&from=2020-12-27&orderBy=top&type=searches&resultType=department
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/site-count:
+    get:
+      summary: Site Count
+      description: Use this API to get Site Count
+      operationId: site-count
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"unlistedSiteCount\": 12,\n            \"siteManagerCount\": 19,\n            \"publicSiteCount\": 97,\n            \"privateSiteCount\": 27,\n            \"newlyAddedSiteCount\": 135,\n            \"hasLowActivitySites\": true,\n            \"featuredSiteCount\": 1\n        },\n        \"csvUrl\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSiteCounts&to=null&from=null\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          unlistedSiteCount:
+                            type: integer
+                            example: 12
+                            default: 0
+                          siteManagerCount:
+                            type: integer
+                            example: 19
+                            default: 0
+                          publicSiteCount:
+                            type: integer
+                            example: 97
+                            default: 0
+                          privateSiteCount:
+                            type: integer
+                            example: 27
+                            default: 0
+                          newlyAddedSiteCount:
+                            type: integer
+                            example: 135
+                            default: 0
+                          hasLowActivitySites:
+                            type: boolean
+                            example: true
+                            default: true
+                          featuredSiteCount:
+                            type: integer
+                            example: 1
+                            default: 0
+                      csvUrl:
+                        type: string
+                        example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSiteCounts&to=null&from=null
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/site-popularity:
+    get:
+      summary: Site Popularity
+      description: Use this API to get popular sites
+      operationId: site-popularity
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"sites\": [\n                {\n                    \"views\": 414,\n                    \"value\": 221725,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCitEAG/feed\",\n                    \"shares\": 0,\n                    \"replies\": 4,\n                    \"posts\": 8690,\n                    \"likes\": 17,\n                    \"label\": \"Manager site\",\n                    \"id\": \"a1G5f000004FCitEAG\",\n                    \"favorites\": 4,\n                    \"access\": \"private\"\n                },\n                {\n                    \"views\": 1059,\n                    \"value\": 12310,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCApEAO/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 1,\n                    \"posts\": 65,\n                    \"likes\": 5,\n                    \"label\": \"Test Site 123\",\n                    \"id\": \"a1G5f000004FCApEAO\",\n                    \"favorites\": 3,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 774,\n                    \"value\": 9670,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCLdEAO/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 9,\n                    \"posts\": 61,\n                    \"likes\": 15,\n                    \"label\": \"Test Google Drive\",\n                    \"id\": \"a1G5f000004FCLdEAO\",\n                    \"favorites\": 12,\n                    \"access\": \"private\"\n                },\n                {\n                    \"views\": 696,\n                    \"value\": 8350,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCftEAG/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 2,\n                    \"posts\": 42,\n                    \"likes\": 20,\n                    \"label\": \"Analytics Public Site\",\n                    \"id\": \"a1G5f000004FCftEAG\",\n                    \"favorites\": 16,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 520,\n                    \"value\": 6640,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004Fa9WEAS/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 1,\n                    \"posts\": 52,\n                    \"likes\": 8,\n                    \"label\": \"royal rumble\",\n                    \"id\": \"a1G5f000004Fa9WEAS\",\n                    \"favorites\": 5,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 495,\n                    \"value\": 5765,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FDC4EAO/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 3,\n                    \"posts\": 29,\n                    \"likes\": 2,\n                    \"label\": \"Diksha's Pub Siteas\",\n                    \"id\": \"a1G5f000004FDC4EAO\",\n                    \"favorites\": 0,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 320,\n                    \"value\": 4090,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FrtIEAS/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 1,\n                    \"posts\": 33,\n                    \"likes\": 3,\n                    \"label\": \"RD Feb 21\",\n                    \"id\": \"a1G5f000004FrtIEAS\",\n                    \"favorites\": 0,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 363,\n                    \"value\": 4005,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCg3EAG/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 0,\n                    \"posts\": 12,\n                    \"likes\": 5,\n                    \"label\": \"Test Site CC\",\n                    \"id\": \"a1G5f000004FCg3EAG\",\n                    \"favorites\": 5,\n                    \"access\": \"private\"\n                },\n                {\n                    \"views\": 277,\n                    \"value\": 3445,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004TRNLEA4/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 0,\n                    \"posts\": 27,\n                    \"likes\": 0,\n                    \"label\": \"Test Site Admin Owner\",\n                    \"id\": \"a1G5f000004TRNLEA4\",\n                    \"favorites\": 0,\n                    \"access\": \"public\"\n                },\n                {\n                    \"views\": 228,\n                    \"value\": 2670,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004Fry3EAC/dashboard\",\n                    \"shares\": 0,\n                    \"replies\": 0,\n                    \"posts\": 15,\n                    \"likes\": 1,\n                    \"label\": \"Test feb21\",\n                    \"id\": \"a1G5f000004Fry3EAC\",\n                    \"favorites\": 2,\n                    \"access\": \"public\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSitePopularity&to=2022-03-27&from=2021-02-25&orderBy=top\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          sites:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                views:
+                                  type: integer
+                                  example: 414
+                                  default: 0
+                                value:
+                                  type: integer
+                                  example: 221725
+                                  default: 0
+                                url:
+                                  type: string
+                                  example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCitEAG/feed
+                                shares:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                replies:
+                                  type: integer
+                                  example: 4
+                                  default: 0
+                                posts:
+                                  type: integer
+                                  example: 8690
+                                  default: 0
+                                likes:
+                                  type: integer
+                                  example: 17
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: Manager site
+                                id:
+                                  type: string
+                                  example: a1G5f000004FCitEAG
+                                favorites:
+                                  type: integer
+                                  example: 4
+                                  default: 0
+                                access:
+                                  type: string
+                                  example: private
+                      csvUrl:
+                        type: string
+                        example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSitePopularity&to=2022-03-27&from=2021-02-25&orderBy=top
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/site-publications:
+    get:
+      summary: Site Publication
+      description: Use this API to get Publication of SItes
+      operationId: site-publications
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": {\n            \"sites\": [\n                {\n                    \"value\": 8653,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCitEAG/feed\",\n                    \"pages\": 8650,\n                    \"label\": \"Manager site\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004FCitEAG\",\n                    \"events\": 1,\n                    \"albums\": 2,\n                    \"access\": \"private\"\n                },\n                {\n                    \"value\": 44,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FrtIEAS/dashboard\",\n                    \"pages\": 39,\n                    \"label\": \"RD Feb 21\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004FrtIEAS\",\n                    \"events\": 4,\n                    \"albums\": 1,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 34,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCApEAO/dashboard\",\n                    \"pages\": 22,\n                    \"label\": \"Test Site 123\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004FCApEAO\",\n                    \"events\": 5,\n                    \"albums\": 7,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 27,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004TRNLEA4/dashboard\",\n                    \"pages\": 23,\n                    \"label\": \"Test Site Admin Owner\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004TRNLEA4\",\n                    \"events\": 3,\n                    \"albums\": 1,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 13,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004Fry3EAC/dashboard\",\n                    \"pages\": 12,\n                    \"label\": \"Test feb21\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004Fry3EAC\",\n                    \"events\": 1,\n                    \"albums\": 0,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 11,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FDC4EAO/dashboard\",\n                    \"pages\": 9,\n                    \"label\": \"Diksha's Pub Siteas\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004FDC4EAO\",\n                    \"events\": 0,\n                    \"albums\": 2,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 11,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004V2JGEA0/dashboard\",\n                    \"pages\": 11,\n                    \"label\": \"Test S17\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004V2JGEA0\",\n                    \"events\": 0,\n                    \"albums\": 0,\n                    \"access\": \"private\"\n                },\n                {\n                    \"value\": 11,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004TRV9EAO/dashboard\",\n                    \"pages\": 7,\n                    \"label\": \"testc45\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004TRV9EAO\",\n                    \"events\": 1,\n                    \"albums\": 3,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 11,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004UNzeEAG/content\",\n                    \"pages\": 6,\n                    \"label\": \"new site - 11 03\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004UNzeEAG\",\n                    \"events\": 0,\n                    \"albums\": 5,\n                    \"access\": \"public\"\n                },\n                {\n                    \"value\": 8,\n                    \"url\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004Fa9WEAS/dashboard\",\n                    \"pages\": 8,\n                    \"label\": \"royal rumble\",\n                    \"isActive\": true,\n                    \"id\": \"a1G5f000004Fa9WEAS\",\n                    \"events\": 0,\n                    \"albums\": 0,\n                    \"access\": \"public\"\n                }\n            ]\n        },\n        \"csvUrl\": \"https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSitePublication&to=2022-03-27&from=2022-02-25&orderBy=top\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          sites:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: integer
+                                  example: 8653
+                                  default: 0
+                                url:
+                                  type: string
+                                  example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__app?u=/site/a1G5f000004FCitEAG/feed
+                                pages:
+                                  type: integer
+                                  example: 8650
+                                  default: 0
+                                label:
+                                  type: string
+                                  example: Manager site
+                                isActive:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                                id:
+                                  type: string
+                                  example: a1G5f000004FCitEAG
+                                events:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                albums:
+                                  type: integer
+                                  example: 2
+                                  default: 0
+                                access:
+                                  type: string
+                                  example: private
+                      csvUrl:
+                        type: string
+                        example: https://hotaka-stg-one--simpplr.visualforce.com/apex/simpplr__Reports?action=getSitePublication&to=2022-03-27&from=2022-02-25&orderBy=top
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/social-engagement:
+    get:
+      summary: Social Engagement
+      description: Use this API to get Social Engagement
+      operationId: social-engagement
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        required: true
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"trackingStartdate\": \"\",\n        \"data\": {\n            \"shares\": [],\n            \"replies\": [],\n            \"likes\": [],\n            \"favorites\": [],\n            \"comments\": []\n        },\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getEngagement&to=2022-03-21&from=2020-02-19&groupBy=day&filterBy=department&filterValue=Sales\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      trackingStartdate:
+                        type: string
+                        example: ''
+                      data:
+                        type: object
+                        properties:
+                          shares:
+                            type: array
+                          replies:
+                            type: array
+                          likes:
+                            type: array
+                          favorites:
+                            type: array
+                          comments:
+                            type: array
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getEngagement&to=2022-03-21&from=2020-02-19&groupBy=day&filterBy=department&filterValue=Sales
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/social-engagement-list:
+    get:
+      summary: Social Engagement List
+      description: Use this API to get Social Engagement List
+      operationId: social-engagement-list
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the News Letters data need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: result-type
+        in: query
+        description: Type by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - department
+          - location
+          default: department
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"data\": [\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=Gurgaon+%40%40+Haryana+%40%40+India\",\n                \"shares\": 0,\n                \"replies\": 0,\n                \"posts\": 0,\n                \"likes\": 0,\n                \"label\": \"Gurgaon, Haryana, India\",\n                \"favorites\": 0\n            },\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+india\",\n                \"shares\": 0,\n                \"replies\": 0,\n                \"posts\": 0,\n                \"likes\": 0,\n                \"label\": \"india\",\n                \"favorites\": 0\n            },\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US\",\n                \"shares\": 0,\n                \"replies\": 0,\n                \"posts\": 0,\n                \"likes\": 0,\n                \"label\": \"US\",\n                \"favorites\": 0\n            },\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+India\",\n                \"shares\": 0,\n                \"replies\": 0,\n                \"posts\": 0,\n                \"likes\": 0,\n                \"label\": \"India\",\n                \"favorites\": 0\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getEngagementList&to=2022-03-20&from=2020-02-18&orderBy=bottom&resultType=location\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=Gurgaon+%40%40+Haryana+%40%40+India
+                            shares:
+                              type: integer
+                              example: 0
+                              default: 0
+                            replies:
+                              type: integer
+                              example: 0
+                              default: 0
+                            posts:
+                              type: integer
+                              example: 0
+                              default: 0
+                            likes:
+                              type: integer
+                              example: 0
+                              default: 0
+                            label:
+                              type: string
+                              example: Gurgaon, Haryana, India
+                            favorites:
+                              type: integer
+                              example: 0
+                              default: 0
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getEngagementList&to=2022-03-20&from=2020-02-18&orderBy=bottom&resultType=location
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+  /analytics/views:
+    get:
+      summary: Get Views List
+      description: Use this API to get Views List
+      operationId: app-adoption-2
+      parameters:
+      - name: from
+        in: query
+        description: Time from which the Views List need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2020-12-27'
+      - name: to
+        in: query
+        description: Time till which the Views List need to be selected
+        required: true
+        schema:
+          type: string
+          default: '2022-01-26'
+      - name: group-by
+        in: query
+        description: Group the Result according to group-by value
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          default: day
+      - name: order-by
+        in: query
+        description: Order by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - top
+          - bottom
+          default: top
+      - name: result-type
+        in: query
+        description: Type by which result need to be selected
+        required: true
+        schema:
+          type: string
+          enum:
+          - department
+          - location
+          default: department
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      - name: filter-by
+        in: query
+        description: Filter to apply to results
+        required: true
+        schema:
+          type: string
+          enum:
+          - null
+          - department
+          - location
+          default: null
+      - name: filter-value
+        in: query
+        description: Value by which result has to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"value\": 1,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US\",\n                \"uniqueViews\": 0,\n                \"label\": \"US\"\n            },\n            {\n                \"value\": 53,\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+India\",\n                \"uniqueViews\": 0,\n                \"label\": \"India\"\n            }\n        ],\n        \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getViewsList&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=bottom\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 1
+                              default: 0
+                            url:
+                              type: string
+                              example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people&location=+%40%40++%40%40+US
+                            uniqueViews:
+                              type: integer
+                              example: 0
+                              default: 0
+                            label:
+                              type: string
+                              example: US
+                      csvUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=getViewsList&to=2022-01-26&from=2019-12-27&resultType=location&orderBy=bottom
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 401,\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"data\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                    default: 0
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  data:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Analytics
+    servers:
+    - url: https://api.ec.simpplr.com/api
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-refined-from:
+- simpplr-api-gateway-openapi.yml
+- simpplr-staging-openapi.yml
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0

@@ -1,0 +1,434 @@
+openapi: 3.2.0
+info:
+  title: simpplr-api-gateway Notifications API
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Notifications
+paths:
+  /notifications:
+    post:
+      summary: Create a Notification
+      description: Use this API to create a Notification.
+      operationId: create-a-notification
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - property-name
+              - sent-to
+              - sent-by
+              - url
+              - comment
+              properties:
+                property-name:
+                  type: string
+                  description: How should a user be identified
+                  default: email
+                  enum:
+                  - email
+                  - username
+                sent-to:
+                  type: string
+                  description: If property-name is email, then the email OR if the property-name is username, then the username of the person to send this Notification to
+                sent-by:
+                  type: string
+                  description: If property-name is email, then the email OR if the property-name is username, then the username of the person to send this Notification to
+                url:
+                  type: string
+                  description: Target URL for the Notification
+                  default: https://test.com
+                notification-type:
+                  type: string
+                  description: Actionable - Notifications which require some action, like a follow request , leave approval.   Information - Notification which publishes some information
+                  default: Actionable
+                  enum:
+                  - Actionable
+                  - Information
+                comment:
+                  type: string
+                  description: Possible literals - {{fullName}}
+                  default: '{{fullName}} has submitted leave request for approval'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"notificationId\": \"a0O5e000002ShSiEAK\"\n    },\n    \"responseTimeStamp\": \"1631691906937\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      notificationId:
+                        type: string
+                        example: a0O5e000002ShSiEAK
+                  responseTimeStamp:
+                    type: string
+                    example: '1631691906937'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Notifications
+    get:
+      summary: Search for Notifications
+      description: Use this API to search for Notifications.
+      operationId: search-for-notifications
+      parameters:
+      - name: since
+        in: query
+        description: Time Stamp
+        schema:
+          type: string
+          default: '1608021029402'
+      - name: size
+        in: query
+        description: Page size
+        schema:
+          type: string
+          default: '1'
+      - name: include-actioned
+        in: query
+        description: Should actioned Notifications be included
+        required: true
+        schema:
+          type: boolean
+          default: true
+      - name: filter
+        in: query
+        description: Filter to apply to results
+        schema:
+          type: string
+          enum:
+          - activity
+          - actionable
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"newCounts\": {\n            \"activity\": 0,\n            \"actionable\": 7\n        },\n        \"listOfItems\": [\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgzLEAS\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"actioned\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgzLEAS\",\n                \"createdAt\": \"2021-09-14T16:40:28.000+0530\",\n                \"category\": \"External\",\n                \"actionedBy\": {\n                    \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n                    \"name\": \"Arun Cherian\",\n                    \"id\": \"a115e000002FFncAAG\"\n                }\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgzGEAS\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgzGEAS\",\n                \"createdAt\": \"2021-09-14T16:21:21.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgymEAC\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgymEAC\",\n                \"createdAt\": \"2021-09-14T13:41:16.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgyhEAC\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgyhEAC\",\n                \"createdAt\": \"2021-09-14T13:06:12.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgycEAC\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgycEAC\",\n                \"createdAt\": \"2021-09-14T13:05:44.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgdDEAS\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SgdDEAS\",\n                \"createdAt\": \"2021-09-13T16:23:41.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002Sgd8EAC\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002Sgd8EAC\",\n                \"createdAt\": \"2021-09-13T16:20:41.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002Sgd3EAC\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"new\",\n                \"stamp\": \"pending\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002Sgd3EAC\",\n                \"createdAt\": \"2021-09-13T15:39:02.000+0530\",\n                \"category\": \"External\"\n            },\n            {\n                \"user\": {\n                    \"name\": \"Simpplr Service Account\",\n                    \"id\": \"a115e000000abUEAAY\"\n                },\n                \"url\": \"https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SfN9EAK\",\n                \"text\": \"{{fullName}} has submmitted leave request for approval\",\n                \"state\": \"actioned\",\n                \"isSeen\": false,\n                \"isRead\": false,\n                \"isActionable\": true,\n                \"id\": \"a0O5e000002SfN9EAK\",\n                \"createdAt\": \"2021-09-09T14:48:12.000+0530\",\n                \"category\": \"External\",\n                \"actionedBy\": {\n                    \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG\",\n                    \"name\": \"Arun Cherian\",\n                    \"id\": \"a115e000002FFncAAG\"\n                }\n            },\n            {\n                \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/NotificationRedirectionServer?redirectPageName=HomeFeedSinglePost&notificationId=a0O5e0000026rOJEAY&origin=ian\",\n                \"text\": \"Download the mobile app to connect with coworkers and stay on top of company news\",\n                \"state\": \"read\",\n                \"isSeen\": false,\n                \"isRead\": true,\n                \"isActionable\": false,\n                \"id\": \"a0O5e0000026rOJEAY\",\n                \"createdAt\": \"2021-08-15T18:29:25.000+0530\",\n                \"category\": \"Mobile_Promotion\"\n            }\n        ]\n    },\n    \"responseTimeStamp\": \"1631691487719\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      newCounts:
+                        type: object
+                        properties:
+                          activity:
+                            type: integer
+                            example: 0
+                            default: 0
+                          actionable:
+                            type: integer
+                            example: 7
+                            default: 0
+                      listOfItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            user:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: Simpplr Service Account
+                                id:
+                                  type: string
+                                  example: a115e000000abUEAAY
+                            url:
+                              type: string
+                              example: https://simpplr.pbcpayroll.in/Pages/ESS1903.aspx?hash=IN0mRDbZON8fRsv481qnG9En4arlPDKzIJP8TMLrPKbC79GoH9Gc8Mrm9cyz89CmG1I&notificationId=a0O5e000002SgzLEAS
+                            text:
+                              type: string
+                              example: '{{fullName}} has submmitted leave request for approval'
+                            state:
+                              type: string
+                              example: actioned
+                            isSeen:
+                              type: boolean
+                              example: false
+                              default: true
+                            isRead:
+                              type: boolean
+                              example: false
+                              default: true
+                            isActionable:
+                              type: boolean
+                              example: true
+                              default: true
+                            id:
+                              type: string
+                              example: a0O5e000002SgzLEAS
+                            createdAt:
+                              type: string
+                              example: 2021-09-14T16:40:28.000+0530
+                            category:
+                              type: string
+                              example: External
+                            actionedBy:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/people/a115e000002FFncAAG
+                                name:
+                                  type: string
+                                  example: Arun Cherian
+                                id:
+                                  type: string
+                                  example: a115e000002FFncAAG
+                  responseTimeStamp:
+                    type: string
+                    example: '1631691487719'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Notifications
+  /notifications/{notification-id}:
+    put:
+      summary: Update a Notification
+      description: Use this API to update a Notification.
+      operationId: update-a-notification
+      parameters:
+      - name: notification-id
+        in: path
+        schema:
+          type: string
+          default: a0O5e000002ShSiEAK
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - property-name
+              - action-by
+              - action-at
+              properties:
+                property-name:
+                  type: string
+                  description: How should a user be identified
+                  default: email
+                  enum:
+                  - email
+                  - username
+                action-by:
+                  type: string
+                  description: If property-name is email, then the email OR if the property-name is username, then the username of the person who is updating this Notification
+                action-at:
+                  type: string
+                  description: 'Format: YYYY-MM-DDTHH:MM:SS+05:30'
+                is-deleted:
+                  type: boolean
+                  default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {},\n    \"responseTimeStamp\": \"1631692147630\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties: {}
+                  responseTimeStamp:
+                    type: string
+                    example: '1631692147630'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Notifications
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0

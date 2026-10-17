@@ -1,0 +1,2128 @@
+openapi: 3.2.0
+info:
+  title: simpplr-api-gateway Sites API
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Sites
+paths:
+  /sites:
+    post:
+      summary: Create a Site
+      description: Use this API to create a new Site.
+      operationId: create-a-site
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - access
+              - landing-page
+              - name
+              - is-content-submissions-enabled
+              - is-question-answer-enabled
+              - is-membership-auto-approved
+              - category-name
+              properties:
+                access:
+                  type: string
+                  description: Access level for this Site
+                  default: public
+                  enum:
+                  - public
+                  - private
+                  - unlisted
+                landing-page:
+                  type: string
+                  description: Which site page is used as the landing page? (Should be dashboard if the dashboard is enabled)
+                  default: dashboard
+                  enum:
+                  - dashboard
+                  - feed
+                  - content
+                  - files
+                  - about
+                is-owner:
+                  type: boolean
+                  description: Is the current user the Owner of this Site?
+                  default: false
+                has-pages:
+                  type: boolean
+                  description: Is the Pages feature enabled for this Site?
+                  default: true
+                name:
+                  type: string
+                  description: 'Site name (max length : 255)'
+                  default: Site created from Developer Portal
+                has-events:
+                  type: boolean
+                  description: Is the Events feature enabled for this Site?
+                  default: false
+                has-dashboard:
+                  type: boolean
+                  description: Is the dashboard feature enabled for this Site?
+                  default: true
+                has-albums:
+                  type: boolean
+                  description: Is the Albums feature enabled for this Site?
+                  default: true
+                is-content-submissions-enabled:
+                  type: boolean
+                  description: Is content submission allowed for this Site?
+                  default: true
+                is-question-answer-enabled:
+                  type: boolean
+                  description: Can this Site have a Q&A section
+                  default: true
+                is-membership-auto-approved:
+                  type: boolean
+                  default: true
+                category-name:
+                  type: string
+                  description: Name of Category in which user want to create site
+                  default: Uncategorized
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"url\": \"https://xxx.visualforce.com/apex/app?u=/site/a1A5e000001wXnxxx/dashboard\",\n        \"title\": \"Test API Site arun postman\",\n        \"teams\": false,\n        \"storageProvider\": \"intranet\",\n        \"siteId\": \"a1A5e000001wXnhxxx\",\n        \"name\": \"Test API Site arun postman\",\n        \"members\": 1,\n        \"memberCount\": 1,\n        \"managerCount\": 1,\n        \"landingPage\": \"dashboard\",\n        \"isQuestionAnswerEnabled\": true,\n        \"isPrivate\": false,\n        \"isOwner\": true,\n        \"isMembershipAutoApproved\": false,\n        \"isMember\": true,\n        \"isManager\": true,\n        \"isListed\": true,\n        \"isInMandatorySubscription\": false,\n        \"isFollower\": false,\n        \"isFeatured\": false,\n        \"isFavorited\": false,\n        \"isContentSubmissionsEnabled\": true,\n        \"isContentManager\": false,\n        \"isContentFeedEnabled\": true,\n        \"isBroadcast\": false,\n        \"isActive\": true,\n        \"isAccessRequested\": false,\n        \"id\": \"a1A5e000001wXxxx\",\n        \"hasPages\": true,\n        \"hasEvents\": true,\n        \"hasDashboard\": true,\n        \"hasContent\": false,\n        \"hasAlbums\": true,\n        \"followerCount\": 0,\n        \"editUrl\": \"https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wXnhxxx\",\n        \"dashboardLayout\": \"e\",\n        \"createdAt\": \"2021-09-14T21:43:48.000+0530\",\n        \"chatterGroupId\": \"0F95e00000068tGxxx\",\n        \"category\": {\n            \"url\": \"https://xxxx.visualforce.com/apex/app?u=/sites/category?category=a1C5e0000006pbxxx\",\n            \"name\": \"Uncategorized\",\n            \"id\": \"a1C5e0000006pbbExxx\"\n        },\n        \"canMention\": true,\n        \"canEdit\": true,\n        \"canCreatePage\": true,\n        \"canCreateEvent\": true,\n        \"canCreateAlbum\": true,\n        \"canActivateDeactivate\": true,\n        \"analytics\": {\n            \"totalPageCount\": 0,\n            \"totalEventCount\": 0,\n            \"totalAlbumCount\": 0,\n            \"csvUrl\": \"https://xxx.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000001wXnxxx\"\n        },\n        \"access\": \"Public\"\n    },\n    \"responseTimeStamp\": \"1631636030166\",\n    \"redirectUrl\": \"https://xxx.visualforce.com/apex/app?u=/site/a1A5e000001wXnxxx/dashboard\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: https://xxx.visualforce.com/apex/app?u=/site/a1A5e000001wXnxxx/dashboard
+                      title:
+                        type: string
+                        example: Test API Site arun postman
+                      teams:
+                        type: boolean
+                        example: false
+                        default: true
+                      storageProvider:
+                        type: string
+                        example: intranet
+                      siteId:
+                        type: string
+                        example: a1A5e000001wXnhxxx
+                      name:
+                        type: string
+                        example: Test API Site arun postman
+                      members:
+                        type: integer
+                        example: 1
+                        default: 0
+                      memberCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      managerCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      landingPage:
+                        type: string
+                        example: dashboard
+                      isQuestionAnswerEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isPrivate:
+                        type: boolean
+                        example: false
+                        default: true
+                      isOwner:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMembershipAutoApproved:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMember:
+                        type: boolean
+                        example: true
+                        default: true
+                      isManager:
+                        type: boolean
+                        example: true
+                        default: true
+                      isListed:
+                        type: boolean
+                        example: true
+                        default: true
+                      isInMandatorySubscription:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFollower:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeatured:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentSubmissionsEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isContentManager:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isBroadcast:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      isAccessRequested:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a1A5e000001wXxxx
+                      hasPages:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasEvents:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasDashboard:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasContent:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasAlbums:
+                        type: boolean
+                        example: true
+                        default: true
+                      followerCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      editUrl:
+                        type: string
+                        example: https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wXnhxxx
+                      dashboardLayout:
+                        type: string
+                        example: e
+                      createdAt:
+                        type: string
+                        example: 2021-09-14T21:43:48.000+0530
+                      chatterGroupId:
+                        type: string
+                        example: 0F95e00000068tGxxx
+                      category:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                            example: https://xxxx.visualforce.com/apex/app?u=/sites/category?category=a1C5e0000006pbxxx
+                          name:
+                            type: string
+                            example: Uncategorized
+                          id:
+                            type: string
+                            example: a1C5e0000006pbbExxx
+                      canMention:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreatePage:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateEvent:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateAlbum:
+                        type: boolean
+                        example: true
+                        default: true
+                      canActivateDeactivate:
+                        type: boolean
+                        example: true
+                        default: true
+                      analytics:
+                        type: object
+                        properties:
+                          totalPageCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalEventCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalAlbumCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          csvUrl:
+                            type: string
+                            example: https://xxx.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000001wXnxxx
+                      access:
+                        type: string
+                        example: Public
+                  responseTimeStamp:
+                    type: string
+                    example: '1631636030166'
+                  redirectUrl:
+                    type: string
+                    example: https://xxx.visualforce.com/apex/app?u=/site/a1A5e000001wXnxxx/dashboard
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+    get:
+      summary: Search for Sites
+      description: Use this API to search for Sites
+      operationId: search-for-sites
+      parameters:
+      - name: size
+        in: query
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 16
+      - name: category
+        in: query
+        description: ID of Category that resulting Sites should belong to
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Filter to apply to results
+        schema:
+          type: string
+          enum:
+          - category
+          - popular
+          - active
+          - following
+          - member
+          - featured
+          - contributed
+          default: popular
+      - name: sort-by
+        in: query
+        description: Technique for sorting results
+        schema:
+          type: string
+          enum:
+          - featured
+          - alphabetical
+          - createdNewest
+          - popular
+          - createdOldest
+          default: createdNewest
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"nextPageToken\": \"1\",\n        \"listOfItems\": [\n            {\n                \"url\": \"https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRxxxx/dashboard\",\n                \"title\": \"Test API Site 11\",\n                \"siteId\": \"a1A5e000001wJRWxxx\",\n                \"peopleCount\": 2,\n                \"name\": \"Test API Site 11\",\n                \"memberCount\": 1,\n                \"isPublic\": true,\n                \"isPrivate\": false,\n                \"isOwner\": false,\n                \"isMember\": false,\n                \"isManager\": false,\n                \"isListed\": true,\n                \"isInMandatorySubscription\": false,\n                \"isFollower\": true,\n                \"isFeatured\": false,\n                \"isFavorited\": false,\n                \"isContentManager\": false,\n                \"isBroadcast\": false,\n                \"isActive\": true,\n                \"isAccessRequested\": false,\n                \"id\": \"a1A5e000001wJRWEA2\",\n                \"hasPages\": true,\n                \"hasEvents\": true,\n                \"hasContent\": false,\n                \"hasAlbums\": true,\n                \"followerCount\": 1,\n                \"editUrl\": \"https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wJRxxxx\",\n                \"chatterGroupId\": \"0F95e000000664Jxxx\",\n                \"category\": {\n                    \"url\": \"https://xxxxx.visualforce.com/apex/app?u=/sites/category&category=a1C5e0000006pbxxx\",\n                    \"name\": \"Uncategorized\",\n                    \"id\": \"a1C5e0000006pbbxxx\",\n                    \"categoryId\": \"a1C5e0000006pbbExxx\"\n                },\n                \"canEdit\": true,\n                \"canCreatePage\": true,\n                \"canCreateEvent\": true,\n                \"canCreateAlbum\": true,\n                \"canActivateDeactivate\": true,\n                \"access\": \"Public\",\n                \"aboutUrl\": \"https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRWEA2/about\"\n            }\n        ]\n    },\n    \"responseTimeStamp\": \"1631638430880\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      nextPageToken:
+                        type: string
+                        example: '1'
+                      listOfItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRxxxx/dashboard
+                            title:
+                              type: string
+                              example: Test API Site 11
+                            siteId:
+                              type: string
+                              example: a1A5e000001wJRWxxx
+                            peopleCount:
+                              type: integer
+                              example: 2
+                              default: 0
+                            name:
+                              type: string
+                              example: Test API Site 11
+                            memberCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            isPublic:
+                              type: boolean
+                              example: true
+                              default: true
+                            isPrivate:
+                              type: boolean
+                              example: false
+                              default: true
+                            isOwner:
+                              type: boolean
+                              example: false
+                              default: true
+                            isMember:
+                              type: boolean
+                              example: false
+                              default: true
+                            isManager:
+                              type: boolean
+                              example: false
+                              default: true
+                            isListed:
+                              type: boolean
+                              example: true
+                              default: true
+                            isInMandatorySubscription:
+                              type: boolean
+                              example: false
+                              default: true
+                            isFollower:
+                              type: boolean
+                              example: true
+                              default: true
+                            isFeatured:
+                              type: boolean
+                              example: false
+                              default: true
+                            isFavorited:
+                              type: boolean
+                              example: false
+                              default: true
+                            isContentManager:
+                              type: boolean
+                              example: false
+                              default: true
+                            isBroadcast:
+                              type: boolean
+                              example: false
+                              default: true
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            isAccessRequested:
+                              type: boolean
+                              example: false
+                              default: true
+                            id:
+                              type: string
+                              example: a1A5e000001wJRWEA2
+                            hasPages:
+                              type: boolean
+                              example: true
+                              default: true
+                            hasEvents:
+                              type: boolean
+                              example: true
+                              default: true
+                            hasContent:
+                              type: boolean
+                              example: false
+                              default: true
+                            hasAlbums:
+                              type: boolean
+                              example: true
+                              default: true
+                            followerCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            editUrl:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wJRxxxx
+                            chatterGroupId:
+                              type: string
+                              example: 0F95e000000664Jxxx
+                            category:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: https://xxxxx.visualforce.com/apex/app?u=/sites/category&category=a1C5e0000006pbxxx
+                                name:
+                                  type: string
+                                  example: Uncategorized
+                                id:
+                                  type: string
+                                  example: a1C5e0000006pbbxxx
+                                categoryId:
+                                  type: string
+                                  example: a1C5e0000006pbbExxx
+                            canEdit:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreatePage:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreateEvent:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreateAlbum:
+                              type: boolean
+                              example: true
+                              default: true
+                            canActivateDeactivate:
+                              type: boolean
+                              example: true
+                              default: true
+                            access:
+                              type: string
+                              example: Public
+                            aboutUrl:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRWEA2/about
+                  responseTimeStamp:
+                    type: string
+                    example: '1631638430880'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+  /sites/activate:
+    put:
+      summary: Update Site as active
+      description: Use this API to update the Site status as active
+      operationId: update-site-as-active
+      parameters:
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - ids-array
+              - make-activated-bool
+              properties:
+                ids-array:
+                  type: array
+                  description: List of Site ID's which needs to be activated
+                  default:
+                  - a1A5e000001wS5AEAU
+                  items:
+                    type: string
+                make-activated-bool:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"category\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e0000006pbbEAA\",\n            \"name\": \"Uncategorized\",\n            \"id\": \"a1C5e0000006pbbEAA\"\n        }\n    },\n    \"responseTimeStamp\": \"1631644605120\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      category:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e0000006pbbEAA
+                          name:
+                            type: string
+                            example: Uncategorized
+                          id:
+                            type: string
+                            example: a1C5e0000006pbbEAA
+                  responseTimeStamp:
+                    type: string
+                    example: '1631644605120'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+  /sites/{site-id}:
+    get:
+      summary: Get Site by ID
+      description: Use this API to get site by ID
+      operationId: get-site-by-id
+      parameters:
+      - name: site-id
+        in: path
+        description: ID of the Site to search for
+        schema:
+          type: string
+          default: a1A5e000002vUpXEAU
+        required: true
+      - name: x-user-email
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000002vUpXEAU/dashboard\",\n        \"title\": \"My first site in Simpplr 1253\",\n        \"teams\": false,\n        \"storageProvider\": \"intranet\",\n        \"siteId\": \"a1A5e000002vUpXEAU\",\n        \"name\": \"My first site in Simpplr 1253\",\n        \"members\": 0,\n        \"memberCount\": 1,\n        \"managerCount\": 1,\n        \"landingPage\": \"dashboard\",\n        \"isQuestionAnswerEnabled\": true,\n        \"isPrivate\": false,\n        \"isOwner\": true,\n        \"isMembershipAutoApproved\": false,\n        \"isMember\": true,\n        \"isManager\": true,\n        \"isListed\": true,\n        \"isInMandatorySubscription\": false,\n        \"isFollower\": false,\n        \"isFeatured\": false,\n        \"isFavorited\": false,\n        \"isContentSubmissionsEnabled\": true,\n        \"isContentManager\": false,\n        \"isContentFeedEnabled\": true,\n        \"isBroadcast\": false,\n        \"isActive\": true,\n        \"isAccessRequested\": false,\n        \"id\": \"a1A5e000002vUpXEAU\",\n        \"hasPages\": true,\n        \"hasEvents\": true,\n        \"hasDashboard\": true,\n        \"hasContent\": false,\n        \"hasAlbums\": false,\n        \"followerCount\": 0,\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/manage/sites/a1A5e000002vUpXEAU\",\n        \"dashboardLayout\": \"e\",\n        \"createdAt\": \"2022-03-04T12:00:27.000+0530\",\n        \"chatterGroupId\": \"0F95e0000006BbXCAU\",\n        \"category\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e000001EH2UEAW\",\n            \"name\": \"open\",\n            \"id\": \"a1C5e000001EH2UEAW\"\n        },\n        \"canUploadAllFileTypes\": false,\n        \"canMention\": true,\n        \"canEdit\": true,\n        \"canCreatePage\": true,\n        \"canCreateEvent\": true,\n        \"canCreateAlbum\": false,\n        \"canActivateDeactivate\": true,\n        \"analytics\": {\n            \"totalPageCount\": 0,\n            \"totalEventCount\": 0,\n            \"totalAlbumCount\": 0,\n            \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000002vUpXEAU\"\n        },\n        \"access\": \"Public\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000002vUpXEAU/dashboard
+                      title:
+                        type: string
+                        example: My first site in Simpplr 1253
+                      teams:
+                        type: boolean
+                        example: false
+                        default: true
+                      storageProvider:
+                        type: string
+                        example: intranet
+                      siteId:
+                        type: string
+                        example: a1A5e000002vUpXEAU
+                      name:
+                        type: string
+                        example: My first site in Simpplr 1253
+                      members:
+                        type: integer
+                        example: 0
+                        default: 0
+                      memberCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      managerCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      landingPage:
+                        type: string
+                        example: dashboard
+                      isQuestionAnswerEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isPrivate:
+                        type: boolean
+                        example: false
+                        default: true
+                      isOwner:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMembershipAutoApproved:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMember:
+                        type: boolean
+                        example: true
+                        default: true
+                      isManager:
+                        type: boolean
+                        example: true
+                        default: true
+                      isListed:
+                        type: boolean
+                        example: true
+                        default: true
+                      isInMandatorySubscription:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFollower:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeatured:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentSubmissionsEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isContentManager:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isBroadcast:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      isAccessRequested:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a1A5e000002vUpXEAU
+                      hasPages:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasEvents:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasDashboard:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasContent:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasAlbums:
+                        type: boolean
+                        example: false
+                        default: true
+                      followerCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      editUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/manage/sites/a1A5e000002vUpXEAU
+                      dashboardLayout:
+                        type: string
+                        example: e
+                      createdAt:
+                        type: string
+                        example: 2022-03-04T12:00:27.000+0530
+                      chatterGroupId:
+                        type: string
+                        example: 0F95e0000006BbXCAU
+                      category:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e000001EH2UEAW
+                          name:
+                            type: string
+                            example: open
+                          id:
+                            type: string
+                            example: a1C5e000001EH2UEAW
+                      canUploadAllFileTypes:
+                        type: boolean
+                        example: false
+                        default: true
+                      canMention:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreatePage:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateEvent:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateAlbum:
+                        type: boolean
+                        example: false
+                        default: true
+                      canActivateDeactivate:
+                        type: boolean
+                        example: true
+                        default: true
+                      analytics:
+                        type: object
+                        properties:
+                          totalPageCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalEventCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalAlbumCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          csvUrl:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000002vUpXEAU
+                      access:
+                        type: string
+                        example: Public
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+    put:
+      summary: Update a Site
+      description: Use this API to update a Site
+      operationId: update-a-site
+      parameters:
+      - name: site-id
+        in: path
+        description: Id of site that need to updated
+        schema:
+          type: string
+          default: a1A5e000001xRivEAE
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - site-id
+              - access
+              - name
+              - storage-provider
+              - has-pages
+              - has-events
+              - has-albums
+              - has-content
+              - is-broadcast
+              - is-content-submissions-enabled
+              - is-question-answer-enabled
+              - is-content-feed-enabled
+              - category-id
+              - img-file
+              properties:
+                site-id:
+                  type: string
+                  description: Id of the site
+                  default: a1A5e000001xRivEAE
+                access:
+                  type: string
+                  description: Access level for this Site
+                  default: public
+                  enum:
+                  - public
+                  - private
+                name:
+                  type: string
+                  description: 'Site name (max length : 255)'
+                  default: Test API Site_20000
+                storage-provider:
+                  type: string
+                  description: Storage in which site data will store
+                  default: intranet
+                has-pages:
+                  type: boolean
+                  description: Is the Pages feature enabled for this Site?
+                  default: true
+                has-events:
+                  type: boolean
+                  description: Is the Events feature enabled for this Site?
+                  default: true
+                has-albums:
+                  type: boolean
+                  description: Is the Albums feature enabled for this Site?
+                  default: true
+                has-content:
+                  type: boolean
+                  description: Is the content feature enabled for this Site?
+                  default: false
+                is-broadcast:
+                  type: boolean
+                  description: Is this site will broadcast
+                  default: false
+                is-content-submissions-enabled:
+                  type: boolean
+                  description: Is content submission allowed for this Site?
+                  default: true
+                is-question-answer-enabled:
+                  type: boolean
+                  description: Can this Site have a Q&A section
+                  default: true
+                is-content-feed-enabled:
+                  type: boolean
+                  description: Is content feed allowed for this Site?
+                  default: true
+                category-id:
+                  type: string
+                  description: Id of Category in which user want to create site
+                  default: a1C5e000001EH2UEAW
+                img-file:
+                  type: string
+                  default: 'null'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"statusCode\": 200,\n    \"status\": \"success\",\n    \"message\": \"\",\n    \"data\": {\n        \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001xRivEAE/null\",\n        \"title\": \"Test API Site_20000\",\n        \"teams\": false,\n        \"storageProvider\": \"intranet\",\n        \"siteId\": \"a1A5e000001xRivEAE\",\n        \"name\": \"Test API Site_20000\",\n        \"members\": 1,\n        \"memberCount\": 1,\n        \"managerCount\": 1,\n        \"isQuestionAnswerEnabled\": true,\n        \"isPrivate\": false,\n        \"isOwner\": true,\n        \"isMembershipAutoApproved\": false,\n        \"isMember\": true,\n        \"isManager\": true,\n        \"isListed\": true,\n        \"isInMandatorySubscription\": false,\n        \"isFollower\": false,\n        \"isFeatured\": false,\n        \"isFavorited\": false,\n        \"isContentSubmissionsEnabled\": true,\n        \"isContentManager\": false,\n        \"isContentFeedEnabled\": true,\n        \"isBroadcast\": false,\n        \"isActive\": true,\n        \"isAccessRequested\": false,\n        \"id\": \"a1A5e000001xRivEAE\",\n        \"hasPages\": true,\n        \"hasEvents\": true,\n        \"hasDashboard\": false,\n        \"hasContent\": true,\n        \"hasAlbums\": true,\n        \"followerCount\": 0,\n        \"editUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/manage/sites/a1A5e000001xRivEAE\",\n        \"dashboardLayout\": \"D\",\n        \"createdAt\": \"2021-11-18T16:39:48.000+0530\",\n        \"chatterGroupId\": \"0F95e00000069vaCAA\",\n        \"category\": {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e000001EH2UEAW\",\n            \"name\": \"open\",\n            \"id\": \"a1C5e000001EH2UEAW\"\n        },\n        \"canMention\": true,\n        \"canEdit\": true,\n        \"canCreatePage\": true,\n        \"canCreateEvent\": true,\n        \"canCreateAlbum\": true,\n        \"canActivateDeactivate\": true,\n        \"analytics\": {\n            \"totalPageCount\": 0,\n            \"totalEventCount\": 3,\n            \"totalAlbumCount\": 0,\n            \"csvUrl\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000001xRivEAE\"\n        },\n        \"access\": \"Public\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                    default: 0
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001xRivEAE/null
+                      title:
+                        type: string
+                        example: Test API Site_20000
+                      teams:
+                        type: boolean
+                        example: false
+                        default: true
+                      storageProvider:
+                        type: string
+                        example: intranet
+                      siteId:
+                        type: string
+                        example: a1A5e000001xRivEAE
+                      name:
+                        type: string
+                        example: Test API Site_20000
+                      members:
+                        type: integer
+                        example: 1
+                        default: 0
+                      memberCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      managerCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      isQuestionAnswerEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isPrivate:
+                        type: boolean
+                        example: false
+                        default: true
+                      isOwner:
+                        type: boolean
+                        example: true
+                        default: true
+                      isMembershipAutoApproved:
+                        type: boolean
+                        example: false
+                        default: true
+                      isMember:
+                        type: boolean
+                        example: true
+                        default: true
+                      isManager:
+                        type: boolean
+                        example: true
+                        default: true
+                      isListed:
+                        type: boolean
+                        example: true
+                        default: true
+                      isInMandatorySubscription:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFollower:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFeatured:
+                        type: boolean
+                        example: false
+                        default: true
+                      isFavorited:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentSubmissionsEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isContentManager:
+                        type: boolean
+                        example: false
+                        default: true
+                      isContentFeedEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      isBroadcast:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      isAccessRequested:
+                        type: boolean
+                        example: false
+                        default: true
+                      id:
+                        type: string
+                        example: a1A5e000001xRivEAE
+                      hasPages:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasEvents:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasDashboard:
+                        type: boolean
+                        example: false
+                        default: true
+                      hasContent:
+                        type: boolean
+                        example: true
+                        default: true
+                      hasAlbums:
+                        type: boolean
+                        example: true
+                        default: true
+                      followerCount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      editUrl:
+                        type: string
+                        example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/manage/sites/a1A5e000001xRivEAE
+                      dashboardLayout:
+                        type: string
+                        example: D
+                      createdAt:
+                        type: string
+                        example: 2021-11-18T16:39:48.000+0530
+                      chatterGroupId:
+                        type: string
+                        example: 0F95e00000069vaCAA
+                      category:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/sites/category?category=a1C5e000001EH2UEAW
+                          name:
+                            type: string
+                            example: open
+                          id:
+                            type: string
+                            example: a1C5e000001EH2UEAW
+                      canMention:
+                        type: boolean
+                        example: true
+                        default: true
+                      canEdit:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreatePage:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateEvent:
+                        type: boolean
+                        example: true
+                        default: true
+                      canCreateAlbum:
+                        type: boolean
+                        example: true
+                        default: true
+                      canActivateDeactivate:
+                        type: boolean
+                        example: true
+                        default: true
+                      analytics:
+                        type: object
+                        properties:
+                          totalPageCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          totalEventCount:
+                            type: integer
+                            example: 3
+                            default: 0
+                          totalAlbumCount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          csvUrl:
+                            type: string
+                            example: https://ajay-hada-dev-ed--c.visualforce.com/apex/Reports?action=geSiteContentTypes&SiteId=a1A5e000001xRivEAE
+                      access:
+                        type: string
+                        example: Public
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+  /sites/{site-id}/follower/{follower-id}:
+    post:
+      summary: Add a Follower to a Site
+      description: Use this API to add a new Follower to a Site
+      operationId: add-a-follower-to-a-site
+      parameters:
+      - name: site-id
+        in: path
+        description: ID of the Site to which the Follower has to be added
+        schema:
+          type: string
+          default: a1A5e000001xXRxEAM
+        required: true
+      - name: follower-id
+        in: path
+        description: ID of the Follower to be added(sfUserId)
+        schema:
+          type: string
+          default: 0055e000006FlqjAAC
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": [\n        {\n            \"videoCallProvider\": \"zoom\",\n            \"url\": \"https://xxxxx.visualforce.com/apex/app?u=/people/a115e000002FFncxxx\",\n            \"sfUserId\": \"0055e000006GG3Jxxx\",\n            \"peopleId\": \"a115e000002FFncxxx\",\n            \"nickname\": \"User16281382456837619xxx\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isProtectedAuthor\": false,\n            \"isOwner\": false,\n            \"isMember\": false,\n            \"isManager\": false,\n            \"isFollowing\": false,\n            \"isFollower\": true,\n            \"isFavorited\": false,\n            \"isContentManager\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"hasConnectedSharePointAccount\": false,\n            \"hasConnectedOneDriveAccount\": false,\n            \"hasConnectedGoogleDriveAccount\": false,\n            \"hasConnectedDropboxAccount\": false,\n            \"email\": \"arun.cherian@simpplr.com\",\n            \"canRemove\": true,\n            \"canMakeOwner\": true,\n            \"canMakeNotManager\": false,\n            \"canMakeNotContentManager\": false,\n            \"canMakeManager\": true,\n            \"canMakeContentManager\": true,\n            \"canFollow\": false\n        }\n    ],\n    \"responseTimeStamp\": \"1631637683009\",\n    \"redirectUrl\": \"https://xxxx.visualforce.com/apex/ManageSitesMembers?siteId=a1A5e000001wJRWxxx&ts=1631637683009\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        videoCallProvider:
+                          type: string
+                          example: zoom
+                        url:
+                          type: string
+                          example: https://xxxxx.visualforce.com/apex/app?u=/people/a115e000002FFncxxx
+                        sfUserId:
+                          type: string
+                          example: 0055e000006GG3Jxxx
+                        peopleId:
+                          type: string
+                          example: a115e000002FFncxxx
+                        nickname:
+                          type: string
+                          example: User16281382456837619xxx
+                        name:
+                          type: string
+                          example: Arun Cherian
+                        location:
+                          type: string
+                          example: ''
+                        isProtectedAuthor:
+                          type: boolean
+                          example: false
+                          default: true
+                        isOwner:
+                          type: boolean
+                          example: false
+                          default: true
+                        isMember:
+                          type: boolean
+                          example: false
+                          default: true
+                        isManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        isFollowing:
+                          type: boolean
+                          example: false
+                          default: true
+                        isFollower:
+                          type: boolean
+                          example: true
+                          default: true
+                        isFavorited:
+                          type: boolean
+                          example: false
+                          default: true
+                        isContentManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        id:
+                          type: string
+                          example: a115e000002FFncAAG
+                        hasConnectedSharePointAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedOneDriveAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedGoogleDriveAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedDropboxAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        email:
+                          type: string
+                          example: arun.cherian@simpplr.com
+                        canRemove:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeOwner:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeNotManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        canMakeNotContentManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        canMakeManager:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeContentManager:
+                          type: boolean
+                          example: true
+                          default: true
+                        canFollow:
+                          type: boolean
+                          example: false
+                          default: true
+                  responseTimeStamp:
+                    type: string
+                    example: '1631637683009'
+                  redirectUrl:
+                    type: string
+                    example: https://xxxx.visualforce.com/apex/ManageSitesMembers?siteId=a1A5e000001wJRWxxx&ts=1631637683009
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+    delete:
+      summary: Remove a Follower from a Site
+      description: Use this API to remove a Follower from a Site
+      operationId: remove-a-follower-from-a-site
+      parameters:
+      - name: site-id
+        in: path
+        description: Site ID to remove the Follower from
+        schema:
+          type: string
+          default: a1A5e000001xXRxEAM
+        required: true
+      - name: follower-id
+        in: path
+        description: ID of the Follower to be removed(sfUserId)
+        schema:
+          type: string
+          default: 0055e000006FlqjAAC
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {},\n    \"responseTimeStamp\": \"1631640298904\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties: {}
+                  responseTimeStamp:
+                    type: string
+                    example: '1631640298904'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+  /sites/{site-id}/getFiles:
+    get:
+      summary: Get Files from a Site
+      description: Use this API to get files from Site by ID
+      operationId: search-for-site-by-id
+      parameters:
+      - name: site-id
+        in: path
+        description: ID of the Site to search for
+        schema:
+          type: string
+          default: a1A5e000001wJRWEA2
+        required: true
+      - name: folder-id
+        in: query
+        description: Id of the folder
+        schema:
+          type: string
+      - name: provider
+        in: query
+        description: Storage in which site data will store
+        required: true
+        schema:
+          type: string
+          default: Intranet
+      - name: full-control
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: sort-by
+        in: query
+        description: Technique for sorting results
+        schema:
+          type: string
+          enum:
+          - createdNewest
+          - createdOldest
+          - modifiedNewest
+          - modifiedOldest
+          - alphabetical
+          default: createdNewest
+      - name: size
+        in: query
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 16
+      - name: name
+        in: query
+        description: Name of the folder
+        schema:
+          type: string
+      - name: x-user-email
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"nextPageToken\": \"1\",\n        \"listOfItems\": [\n            {\n                \"url\": \"https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRxxxx/dashboard\",\n                \"title\": \"Test API Site 11\",\n                \"siteId\": \"a1A5e000001wJRWxxx\",\n                \"peopleCount\": 2,\n                \"name\": \"Test API Site 11\",\n                \"memberCount\": 1,\n                \"isPublic\": true,\n                \"isPrivate\": false,\n                \"isOwner\": false,\n                \"isMember\": false,\n                \"isManager\": false,\n                \"isListed\": true,\n                \"isInMandatorySubscription\": false,\n                \"isFollower\": true,\n                \"isFeatured\": false,\n                \"isFavorited\": false,\n                \"isContentManager\": false,\n                \"isBroadcast\": false,\n                \"isActive\": true,\n                \"isAccessRequested\": false,\n                \"id\": \"a1A5e000001wJRWEA2\",\n                \"hasPages\": true,\n                \"hasEvents\": true,\n                \"hasContent\": false,\n                \"hasAlbums\": true,\n                \"followerCount\": 1,\n                \"editUrl\": \"https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wJRxxxx\",\n                \"chatterGroupId\": \"0F95e000000664Jxxx\",\n                \"category\": {\n                    \"url\": \"https://xxxxx.visualforce.com/apex/app?u=/sites/category&category=a1C5e0000006pbxxx\",\n                    \"name\": \"Uncategorized\",\n                    \"id\": \"a1C5e0000006pbbxxx\",\n                    \"categoryId\": \"a1C5e0000006pbbExxx\"\n                },\n                \"canEdit\": true,\n                \"canCreatePage\": true,\n                \"canCreateEvent\": true,\n                \"canCreateAlbum\": true,\n                \"canActivateDeactivate\": true,\n                \"access\": \"Public\",\n                \"aboutUrl\": \"https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRWEA2/about\"\n            }\n        ]\n    },\n    \"responseTimeStamp\": \"1631638430880\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      nextPageToken:
+                        type: string
+                        example: '1'
+                      listOfItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRxxxx/dashboard
+                            title:
+                              type: string
+                              example: Test API Site 11
+                            siteId:
+                              type: string
+                              example: a1A5e000001wJRWxxx
+                            peopleCount:
+                              type: integer
+                              example: 2
+                              default: 0
+                            name:
+                              type: string
+                              example: Test API Site 11
+                            memberCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            isPublic:
+                              type: boolean
+                              example: true
+                              default: true
+                            isPrivate:
+                              type: boolean
+                              example: false
+                              default: true
+                            isOwner:
+                              type: boolean
+                              example: false
+                              default: true
+                            isMember:
+                              type: boolean
+                              example: false
+                              default: true
+                            isManager:
+                              type: boolean
+                              example: false
+                              default: true
+                            isListed:
+                              type: boolean
+                              example: true
+                              default: true
+                            isInMandatorySubscription:
+                              type: boolean
+                              example: false
+                              default: true
+                            isFollower:
+                              type: boolean
+                              example: true
+                              default: true
+                            isFeatured:
+                              type: boolean
+                              example: false
+                              default: true
+                            isFavorited:
+                              type: boolean
+                              example: false
+                              default: true
+                            isContentManager:
+                              type: boolean
+                              example: false
+                              default: true
+                            isBroadcast:
+                              type: boolean
+                              example: false
+                              default: true
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            isAccessRequested:
+                              type: boolean
+                              example: false
+                              default: true
+                            id:
+                              type: string
+                              example: a1A5e000001wJRWEA2
+                            hasPages:
+                              type: boolean
+                              example: true
+                              default: true
+                            hasEvents:
+                              type: boolean
+                              example: true
+                              default: true
+                            hasContent:
+                              type: boolean
+                              example: false
+                              default: true
+                            hasAlbums:
+                              type: boolean
+                              example: true
+                              default: true
+                            followerCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            editUrl:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/manage/sites/a1A5e000001wJRxxxx
+                            chatterGroupId:
+                              type: string
+                              example: 0F95e000000664Jxxx
+                            category:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: https://xxxxx.visualforce.com/apex/app?u=/sites/category&category=a1C5e0000006pbxxx
+                                name:
+                                  type: string
+                                  example: Uncategorized
+                                id:
+                                  type: string
+                                  example: a1C5e0000006pbbxxx
+                                categoryId:
+                                  type: string
+                                  example: a1C5e0000006pbbExxx
+                            canEdit:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreatePage:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreateEvent:
+                              type: boolean
+                              example: true
+                              default: true
+                            canCreateAlbum:
+                              type: boolean
+                              example: true
+                              default: true
+                            canActivateDeactivate:
+                              type: boolean
+                              example: true
+                              default: true
+                            access:
+                              type: string
+                              example: Public
+                            aboutUrl:
+                              type: string
+                              example: https://xxxx.visualforce.com/apex/app?u=/site/a1A5e000001wJRWEA2/about
+                  responseTimeStamp:
+                    type: string
+                    example: '1631638430880'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+  /sites/{site-id}/member/{member-id}:
+    post:
+      summary: Add a Member to a Site
+      description: Use this API to add a new Member to a Site
+      operationId: add-a-member-to-a-site
+      parameters:
+      - name: site-id
+        in: path
+        description: ID of the Site to which the Member has to be added
+        schema:
+          type: string
+          default: a1A5e000001xXRxEAM
+        required: true
+      - name: member-id
+        in: path
+        description: ID of the Member to be added(sfUserId)
+        schema:
+          type: string
+          default: 0055e000006FlqjAAC
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": [\n        {\n            \"videoCallProvider\": \"zoom\",\n            \"url\": \"https://xxxx.visualforce.com/apex/app?u=/people/a115e000002FFnxxxx\",\n            \"sfUserId\": \"0055e000006GG3Jxxx\",\n            \"peopleId\": \"a115e000002FFncxxx\",\n            \"nickname\": \"User1628138245683761xxxx\",\n            \"name\": \"Arun Cherian\",\n            \"location\": \"\",\n            \"isProtectedAuthor\": false,\n            \"isOwner\": false,\n            \"isMember\": true,\n            \"isManager\": false,\n            \"isFollowing\": false,\n            \"isFollower\": false,\n            \"isFavorited\": false,\n            \"isContentManager\": false,\n            \"isActive\": true,\n            \"id\": \"a115e000002FFncAAG\",\n            \"hasConnectedSharePointAccount\": false,\n            \"hasConnectedOneDriveAccount\": false,\n            \"hasConnectedGoogleDriveAccount\": false,\n            \"hasConnectedDropboxAccount\": false,\n            \"email\": \"arun.cherian@simpplr.com\",\n            \"canRemove\": true,\n            \"canMakeOwner\": true,\n            \"canMakeNotManager\": false,\n            \"canMakeNotContentManager\": false,\n            \"canMakeManager\": true,\n            \"canMakeContentManager\": true,\n            \"canFollow\": false\n        }\n    ],\n    \"responseTimeStamp\": \"1631637301137\",\n    \"redirectUrl\": \"https://xxxxx.visualforce.com/apex/ManageSitesMembers?siteId=a1A5e000001wJRWxxx&ts=1631637301137\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        videoCallProvider:
+                          type: string
+                          example: zoom
+                        url:
+                          type: string
+                          example: https://xxxx.visualforce.com/apex/app?u=/people/a115e000002FFnxxxx
+                        sfUserId:
+                          type: string
+                          example: 0055e000006GG3Jxxx
+                        peopleId:
+                          type: string
+                          example: a115e000002FFncxxx
+                        nickname:
+                          type: string
+                          example: User1628138245683761xxxx
+                        name:
+                          type: string
+                          example: Arun Cherian
+                        location:
+                          type: string
+                          example: ''
+                        isProtectedAuthor:
+                          type: boolean
+                          example: false
+                          default: true
+                        isOwner:
+                          type: boolean
+                          example: false
+                          default: true
+                        isMember:
+                          type: boolean
+                          example: true
+                          default: true
+                        isManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        isFollowing:
+                          type: boolean
+                          example: false
+                          default: true
+                        isFollower:
+                          type: boolean
+                          example: false
+                          default: true
+                        isFavorited:
+                          type: boolean
+                          example: false
+                          default: true
+                        isContentManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        id:
+                          type: string
+                          example: a115e000002FFncAAG
+                        hasConnectedSharePointAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedOneDriveAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedGoogleDriveAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        hasConnectedDropboxAccount:
+                          type: boolean
+                          example: false
+                          default: true
+                        email:
+                          type: string
+                          example: arun.cherian@simpplr.com
+                        canRemove:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeOwner:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeNotManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        canMakeNotContentManager:
+                          type: boolean
+                          example: false
+                          default: true
+                        canMakeManager:
+                          type: boolean
+                          example: true
+                          default: true
+                        canMakeContentManager:
+                          type: boolean
+                          example: true
+                          default: true
+                        canFollow:
+                          type: boolean
+                          example: false
+                          default: true
+                  responseTimeStamp:
+                    type: string
+                    example: '1631637301137'
+                  redirectUrl:
+                    type: string
+                    example: https://xxxxx.visualforce.com/apex/ManageSitesMembers?siteId=a1A5e000001wJRWxxx&ts=1631637301137
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+    delete:
+      summary: Remove a Member from a Site
+      description: Use this API to remove a Member from a Site
+      operationId: remove-a-member-from-a-site
+      parameters:
+      - name: site-id
+        in: path
+        description: Site ID to remove the Member from(sfUserId)
+        schema:
+          type: string
+          default: a1A5e000001xXRxEAM
+        required: true
+      - name: member-id
+        in: path
+        description: ID of the Member to be removed
+        schema:
+          type: string
+          default: 0055e000006FlqjAAC
+        required: true
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {},\n    \"responseTimeStamp\": \"1631640298904\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties: {}
+                  responseTimeStamp:
+                    type: string
+                    example: '1631640298904'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Sites
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0

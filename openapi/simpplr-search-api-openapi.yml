@@ -1,0 +1,494 @@
+openapi: 3.2.0
+info:
+  title: simpplr-api-gateway Search API
+  version: '1.0'
+servers:
+- url: https://api.ec.simpplr.com/api
+security:
+- sec0: []
+tags:
+- name: Search
+paths:
+  /search:
+    get:
+      summary: Search within a Section
+      description: Use this API to search within Site, Top, File, User and Content.
+      operationId: search-within-a-section
+      parameters:
+      - name: section
+        in: query
+        description: Section to search in
+        required: true
+        schema:
+          type: string
+          enum:
+          - Site
+          - Top
+          - File
+          - User
+          - CrmFile
+          - ServiceNow
+          - GoogleDriveFile
+          - Content
+          - OneDriveFile
+          - SharePointFile
+          - Confluence
+          default: Site
+      - name: term
+        in: query
+        description: Search term
+        schema:
+          type: string
+      - name: search-site
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: is-correction-enabled
+        in: query
+        description: Specifies if external seach can correct spelling. If false, the exact search term will be used. False should be passed when a suggested term is used to avoid infinite loops.
+        schema:
+          type: boolean
+          default: false
+      - name: size
+        in: query
+        description: Maximum number of results to return
+        required: true
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: drive-type
+        in: query
+        schema:
+          type: string
+          enum:
+          - shareddrive
+          - mydrive
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": {\n        \"totalRecords\": 11,\n        \"term\": \"test\",\n        \"suggestedTerm\": \"text\",\n        \"nextPageToken\": \"1\",\n        \"listOfItems\": [\n            {\n                \"relevancyScore\": 9.874037,\n                \"itemType\": \"site\",\n                \"item\": {\n                    \"url\": \"https://xxxxx.visualforce.com/apex/app?u=/site/a1A5e000001wK7IEAU/dashboard\",\n                    \"title\": \"Test API Site\",\n                    \"siteId\": \"a1A5e000001wxxxx\",\n                    \"name\": \"Test API Site\",\n                    \"memberCount\": 1,\n                    \"isShowInSimpplrEnabled\": false,\n                    \"isPageEnabled\": false,\n                    \"isOwner\": false,\n                    \"isMember\": false,\n                    \"isMandatory\": false,\n                    \"isManager\": false,\n                    \"isFileEnabled\": false,\n                    \"isFeedEnabled\": false,\n                    \"isFeatured\": false,\n                    \"isFavorited\": false,\n                    \"isEventEnabled\": false,\n                    \"isDeleted\": false,\n                    \"isBroadcast\": false,\n                    \"isActivated\": true,\n                    \"isAccessRequested\": false,\n                    \"isAboutEnabled\": false,\n                    \"id\": \"a1A5e000001wxxxx\",\n                    \"description\": \"\",\n                    \"chatterGroupId\": \"dummyId\",\n                    \"categoryName\": \"Uncategorized\",\n                    \"categoryId\": \"a1C5e0000006pbxxx\",\n                    \"category\": {\n                        \"url\": \"https://xxx.visualforce.com/apex/app?u=/sites#/sites/category?category=a1C5e0000006pbbEAA\",\n                        \"name\": \"Uncategorized\",\n                        \"id\": \"a1C5e0000006pxxxx\"\n                    },\n                    \"access\": \"Public\"\n                }\n            }\n        ]\n    },\n    \"responseTimeStamp\": \"1631630500574\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    properties:
+                      totalRecords:
+                        type: integer
+                        example: 11
+                        default: 0
+                      term:
+                        type: string
+                        example: test
+                      suggestedTerm:
+                        type: string
+                        example: text
+                      nextPageToken:
+                        type: string
+                        example: '1'
+                      listOfItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            relevancyScore:
+                              type: number
+                              example: 9.874037
+                              default: 0
+                            itemType:
+                              type: string
+                              example: site
+                            item:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: https://xxxxx.visualforce.com/apex/app?u=/site/a1A5e000001wK7IEAU/dashboard
+                                title:
+                                  type: string
+                                  example: Test API Site
+                                siteId:
+                                  type: string
+                                  example: a1A5e000001wxxxx
+                                name:
+                                  type: string
+                                  example: Test API Site
+                                memberCount:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                isShowInSimpplrEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isPageEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isOwner:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isMember:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isMandatory:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isManager:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isFileEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isFeedEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isFeatured:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isFavorited:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isEventEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isDeleted:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isBroadcast:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isActivated:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                                isAccessRequested:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                isAboutEnabled:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                id:
+                                  type: string
+                                  example: a1A5e000001wxxxx
+                                description:
+                                  type: string
+                                  example: ''
+                                chatterGroupId:
+                                  type: string
+                                  example: dummyId
+                                categoryName:
+                                  type: string
+                                  example: Uncategorized
+                                categoryId:
+                                  type: string
+                                  example: a1C5e0000006pbxxx
+                                category:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                      example: https://xxx.visualforce.com/apex/app?u=/sites#/sites/category?category=a1C5e0000006pbbEAA
+                                    name:
+                                      type: string
+                                      example: Uncategorized
+                                    id:
+                                      type: string
+                                      example: a1C5e0000006pxxxx
+                                access:
+                                  type: string
+                                  example: Public
+                  responseTimeStamp:
+                    type: string
+                    example: '1631630500574'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Search
+  /search/autocomplete:
+    get:
+      summary: Autocomplete
+      description: Use this API for autocomplete suggestions.
+      operationId: autocomplete
+      parameters:
+      - name: term
+        in: query
+        description: Search term
+        required: true
+        schema:
+          type: string
+          default: test
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"success\",\n    \"result\": [\n        {\n            \"url\": \"https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wK7IEAU/dashboard\",\n            \"type\": \"site\",\n            \"resourceType\": \"site\",\n            \"name\": \"Test API Site\",\n            \"id\": \"a1A5e000001wK7IEAU\",\n            \"aws_score\": 143.66188,\n            \"authoredBy\": {},\n            \"access\": \"Public\"\n        }\n      ],\n    \"responseTimeStamp\": \"1631630914703\",\n    \"message\": \"\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: https://ajay-hada-dev-ed--c.visualforce.com/apex/app?u=/site/a1A5e000001wK7IEAU/dashboard
+                        type:
+                          type: string
+                          example: site
+                        resourceType:
+                          type: string
+                          example: site
+                        name:
+                          type: string
+                          example: Test API Site
+                        id:
+                          type: string
+                          example: a1A5e000001wK7IEAU
+                        aws_score:
+                          type: number
+                          example: 143.66188
+                          default: 0
+                        authoredBy:
+                          type: object
+                          properties: {}
+                        access:
+                          type: string
+                          example: Public
+                  responseTimeStamp:
+                    type: string
+                    example: '1631630914703'
+                  message:
+                    type: string
+                    example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": \"error\",\n    \"message\": \"SESSION_TIMEOUT\",\n    \"i18nmessage\": \"SESSION_TIMEOUT\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: SESSION_TIMEOUT
+                  i18nmessage:
+                    type: string
+                    example: SESSION_TIMEOUT
+      deprecated: false
+      tags:
+      - Search
+  /search/feed:
+    get:
+      summary: Search within Feed
+      description: Use this API to search within your feed.
+      operationId: search-within-feed
+      parameters:
+      - name: size
+        in: query
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: type
+        in: query
+        schema:
+          type: string
+          default: news
+      - name: term
+        in: query
+        description: The text to search on
+        schema:
+          type: string
+          default: test
+      - name: sort
+        in: query
+        description: Technique for sorting results
+        schema:
+          type: string
+          enum:
+          - date
+          - activity
+          default: date
+      - name: x-user-email
+        in: header
+        description: User's email to login into Salesforce
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Search
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://developer.simpplr.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.simpplr.com/reference/add-a-follower-to-a-site.md
+  - https://developer.simpplr.com/reference/add-a-member-to-a-site.md
+  - https://developer.simpplr.com/reference/add-audience.md
+  - https://developer.simpplr.com/reference/app-adoption-1.md
+  - https://developer.simpplr.com/reference/app-adoption-average.md
+  - https://developer.simpplr.com/reference/app-adoption.md
+  - https://developer.simpplr.com/reference/app-page-views.md
+  - https://developer.simpplr.com/reference/autocomplete.md
+  - https://developer.simpplr.com/reference/campaigns.md
+  - https://developer.simpplr.com/reference/content-engagement.md
+  - https://developer.simpplr.com/reference/content-publications.md
+  - https://developer.simpplr.com/reference/content-referral-sources.md
+  - https://developer.simpplr.com/reference/content-views-by-type.md
+  - https://developer.simpplr.com/reference/content-views-list.md
+  - https://developer.simpplr.com/reference/create-a-blog.md
+  - https://developer.simpplr.com/reference/create-a-new-alert.md
+  - https://developer.simpplr.com/reference/create-a-notification.md
+  - https://developer.simpplr.com/reference/create-a-site.md
+  - https://developer.simpplr.com/reference/create-an-event.md
+  - https://developer.simpplr.com/reference/delete-a-blog.md
+  - https://developer.simpplr.com/reference/delete-a-page-by-id.md
+  - https://developer.simpplr.com/reference/delete-album-images-by-ids.md
+  - https://developer.simpplr.com/reference/delete-an-alert.md
+  - https://developer.simpplr.com/reference/delete-an-event-by-id.md
+  - https://developer.simpplr.com/reference/delete-audience.md
+  - https://developer.simpplr.com/reference/expire-an-alert.md
+  - https://developer.simpplr.com/reference/get-all-events.md
+  - https://developer.simpplr.com/reference/get-blog-by-id.md
+  - https://developer.simpplr.com/reference/get-carousel-data.md
+  - https://developer.simpplr.com/reference/get-must-read-content.md
+  - https://developer.simpplr.com/reference/get-site-by-id.md
+  - https://developer.simpplr.com/reference/knowledge-page-stats.md
+  - https://developer.simpplr.com/reference/low-activity-sites.md
+  - https://developer.simpplr.com/reference/news-letters.md
+  - https://developer.simpplr.com/reference/people-count.md
+  - https://developer.simpplr.com/reference/people-performance.md
+  - https://developer.simpplr.com/reference/people-profile-completeness.md
+  - https://developer.simpplr.com/reference/remove-a-follower-from-a-site.md
+  - https://developer.simpplr.com/reference/remove-a-member-from-a-site.md
+  - https://developer.simpplr.com/reference/search-for-a-page-by-id.md
+  - https://developer.simpplr.com/reference/search-for-alerts.md
+  - https://developer.simpplr.com/reference/search-for-an-event-by-id.md
+  - https://developer.simpplr.com/reference/search-for-contents.md
+  - https://developer.simpplr.com/reference/search-for-notifications.md
+  - https://developer.simpplr.com/reference/search-for-people.md
+  - https://developer.simpplr.com/reference/search-for-site-by-id.md
+  - https://developer.simpplr.com/reference/search-for-sites.md
+  - https://developer.simpplr.com/reference/search-list-1.md
+  - https://developer.simpplr.com/reference/search-list.md
+  - https://developer.simpplr.com/reference/search-page-categories.md
+  - https://developer.simpplr.com/reference/search-within-a-section.md
+  - https://developer.simpplr.com/reference/search-within-feed.md
+  - https://developer.simpplr.com/reference/searches.md
+  - https://developer.simpplr.com/reference/site-count.md
+  - https://developer.simpplr.com/reference/site-popularity.md
+  - https://developer.simpplr.com/reference/site-publications.md
+  - https://developer.simpplr.com/reference/social-engagement-list.md
+  - https://developer.simpplr.com/reference/social-engagement.md
+  - https://developer.simpplr.com/reference/update-a-blog.md
+  - https://developer.simpplr.com/reference/update-a-notification.md
+  - https://developer.simpplr.com/reference/update-a-page.md
+  - https://developer.simpplr.com/reference/update-a-site.md
+  - https://developer.simpplr.com/reference/update-an-alert.md
+  - https://developer.simpplr.com/reference/update-an-event.md
+  - https://developer.simpplr.com/reference/update-audience.md
+  - https://developer.simpplr.com/reference/update-people.md
+  - https://developer.simpplr.com/reference/update-site-as-active.md
+  merge:
+    pages: 67
+    deduped: 66
+    conflicts_kept_first: 0
