@@ -217,6 +217,8 @@ apis:
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
+  - Audiences
+  tags_raw:
   - Audience
   properties:
   - type: OpenAPI
@@ -227,6 +229,8 @@ apis:
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
+  - Blog
+  tags_raw:
   - Blogs
   properties:
   - type: OpenAPI
@@ -257,6 +261,8 @@ apis:
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -288,7 +294,8 @@ apis:
     people by id.
   humanURL: https://developer.simpplr.com/reference/introduction
   baseURL: https://api.ec.simpplr.com/api
-  tags:
+  tags: []
+  tags_raw:
   - Simpplr Api Gw Search People By Id
   properties:
   - type: OpenAPI
