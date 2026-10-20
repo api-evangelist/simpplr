@@ -6,7 +6,9 @@ source:
 - https://composio.dev/toolkits/simpplr
 - https://monid.ai/tools/simpplr
 checked:
+- https://cloudsecurityalliance.org/star/registry
 - https://composio.dev/toolkits/simpplr
+- https://eucoc.cloud/en/public-register/list-of-adherent-services
 - https://monid.ai/tools/simpplr
 - https://n8n.io/integrations/simpplr/
 - https://zapier.com/apps/simpplr/integrations
@@ -51,4 +53,34 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Cloud Security Alliance STAR Registry
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://cloudsecurityalliance.org/star/registry/simpplr/services/simpplr
+  category: Cloud security assurance
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-1
+    registered_name: Simpplr
+    registry_id: simpplr
+    service_url: https://simpplr.com
+    matched_domain: simpplr.com
+    matched_by: domain
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    certified_products: []
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 templates: []
