@@ -64,6 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Simpplr is a company surfaced as a portfolio company of norwest-venture-partners, sapphire-ventures and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment pipeline.
+Simpplr is an AI-powered employee experience platform (modern intranet, employee communications, recognition, and virtual assistant) used by enterprises to inform, engage, and connect their workforce. Built on the Salesforce platform, Simpplr publishes a REST "Extensibility Center" API at developer.simpplr.com that lets developers programmatically manage sites, pages, blogs, events, alerts, notifications, people/audiences, content, search, media, and adoption/engagement analytics. Authentication is OAuth 2.0 (bearer token) via a connected app on the Salesforce platform. Simpplr was founded in 2014, is headquartered in Redwood City, California, and is backed by venture investors including Norwest Venture Partners and Sapphire Ventures. This profile was added to the API Evangelist network from the VC portfolio pipeline and enriched from Simpplr's public developer surface.
 
-Backed by: norwest-venture-partners, sapphire-ventures — https://simpplr.com
+**Areas:** Company · Employee Experience · Intranet · Employee Communications · Digital Workplace · Internal Communications · Human Resources · Collaboration · Enterprise Software · Salesforce
+
+## Simpplr on APIs.io
+
+Everything profiled for Simpplr is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/simpplr/](https://apis.io/providers/simpplr/)** — or go straight to one of the APIs or properties below.
+
+### APIs (12)
+
+- [Simpplr Extensibility Center API](https://apis.io/apis/simpplr/simpplr-extensibility-center-api/) — Simpplr's REST API for managing intranet content and community — sites, pages, blogs, events, alerts, notifications, people and audiences, content…
+- [Simpplr Alerts API](https://apis.io/apis/simpplr/simpplr-alerts-api/) — The Alerts API from Simpplr — 3 operation(s) for alerts.
+- [Simpplr Analytics API](https://apis.io/apis/simpplr/simpplr-analytics-api/) — The Analytics API from Simpplr — 25 operation(s) for analytics.
+- [Simpplr Audience API](https://apis.io/apis/simpplr/simpplr-audience-api/) — The Audience API from Simpplr — 2 operation(s) for audience.
+- [Simpplr Blogs API](https://apis.io/apis/simpplr/simpplr-blogs-api/) — The Blogs API from Simpplr — 2 operation(s) for blogs.
+- [Simpplr Carousels API](https://apis.io/apis/simpplr/simpplr-carousels-api/) — The Carousels API from Simpplr — 1 operation(s) for carousels.
+- [Simpplr Contents API](https://apis.io/apis/simpplr/simpplr-contents-api/) — The Contents API from Simpplr — 16 operation(s) for contents.
+- [Simpplr Notifications API](https://apis.io/apis/simpplr/simpplr-notifications-api/) — The Notifications API from Simpplr — 2 operation(s) for notifications.
+- [Simpplr People API](https://apis.io/apis/simpplr/simpplr-people-api/) — The People API from Simpplr — 2 operation(s) for people.
+- [Simpplr Search API](https://apis.io/apis/simpplr/simpplr-search-api/) — The Search API from Simpplr — 3 operation(s) for search.
+- [Simpplr Simpplr Api Gw Search People By Id API](https://apis.io/apis/simpplr/simpplr-simpplr-api-gw-search-people-by-id-api/) — The Simpplr Api Gw Search People By Id API from Simpplr — 1 operation(s) for simpplr api gw search people by id.
+- [Simpplr Sites API](https://apis.io/apis/simpplr/simpplr-sites-api/) — The Sites API from Simpplr — 6 operation(s) for sites.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [simpplr](https://apis.io/servers/simpplr/simpplr/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Simpplr Agentic Access](https://apis.io/agentic-access/simpplr/simpplr-agentic-access/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Simpplr API Rules](https://apis.io/rules/simpplr/simpplr-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Simpplr Authentication](https://apis.io/security/simpplr/simpplr-authentication/)
+- [Simpplr Domain Security](https://apis.io/security/simpplr/simpplr-domain-security/)
+- [Simpplr Trust Center](https://apis.io/security/simpplr/simpplr-trust-center/)
+- [Simpplr Vulnerability Disclosure](https://apis.io/security/simpplr/simpplr-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Simpplr Scopes](https://apis.io/scopes/simpplr/simpplr-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://simpplr.com)
+- [Documentation](https://developer.simpplr.com/reference/introduction)
+- [Getting started](https://developer.simpplr.com/reference/authenticating-via-an-external-application)
+- [API reference](https://developer.simpplr.com/reference/introduction)
+- [Pricing](https://www.simpplr.com/pricing/)
+- [Sign up](https://app.simpplr.com/)
+- [Support](https://help.simpplr.com/)
+- [Blog](https://www.simpplr.com/blog/)
+- [Security](https://simpplr.com/vulnerability-disclosure-policy)
+- [Compliance](https://www.simpplr.com/security-compliance/)
+- [Trust centre](https://www.simpplr.com/security-compliance/)
+- [Terms of service](https://www.simpplr.com/tos/)
+- [Privacy policy](https://www.simpplr.com/privacy/)
+
+## API Evangelist rating
+
+**Kin Score 45.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.4 |
+| Contract quality | 52.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 47.4 |
+
+**Agent readiness 27.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/simpplr/](https://apis.io/providers/simpplr/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Simpplr: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/simpplr/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
